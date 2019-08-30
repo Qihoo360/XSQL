@@ -1,5 +1,5 @@
 # XSQL
-[English](https://github.com/Qihoo360/XSQL/README.md) | [中文](https://github.com/Qihoo360/XSQL/README-CN.md)
+[English](https://github.com/Qihoo360/XSQL/blob/master/README.md) | [中文](https://github.com/Qihoo360/XSQL/blob/master/README-CN.md)
 
 XSQL是一款低门槛、更稳定的跨数据源查询引擎。1）XSQL提供了使用标准SQL读写NoSQL数据库的解决方案，能够大幅降低学习曲线，节省人力成本。 2）XSQL通过对SQL的优化以及一系列监控插件，为用户任务的稳定运行保驾护航。
 
