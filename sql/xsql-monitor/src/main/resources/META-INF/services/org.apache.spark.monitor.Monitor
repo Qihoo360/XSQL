@@ -1,0 +1,5 @@
+org.apache.spark.monitor.application.ApplicationEndMonitor
+org.apache.spark.monitor.executor.ExecutorNumMonitor
+org.apache.spark.monitor.job.ApplicationIdleMonitor
+org.apache.spark.monitor.stage.ExecutorMemoryAdviser
+org.apache.spark.monitor.stage.DataSkewMonitor

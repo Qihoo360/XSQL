@@ -1,0 +1,185 @@
+#!/usr/bin/env bash
+cygwin=false
+case "`uname`" in
+    CYGWIN*) cygwin=true;;
+esac
+
+# Figure out where Spark is installed
+FWDIR="$(cd "`dirname "$0"`"/..; pwd)"
+MEM=1536m
+DRIVER_MEM=5G
+
+# Export this as SPARK_HOME
+export SPARK_HOME="$FWDIR"
+SPARK_HIVE_SHELL_LIB="$SPARK_HOME/jars/$(cd ${SPARK_HOME}/jars; ls *spark-xsql-shell*)"
+export SPARK_HIVE_MANCLASS_NAME="org.apache.spark.sql.xsql.shell.SparkXSQLShell"
+
+. "$SPARK_HOME"/conf/spark-hive-env.sh
+export SPARK_CLASSPATH=$DRIVER_CLASSPATH:$SPARK_CLASSPATH
+SPARK_CONFS=""
+ARGS=`getopt -o "c:m:M:n:N:p:q:f:e:vDh" -l "conf:" -n "spark-xsql" -- "$@"`
+
+eval set -- "${ARGS}"
+while true; do
+    case "${1}" in
+        --conf)
+            shift;
+            if [[ -n "${1}" ]]; then
+		CONFS=${CONFS}" --conf ${1}"
+                shift;
+            fi
+            ;;
+        -c)
+            shift;
+            if [[ -n "${1}" ]]; then
+                CORES=${1}
+                shift;
+            fi
+            
+            ;;
+        -m)
+            shift;
+            if [[ -n "${1}" ]]; then
+                MEM=${1}
+                shift;
+            fi
+            ;;
+        -M)
+            shift;
+            if [[ -n "${1}" ]]; then
+                DRIVER_MEM=${1}
+                shift;
+            fi
+            
+            ;;
+        -e)
+            shift;
+            if [[ -n "${1}" ]]; then
+                SQL=${1}
+                shift;
+            fi
+            
+            ;;
+        -n)
+            shift;
+            if [[ -n "${1}" ]]; then
+                EXECUTOR_CORES=${1}
+                shift;
+            fi
+            
+            ;;
+        -N)
+            shift;
+            if [[ -n "${1}" ]]; then
+                APPNAME=${1}
+                shift;
+            fi
+            
+            ;;
+        -p)
+            shift;
+            if [[ -n "${1}" ]]; then
+                SHUFFLE_PARTITIONS=${1}
+                shift;
+            fi
+            
+            ;;
+        -q)
+            shift;
+            if [[ -n "${1}" ]]; then
+                QUEUE=${1}
+                shift;
+            fi
+            
+            ;;
+        -f)
+            shift;
+            if [[ -n "${1}" ]]; then
+                SQL_FILE=${1}
+                shift;
+            fi
+            
+            ;;
+        -v)
+            shift;
+            VERBOSE="--verbose"
+            export SPARK_PRINT_LAUNCH_COMMAND=true
+            ;;
+        -D)
+            shift;
+            IS_LOAD_HIVE_RC="false"
+            ;;
+        -h|--help)
+            shift;
+            HELP_ENABLE="true"
+            ;;
+        --)
+            shift;
+            break;
+            ;;
+    esac
+done
+
+
+SPARK_OPTS=" $VERBOSE --files $SPARK_HOME/conf/AM/log4j.properties "
+
+if [ ! -z "$CORES" ] ; then
+        SPARK_OPTS=$SPARK_OPTS"--num-executors $CORES "
+fi
+if [ ! -z "$MEM" ] ; then
+        SPARK_OPTS=$SPARK_OPTS"--executor-memory $MEM "
+fi
+if [ ! -z "$DRIVER_MEM" ] ; then
+        SPARK_OPTS=$SPARK_OPTS"--driver-memory $DRIVER_MEM "
+fi
+if [ ! -z "$EXECUTOR_CORES" ] ; then
+        SPARK_OPTS=$SPARK_OPTS"--executor-cores $EXECUTOR_CORES "
+fi
+if [ ! -z "$APPNAME" ] ; then
+        SPARK_OPTS=$SPARK_OPTS"--name $APPNAME "
+        SPARK_CONFS=$SPARK_CONFS"--conf spark.app.name.predefine=true "
+fi
+if [ ! -z "$SHUFFLE_PARTITIONS" ] ; then
+        SPARK_CONFS=$SPARK_CONFS"--conf spark.sql.shuffle.partitions=$SHUFFLE_PARTITIONS "
+fi
+if [ ! -z "$QUEUE" ] ; then
+        SPARK_OPTS=$SPARK_OPTS"--queue $QUEUE "
+fi
+if [ ! -z "$IS_LOAD_HIVE_RC" ] ; then
+        SPARK_CONFS=$SPARK_CONFS" --conf spark.enable.hiverc=$IS_LOAD_HIVE_RC "
+fi
+if [ ! -z "$CONFS" ] ; then
+        SPARK_CONFS=$SPARK_CONFS" "$CONFS" "
+fi
+
+if [ ! -z "$SQL" ] ; then
+        $SPARK_HOME/bin/spark-submit $SPARK_OPTS --class "$SPARK_HIVE_MANCLASS_NAME" $SPARK_CONFS  $SPARK_HIVE_SHELL_LIB -e "$SQL"
+        exit $?
+fi
+if [ ! -z "$SQL_FILE" ] ; then
+        $SPARK_HOME/bin/spark-submit $SPARK_OPTS --class "$SPARK_HIVE_MANCLASS_NAME" $SPARK_CONFS  $SPARK_HIVE_SHELL_LIB -f $SQL_FILE
+        exit $?
+fi
+
+if [ ! -z "$HELP_ENABLE" ] ; then
+	echo "Options:
+	-c --num-executors       Number of executors to launch.(设置excutor的数量，请尽量使用默认值)
+	-m --executor-memory     Memory per executor.(设置每个excutor的内存，请尽量使用默认值)
+	-M --driver-memory       Memory for driver.(设置driver的内存，请尽量使用默认值)
+	-n --executor-cores      Number of cores per executor(Default:1).(设置每个excutor的核数，请尽量使用默认值)
+	-N --name                Set the name of submitting application.(设置提交应用的名称)
+	-q --queue               Set resource pool.(设置使用的资源池)
+        -v --verbose             Print additional debug output.(显示额外的debug信息)
+	-p                       Set the number of shuffle partitions.(设置shuffle partition的个数，请尽量使用默认值)
+	-f SQL_FILE              Submit the SQL from SQL_FILE and spark-hive run in BACKGROUND.(执行-e参数后的SQL语句)
+	-e SQL                   Submit the SQL from shell and spark-hive run in BACKGROUND.(执行-f参数后文件中的SQL语句)
+        -h                       Show this help message and exit.(显示帮助信息)
+        -------------------------------------------------------------------------------------------------------------------------------------------------
+	-D --conf spark.enable.hiverc=false   Don't run ~/.hiverc when start the spark-hive(Default:run ~/.hiverc).(设置启动时不执行~/.hiverc，默认执行)"
+
+	exit $?
+fi
+
+#SPARK_CONFS=$SPARK_CONFS" --conf spark.dynamicAllocation.enabled=true "
+SPARK_CONFS=$SPARK_CONFS" --conf spark.app.fromshell=true "
+$SPARK_HOME/bin/spark-submit $SPARK_OPTS --class "$SPARK_HIVE_MANCLASS_NAME" $SPARK_CONFS  $SPARK_HIVE_SHELL_LIB

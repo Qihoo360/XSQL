@@ -1,0 +1,4 @@
+org.elasticsearch.spark.sql.DefaultSource15
+com.mongodb.spark.sql.DefaultSource
+org.apache.spark.sql.execution.datasources.redis.DefaultSource
+org.apache.spark.sql.execution.datasources.mysql.ExtendedDefaultSource

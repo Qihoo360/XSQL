@@ -1,0 +1,51 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements. See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+site_name: XSQL
+theme: cinder
+markdown_extensions:
+- toc:
+    toc_depth: 3
+nav:
+- Overview: 'getting_started/Getting_Started.md'
+- Tutorial:
+  - 'Configuration': 'tutorial/configuration.md'
+  - 'Special Syntax': 'tutorial/syntax.md'
+  - 'API': 'tutorial/api.md'
+  - 'REST API': 'tutorial/rest-api.md'
+- Data Sources:
+  - 'Hive': 'datasources/hive.md'
+  - 'MySQL': 'datasources/mysql.md'
+  - 'Elasticsearch': 'datasources/elasticsearch.md'
+  - 'MongoDB': 'datasources/mongo.md'
+  - 'Kafka': 'datasources/kafka.md'
+  - 'HBase': 'datasources/hbase.md'
+  - 'Redis': 'datasources/redis.md'
+  - 'Druid': 'datasources/druid.md'
+- Performance Report:
+  - 'Hive': 'performance_report/hive.md'
+  - 'MySQL': 'performance_report/mysql.md'
+  - 'Elasticsearch': 'performance_report/elasticsearch.md'
+  - 'MongoDB': 'performance_report/mongo.md'
+  - 'HBase': 'performance_report/hbase.md'
+  - 'Redis': 'performance_report/redis.md'
+#  - 'Druid': 'performance_report/druid.md'
+  - 'Multiple Data Sources': 'performance_report/multi_datasource.md'
+- More:
+  - 'Json Editor': 'jsoneditor/index.html'
+  - 'Functions': 'functions.md'
+  - 'Common Troubleshooting': 'troubleshooting/common.md'
+  - 'Spark2.3 Troubleshooting': 'troubleshooting/spark2.3-troubleshooting.md'
+  - 'Spark1.6 Troubleshooting': 'troubleshooting/spark1.6-troubleshooting.md'
