@@ -30,9 +30,9 @@ XSQL is a multi-datasource query engine which designed easy to use, stable to ru
    git clone https://github.com/Qihoo360/XSQL
    ```
 
-   You can also get pre-built XSQL from [Release Pages](https://github.com/shadowsocks/shadowsocks-android/releases) .
+   You can also get pre-built XSQL from [Release Pages](https://github.com/Qihoo360/XSQL/releases) .
 
-2. When you want to create a XSQL distribution of source code, which is similar to the release package in the [Release Pages](https://github.com/shadowsocks/shadowsocks-android/releases) , use `build-plugin.sh` in the root directory of project. For example:
+2. When you want to create a XSQL distribution of source code, which is similar to the release package in the [Release Pages](https://github.com/Qihoo360/XSQL/releases) , use `build-plugin.sh` in the root directory of project. For example:
 
    ```
    XSQL/build-plugin.sh
@@ -58,7 +58,7 @@ XSQL is a multi-datasource query engine which designed easy to use, stable to ru
 
 ### Installing XSQL:
 
-1. Build the XSQL tar  `xsql-[project.version]-[plugin|bin]-spark-[spark.version].tgz` following the above steps or Download from  [Release Pages](https://github.com/shadowsocks/shadowsocks-android/releases).
+1. Build the XSQL tar  `xsql-[project.version]-[plugin|bin]-spark-[spark.version].tgz` following the above steps or Download from  [Release Pages](https://github.com/Qihoo360/XSQL/releases).
 
 2. If you have installed spark in your machine, please use the `plugin` version which size is 30M+.  Or you need to install the `bin` version, which is about 300M + in size, which is far more than the `plugin` version.
 
