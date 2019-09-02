@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>MongoDB - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../datasources/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../elasticsearch/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../hbase/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#mongodb">MongoDB性能测试报告</a></li>
+            <li class="second-level"><a href="#_1">测试环境</a></li>
+                
+            <li class="second-level"><a href="#tpcds">基于TPCDS的性能测试报告</a></li>
+                
+                <li class="third-level"><a href="#_2">测试目标</a></li>
+                <li class="third-level"><a href="#_3">测试数据集</a></li>
+                <li class="third-level"><a href="#_4">测试语句集</a></li>
+                <li class="third-level"><a href="#1g9710124">测试结果一（单位：秒，数据量：1G/9710124）</a></li>
+                <li class="third-level"><a href="#_5">结论</a></li>
+                <li class="third-level"><a href="#14g113496874">测试结果二（单位：秒，数据量：14G/113496874）</a></li>
+                <li class="third-level"><a href="#_6">结论</a></li>
+            <li class="second-level"><a href="#_7">基于业务数据的性能测试报告（暂无）</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="mongodb">MongoDB性能测试报告</h1>
+<p>MongoDB的性能测试报告分为基于TPCDS的性能测试报告和基于业务数据的性能测试报告。</p>
+<h2 id="_1">测试环境</h2>
+<p><strong>操作系统</strong>：   CentOS release 6.2 (Final)
+​ <br />
+<strong>虚拟机版本</strong>： Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+​ <br />
+<strong>测试机器</strong>：   client01v.qss.zzzc.qihoo.net、clientadmin.dfs.shbt.qihoo.net</p>
+<p><strong>XSQL配置</strong>： </p>
+<ul>
+<li>Driver Memory：5G</li>
+<li>Executor Instances：100</li>
+<li>Executor Memory：1536M或5G</li>
+</ul>
+<h2 id="tpcds">基于TPCDS的性能测试报告</h2>
+<h3 id="_2">测试目标</h3>
+<p>本次测试涵盖性能测试与功能测试，主要包含两个目的：</p>
+<blockquote>
+<ul>
+<li>
+<p>展示XSQL在针对单数据源、多数据源的SQL解析及执行能力</p>
+</li>
+<li>
+<p>找出XSQL在复杂SQL处理以及大规模数据集计算时存在的问题</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="_3">测试数据集</h3>
+<ul>
+<li>数据量一：1G/9710124</li>
+<li>数据量二：14G/113496874</li>
+</ul>
+<h3 id="_4">测试语句集</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL语句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>select * from mymongo.xitong_mongo.taxis</td>
+</tr>
+<tr>
+<td>2</td>
+<td>select VendorID, trip_distance from mymongo.xitong_mongo.taxis</td>
+</tr>
+<tr>
+<td>3</td>
+<td>select * from mymongo.xitong_mongo.taxis order by trip_distance</td>
+</tr>
+<tr>
+<td>4</td>
+<td>select * from mymongo.xitong_mongo.taxis where DOLocationID = 229</td>
+</tr>
+<tr>
+<td>5</td>
+<td>select * from mymongo.xitong_mongo.taxis where RatecodeID is null</td>
+</tr>
+<tr>
+<td>6</td>
+<td>select * from mymongo.xitong_mongo.taxis where payment_type in (1,2)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>select * from mymongo.xitong_mongo.taxis where tpep_pickup_datetime like '2017-01-01 00:00:0_'</td>
+</tr>
+<tr>
+<td>8</td>
+<td>select sum(total_amount) from mymongo.xitong_mongo.taxis</td>
+</tr>
+<tr>
+<td>9</td>
+<td>select sum(total_amount),  payment_type from mymongo.xitong_mongo.taxis group by payment_type</td>
+</tr>
+<tr>
+<td>10</td>
+<td>select count(*) from mymongo.xitong_mongo.taxis</td>
+</tr>
+<tr>
+<td>11</td>
+<td>select count(*),  payment_type from mymongo.xitong_mongo.taxis group by payment_type</td>
+</tr>
+<tr>
+<td>12</td>
+<td>select distinct payment_type from mymongo.xitong_mongo.taxis</td>
+</tr>
+<tr>
+<td>13</td>
+<td>select count(distinct payment_type) from mymongo.xitong_mongo.taxis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1g9710124">测试结果一（单位：秒，数据量：1G/9710124）</h3>
+<table>
+<thead>
+<tr>
+<th>执行引擎</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mongo   API</td>
+<td>0.849</td>
+<td>0.459</td>
+<td>15.184</td>
+<td>0.466</td>
+<td>5.555</td>
+<td>0.468</td>
+<td>0.471</td>
+<td>12.652</td>
+<td>13.865</td>
+<td>4.239</td>
+<td>10.48</td>
+<td>10.151</td>
+<td>10.222</td>
+</tr>
+<tr>
+<td>XSQL Pushdown</td>
+<td>0.458</td>
+<td>0.172</td>
+<td>14.859</td>
+<td>0.135</td>
+<td>5.456</td>
+<td>0.1</td>
+<td>0.494</td>
+<td>12.291</td>
+<td>13.557</td>
+<td>4.444</td>
+<td>10.044</td>
+<td>9.845</td>
+<td>9.863</td>
+</tr>
+<tr>
+<td>XSQL</td>
+<td>6.29</td>
+<td>3.169</td>
+<td>64.728</td>
+<td>28.466</td>
+<td>10.778</td>
+<td>21.097</td>
+<td>22.592</td>
+<td>12.197</td>
+<td>18.77</td>
+<td>54.345</td>
+<td>13.145</td>
+<td>13.615</td>
+<td>15.662</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\MongoDB-XSQL.jpg" /></p>
+<h3 id="_5"><strong>结论</strong></h3>
+<ul>
+<li>XSQL [Pushdown]相比于直接调用MongoDB的API，性能上几乎没有损耗。</li>
+<li>在小数据量情况下，XSQL使用Spark的效率相对来说不高。</li>
+</ul>
+<h3 id="14g113496874">测试结果二（单位：秒，数据量：14G/113496874）</h3>
+<table>
+<thead>
+<tr>
+<th>执行引擎</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mongo   API</td>
+<td>0.788</td>
+<td>0.513</td>
+<td>236.142</td>
+<td>0.508</td>
+<td>117.646</td>
+<td>0.497</td>
+<td>0.521</td>
+<td>207.773</td>
+<td>224.417</td>
+<td>97.639</td>
+<td>182.1</td>
+<td>179.221</td>
+<td>179.229</td>
+</tr>
+<tr>
+<td>XSQL   Pushdown</td>
+<td>0.617</td>
+<td>0.129</td>
+<td>233.148</td>
+<td>0.103</td>
+<td>119.321</td>
+<td>0.067</td>
+<td>0.096</td>
+<td>204.984</td>
+<td>223.216</td>
+<td>98.152</td>
+<td>181.033</td>
+<td>177.489</td>
+<td>178.387</td>
+</tr>
+<tr>
+<td>XSQL</td>
+<td>6.063</td>
+<td>8.793</td>
+<td>435.851</td>
+<td>407.283</td>
+<td>230.014</td>
+<td>362.561</td>
+<td>347.276</td>
+<td>50.207</td>
+<td>71.676</td>
+<td>430.705</td>
+<td>52.205</td>
+<td>54.794</td>
+<td>48.358</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\MongoDB2-XSQL.jpg" /></p>
+<h3 id="_6"><strong>结论</strong></h3>
+<ul>
+<li>XSQL [Pushdown]相比于直接调用MongoDB的API，性能上几乎没有损耗。</li>
+<li>在大数据量情况下，对于投影操作来说，XSQL使用Spark的效率相对来说不高，对于分组、聚合等运算Spark反而有优势。</li>
+</ul>
+<h2 id="_7">基于业务数据的性能测试报告（暂无）</h2></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>MySQL - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../datasources/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hive/">Hive</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../hive/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../elasticsearch/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#mysql">MySQL性能测试报告</a></li>
+            <li class="second-level"><a href="#_1">测试环境</a></li>
+                
+            <li class="second-level"><a href="#_2">测试目标</a></li>
+                
+            <li class="second-level"><a href="#_3">测试数据集的大小</a></li>
+                
+            <li class="second-level"><a href="#_4">测试语句集</a></li>
+                
+            <li class="second-level"><a href="#_5">测试结果 （单位：秒）</a></li>
+                
+            <li class="second-level"><a href="#_6">结论</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="mysql">MySQL性能测试报告</h1>
+<p>MySQL性能测试报告是基于业务数据的性能测试报告。</p>
+<h2 id="_1">测试环境</h2>
+<p><strong>操作系统</strong>：     CentOS release 6.2 （Final）</p>
+<p><strong>虚拟机版本</strong>：  Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)</p>
+<p><strong>测试机器</strong>：     client01v.qss.zzzc.qihoo.net</p>
+<p><strong>xsql配置</strong>：</p>
+<ul>
+<li>Driver Memory： 5G</li>
+<li>Executor Inatances: 10或100</li>
+<li>Executor Memory： 5G</li>
+</ul>
+<h2 id="_2">测试目标</h2>
+<p>本次测试涵盖性能测试与功能测试，主要包含两个目的：</p>
+<blockquote>
+<ul>
+<li>
+<p>展示XSQL在针对单数据源、多数据源的sql解析及执行能力</p>
+</li>
+<li>
+<p>找出XSQL在复杂SQL处理以及大规模数据集计算时存在的问题</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="_3">测试数据集的大小</h2>
+<table>
+<thead>
+<tr>
+<th>数据源</th>
+<th>50 M/1062854 rows</th>
+<th>100 M/3230371 rows</th>
+<th>500 M/9459722 rows</th>
+<th>1 G/10100177 rows</th>
+<th>2 G/29055658 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td>db_share.rpt_mso_english_result_q_daily</td>
+<td>db_share.rpt_shouyou_week_retention</td>
+<td>db_share.rpt_360game_plugin_new_report_daily</td>
+<td>db_share.rpt_mso_chns_360aphone_query_pvuv_daily</td>
+<td>db_share.rpt_cloudlive_errornum_all_daily</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">测试语句集</h2>
+<ul>
+<li>选择操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>select count(id) from rpt_mso_english_result_q_daily where id is not null</td>
+</tr>
+<tr>
+<td>2</td>
+<td>select count(id) from rpt_shouyou_week_retention where id is not null</td>
+</tr>
+<tr>
+<td>3</td>
+<td>select count(id) from rpt_360game_plugin_new_report_daily where id is not null</td>
+</tr>
+<tr>
+<td>4</td>
+<td>select count(id) from rpt_mso_chns_360aphone_query_pvuv_daily where id is not null</td>
+</tr>
+<tr>
+<td>5</td>
+<td>select count(id) from rpt_cloudlive_errornum_all_daily where id is not null</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>聚合操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>select thedate,count(id),sum(pv1),avg(uv1) from rpt_mso_english_result_q_daily where id is not null group by thedate</td>
+</tr>
+<tr>
+<td>2</td>
+<td>select thedate,count(id),sum(cnt),avg(margin) from rpt_shouyou_week_retention where id is not null group by thedate</td>
+</tr>
+<tr>
+<td>3</td>
+<td>select thedate,count(id),sum(mids),avg(mids) from rpt_360game_plugin_new_report_daily where id is not null group by thedate</td>
+</tr>
+<tr>
+<td>4</td>
+<td>select thedate,count(id),sum(pv),avg(uv) from rpt_mso_chns_360aphone_query_pvuv_daily where id is not null group by thedate</td>
+</tr>
+<tr>
+<td>5</td>
+<td>select thedate,count(id),sum(times),avg(times) from rpt_cloudlive_errornum_all_daily where id is not null group by thedate</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>子查询操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>select id,q from rpt_mso_english_result_q_daily where id in (select id from dim_qwdesktop_pids where id is not null)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>select id,channel from rpt_shouyou_week_retention  where id in (select id from dim_qwdesktop_pids where id is not null)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>select id,ver from rpt_360game_plugin_new_report_daily where id in (select id from dim_qwdesktop_pids where id is not null)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>select id,version from rpt_mso_chns_360aphone_query_pvuv_daily where id in(select id from dim_qwdesktop_pids where id is not null)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>select id, er from rpt_cloudlive_errornum_all_daily where id in (select id from dim_qwdesktop_pids where id is not null)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>连接操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>select a.pv1,b.pid from dim_qwdesktop_pids b  join rpt_mso_english_result_q_daily a on b.id = a.id</td>
+</tr>
+<tr>
+<td>2</td>
+<td>select a.channel,b.pid from dim_qwdesktop_pids b join rpt_shouyou_week_retention  a on b.id = a.id</td>
+</tr>
+<tr>
+<td>3</td>
+<td>select a.ver,b.pid from dim_qwdesktop_pids b join rpt_360game_plugin_new_report_daily a on a.id = b.id</td>
+</tr>
+<tr>
+<td>4</td>
+<td>select a.version,b.pid from dim_qwdesktop_pids b join rpt_mso_chns_360aphone_query_pvuv_daily a on b.id = a.id</td>
+</tr>
+<tr>
+<td>5</td>
+<td>select a.cid,b.pid from dim_qwdesktop_pids b join rpt_cloudlive_errornum_all_daily a on b.id = a.id</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">测试结果 （单位：秒）</h2>
+<ul>
+<li>选择操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>50 M/1062854 rows</th>
+<th>100 M/3230371 rows</th>
+<th>500 M/9459722 rows</th>
+<th>1 G/10100177 rows</th>
+<th>2 G/29055658 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td>0.3108</td>
+<td>0.7944</td>
+<td>2.14</td>
+<td>2.408</td>
+<td>6.512</td>
+</tr>
+<tr>
+<td>XSQL Pushdown [MySQL]</td>
+<td>0.3342</td>
+<td>0.8236</td>
+<td>2.187</td>
+<td>2.433</td>
+<td>6.56</td>
+</tr>
+<tr>
+<td>XSQL [MySQL] 10 cores</td>
+<td>0.8194</td>
+<td>1.097</td>
+<td>2.3772</td>
+<td>2.4212</td>
+<td>6.858</td>
+</tr>
+<tr>
+<td>XSQL [MySQL] 100 cores</td>
+<td>0.6592</td>
+<td>0.9368</td>
+<td>1.6762</td>
+<td>2.3554</td>
+<td>6.701</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="MYSQL选择操作柱状图" src="../../images/mysql-filter.jpg" /></p>
+<ul>
+<li>聚合操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>50 M/1062854 rows</th>
+<th>100 M/3230371 rows</th>
+<th>500 M/9459722 rows</th>
+<th>1 G/10100177 rows</th>
+<th>2 G/29055658 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td>1.3268</td>
+<td>3.9434</td>
+<td>11.916</td>
+<td>15</td>
+<td>95.5718</td>
+</tr>
+<tr>
+<td>XSQL Pushdown [MySQL]</td>
+<td>1.4412</td>
+<td>4.0342</td>
+<td>11.9726</td>
+<td>15.1388</td>
+<td>95.7764</td>
+</tr>
+<tr>
+<td>XSQL [MySQL] 10 cores</td>
+<td>3.0158</td>
+<td>4.1242</td>
+<td>10.2626</td>
+<td>7.5206</td>
+<td>20.182</td>
+</tr>
+<tr>
+<td>XSQL [MySQL] 100 cores</td>
+<td>1.1198</td>
+<td>2.0068</td>
+<td>4.4312</td>
+<td>5.2076</td>
+<td>11.0678</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="MYSQL聚合操作柱状图" src="../../images/mysql-aggregate.jpg" /></p>
+<ul>
+<li>子查询操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>50 M/1062854 rows</th>
+<th>100 M/3230371 rows</th>
+<th>500 M/9459722 rows</th>
+<th>1 G/10100177 rows</th>
+<th>2 G/29055658 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td>0.071</td>
+<td>0.0712</td>
+<td>0.0634</td>
+<td>0.0686</td>
+<td>0.0732</td>
+</tr>
+<tr>
+<td>XSQL Pushdown [MySQL]</td>
+<td>0.0906</td>
+<td>0.093</td>
+<td>0.0994</td>
+<td>0.0972</td>
+<td>0.1024</td>
+</tr>
+<tr>
+<td>XSQL [MySQL] 10 cores</td>
+<td>3.2938</td>
+<td>3.2064</td>
+<td>9.701</td>
+<td>9.6808</td>
+<td>19.2942</td>
+</tr>
+<tr>
+<td>XSQL [MySQL] 100 cores</td>
+<td>2.177</td>
+<td>2.0992</td>
+<td>5.6532</td>
+<td>3.619</td>
+<td>8.1348</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="MYSQL子查询操作柱状图" src="../../images/mysql-subquery.jpg" /></p>
+<ul>
+<li>连接操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>50 M/1062854 rows</th>
+<th>100 M/3230371 rows</th>
+<th>500 M/9459722 rows</th>
+<th>1 G/10100177 rows</th>
+<th>2 G/29055658 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td>0.0726</td>
+<td>0.0732</td>
+<td>0.0648</td>
+<td>0.0686</td>
+<td>0.0714</td>
+</tr>
+<tr>
+<td>XSQL Pushdown [MySQL]</td>
+<td>0.0732</td>
+<td>0.1136</td>
+<td>0.1112</td>
+<td>0.0948</td>
+<td>0.0936</td>
+</tr>
+<tr>
+<td>XSQL [MySQL] 10 cores</td>
+<td>1.8602</td>
+<td>2.6942</td>
+<td>7.1488</td>
+<td>11.2076</td>
+<td>21.9634</td>
+</tr>
+<tr>
+<td>XSQL [MySQL] 100 cores</td>
+<td>1.4092</td>
+<td>1.9544</td>
+<td>3.6058</td>
+<td>4.1024</td>
+<td>11.534</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="MYSQL连接操作柱状图" src="../../images/mysql-union.jpg" /></p>
+<h2 id="_6">结论</h2>
+<ul>
+<li>XSQL [Pushdown]相比于MySQL命令行，执行性能仅有约50毫秒的损耗</li>
+<li>XSQL借助于Spark执行时，对于选择操作，其性能和下推执行相差不多；对于聚合操作，执行的效率明显提升，而且申请的资源越多，执行速度越快；对于子查询和连接操作，性能较差。</li>
+</ul>
+<p><strong>Note</strong></p>
+<p>以上结论的得出受数据量、SQL语句及测试环境的影响，仅供参考。</p></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

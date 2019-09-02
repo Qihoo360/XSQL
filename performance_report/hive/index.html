@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>Hive - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../datasources/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../datasources/druid/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../mysql/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#hive">Hive性能测试报告</a></li>
+            <li class="second-level"><a href="#_1">测试环境</a></li>
+                
+            <li class="second-level"><a href="#tpcds">基于TPCDS的性能测试报告</a></li>
+                
+                <li class="third-level"><a href="#_2">测试目标</a></li>
+                <li class="third-level"><a href="#1g9710124">测试数据集大小：1G/9710124</a></li>
+                <li class="third-level"><a href="#_3">测试语句集</a></li>
+                <li class="third-level"><a href="#_4">测试结果（单位：秒）</a></li>
+                <li class="third-level"><a href="#_5">结论</a></li>
+            <li class="second-level"><a href="#_6">基于业务数据的性能测试报告</a></li>
+                
+                <li class="third-level"><a href="#_7">测试目标</a></li>
+                <li class="third-level"><a href="#_8">测试数据集大小</a></li>
+                <li class="third-level"><a href="#_9">测试语句集</a></li>
+                <li class="third-level"><a href="#_10">测试结果（单位：秒）</a></li>
+                <li class="third-level"><a href="#_11">结论</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="hive">Hive性能测试报告</h1>
+<p>Hive的性能测试报告分为基于TPCDS的性能测试报告和基于业务数据的性能测试报告。</p>
+<h2 id="_1">测试环境</h2>
+<p><strong>操作系统</strong>：   CentOS release 6.2 (Final)
+​ <br />
+<strong>虚拟机版本</strong>： Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+​ <br />
+<strong>测试机器</strong>：   client01v.qss.zzzc.qihoo.net、clientadmin.dfs.shbt.qihoo.net</p>
+<p><strong>XSQL配置</strong>： </p>
+<ul>
+<li>Driver Memory：5G</li>
+<li>Executor Instances：100</li>
+<li>Executor Memory：1536M或5G</li>
+</ul>
+<h2 id="tpcds">基于TPCDS的性能测试报告</h2>
+<h3 id="_2">测试目标</h3>
+<p>本次测试涵盖性能测试与功能测试，主要包含两个目的：</p>
+<blockquote>
+<ul>
+<li>
+<p>展示XSQL在针对单数据源、多数据源的SQL解析及执行能力</p>
+</li>
+<li>
+<p>找出XSQL在复杂SQL处理以及大规模数据集计算时存在的问题</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="1g9710124">测试数据集大小：1G/9710124</h3>
+<h3 id="_3">测试语句集</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL语句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>select * from taxi where   trip_distance=7.75 and ratecodeid=1 limit 10;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>select count(*) from taxi;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>select count(*) from taxi   where mta_tax &gt;100;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>select   sum(trip_distance),store_and_fwd_flag from taxi group by store_and_fwd_flag;</td>
+</tr>
+<tr>
+<td>5</td>
+<td>select max(mta_tax) as max_tax   from taxi order by max_tax desc limit 10;</td>
+</tr>
+<tr>
+<td>6</td>
+<td>select avg(trip_distance) as   avg_dis,max(trip_distance) as max_dis,vendorid,store_and_fwd_flag from taxi   group by vendorid,store_and_fwd_flag order by max_dis desc limit 100;</td>
+</tr>
+<tr>
+<td>7</td>
+<td>select sum(t1.trip_distance)   from taxi t1 join taxi2 t2  on   t1.pulocationid = t2.pulocationid where t2.pulocationid&gt;300;</td>
+</tr>
+<tr>
+<td>8</td>
+<td>select   count(*),avg(t1.trip_distance) as avg_dis,t1.dolocationid ,t1.pulocationid   from taxi t1 join taxi2 t2  on   t1.vendorid = t2.vendorid  where   t2.vendorid='1' and t2.pulocationid&gt;=360 group by   t1.pulocationid,t1.dolocationid order by avg_dis desc;</td>
+</tr>
+<tr>
+<td>9</td>
+<td>select max(trip_distance) as   max_dis,pulocationid from taxi where pulocationid&gt;200 and   pulocationid&lt;300 group by pulocationid order by max_dis desc;</td>
+</tr>
+<tr>
+<td>10</td>
+<td>create table taxi_copy from   select * from taxi where trip_distance=7.75 order by trip_distance desc;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">测试结果（单位：秒）</h3>
+<table>
+<thead>
+<tr>
+<th>执行引擎</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive</td>
+<td>66.408</td>
+<td>190.93</td>
+<td>122.291</td>
+<td>134.45</td>
+<td>104.48</td>
+<td>231.631</td>
+<td>244.139</td>
+<td>448.953</td>
+<td>295.705</td>
+<td>139.184</td>
+</tr>
+<tr>
+<td>XSQL</td>
+<td>5.515</td>
+<td>42.463</td>
+<td>34.983</td>
+<td>53.079</td>
+<td>29.424</td>
+<td>63.561</td>
+<td>118.163</td>
+<td>95.816</td>
+<td>69.001</td>
+<td>193.906</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\Hive-XSQL.jpg" /></p>
+<h3 id="_5"><strong>结论</strong></h3>
+<ul>
+<li>XSQL相比于Hive，执行性能得到明显的提升。</li>
+</ul>
+<h2 id="_6">基于业务数据的性能测试报告</h2>
+<h3 id="_7">测试目标</h3>
+<p>本次测试涵盖性能测试与功能测试，主要包含两个目的：</p>
+<blockquote>
+<ul>
+<li>
+<p>展示XSQL在针对单数据源、多数据源的SQL解析及执行能力</p>
+</li>
+<li>
+<p>找出XSQL在复杂SQL处理以及大规模数据集计算时存在的问题</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="_8">测试数据集大小</h3>
+<table>
+<thead>
+<tr>
+<th>引擎\表名</th>
+<th>5 G/9105516 rows</th>
+<th>10 G/116119018 rows</th>
+<th>20 G/26252422 rows</th>
+<th>50 G/317473749 rows</th>
+<th>100 G/450071755 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive (shbt)</td>
+<td>pre_newusergamepay</td>
+<td>gbc_20171128_hot_1</td>
+<td>shoujizhushou_push_logshare_event</td>
+<td>pre_qdas_huajiao_unlogin_behavior</td>
+<td>pre_usergame_monthly</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">测试语句集</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SELECT count(channel2) FROM pre_newusergamepay WHERE channel2 IS NOT NULL</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SELECT count(pos) FROM gbc_20171128_hot_1 WHERE pos IS NOT NULL</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SELECT count(m1) FROM shoujizhushou_push_logshare_event WHERE m1 IS NOT NULL</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SELECT count(watch_tag) FROM pre_qdas_huajiao_unlogin_behavior WHERE watch_tag IS NOT NULL</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SELECT count(plat_channel3) FROM pre_usergame_monthly WHERE plat_channel3 IS NOT NULL</td>
+</tr>
+<tr>
+<td>6</td>
+<td>SELECT game_id, count(channel2), sum(p_day_id),avg(p_day_id) FROM pre_newusergamepay WHERE channel2 IS NOT NULL GROUP BY game_id</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SELECT m2, count(pos) FROM gbc_20171128_hot_1 WHERE pos IS NOT NULL GROUP BY m2</td>
+</tr>
+<tr>
+<td>8</td>
+<td>SELECT model, count(m1) FROM shoujizhushou_push_logshare_event WHERE m1 IS NOT NULL GROUP BY model</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SELECT servercountry, count(watch_tag) FROM pre_qdas_huajiao_unlogin_behavior WHERE watch_tag IS NOT NULL GROUP BY servercountry</td>
+</tr>
+<tr>
+<td>10</td>
+<td>SELECT plat_id, count(plat_channel3),sum(paycnt),avg(paycnt) FROM pre_usergame_monthly WHERE plat_channel3 IS NOT NULL GROUP BY plat_id</td>
+</tr>
+<tr>
+<td>11</td>
+<td>SELECT count(channel2) FROM pre_newusergamepay WHERE channel2 in (SELECT channel2 FROM pre_newusergamepay as table2 WHERE channel2 IS NOT NULL)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>SELECT count(pos) FROM gbc_20171128_hot_1 WHERE pos in (SELECT pos FROM gbc_20171128_hot_1 as table2 WHERE pos IS NOT NULL)</td>
+</tr>
+<tr>
+<td>13</td>
+<td>SELECT count(m1) FROM shoujizhushou_push_logshare_event WHERE m1 in (SELECT m1 FROM shoujizhushou_push_logshare_event as table2 WHERE m1 IS NOT NULL)</td>
+</tr>
+<tr>
+<td>14</td>
+<td>SELECT count(watch_tag) FROM pre_qdas_huajiao_unlogin_behavior WHERE watch_tag in (SELECT distinct watch_tag FROM pre_qdas_huajiao_unlogin_behavior as table2 WHERE watch_tag IS NOT NULL)</td>
+</tr>
+<tr>
+<td>15</td>
+<td>SELECT count(plat_channel3) FROM pre_usergame_monthly WHERE plat_channel3 in (SELECT plat_channel3 FROM pre_usergame_monthly as table2 WHERE plat_channel3 IS NOT NULL)</td>
+</tr>
+<tr>
+<td>16</td>
+<td>SELECT count(a.channel2), count(b.game_id) FROM pre_newusergamepay a JOIN pre_newusergamepay b ON(a.user_id = b.user_id)</td>
+</tr>
+<tr>
+<td>17</td>
+<td>SELECT count(a.pos), count(b.uid) FROM gbc_20171128_hot_1 a JOIN gbc_20171128_hot_1 b ON(a.uid= b.uid) WHERE a.uid != 'UNKNOWN' and b.uid != 'UNKNOWN'</td>
+</tr>
+<tr>
+<td>18</td>
+<td>SELECT count(a.m1), count(b.servercountry) FROM shoujizhushou_push_logshare_event a JOIN shoujizhushou_push_logshare_event b ON(a.serverip= b.serverip)</td>
+</tr>
+<tr>
+<td>19</td>
+<td>SELECT count(a.watch_tag), count(b.model) FROM pre_qdas_huajiao_unlogin_behavior a JOIN pre_qdas_huajiao_unlogin_behavior b ON(a.liveid= b.liveid)</td>
+</tr>
+<tr>
+<td>20</td>
+<td>SELECT count(a.plat_channel3), count(b.game_id) FROM pre_usergame_monthly a JOIN pre_usergame_monthly b ON(a.user_id= b.user_id)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">测试结果（单位：秒）</h3>
+<ul>
+<li>选择操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>5 G/9105516 rows</th>
+<th>10 G/116119018 rows</th>
+<th>20 G/26252422 rows</th>
+<th>50 G/317473749 rows</th>
+<th>100 G/450071755 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive</td>
+<td>288.921 s</td>
+<td>299.864 s</td>
+<td>178.928 s</td>
+<td>176.595 s</td>
+<td>247.195 s</td>
+</tr>
+<tr>
+<td>XSQL [Hive] 1536M</td>
+<td>80.288 s</td>
+<td>79.956 s</td>
+<td>62.488 s</td>
+<td>80.713 s</td>
+<td>124.946 s</td>
+</tr>
+<tr>
+<td>XSQL [Hive] 5G</td>
+<td>87.433 s</td>
+<td>76.751 s</td>
+<td>67.481 s</td>
+<td>118.724 s</td>
+<td>124.656 s</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\Hive选择操作柱状图.jpg" /></p>
+<ul>
+<li>聚合操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>5 G/9105516 rows</th>
+<th>10 G/116119018 rows</th>
+<th>20 G/26252422 rows</th>
+<th>50 G/317473749 rows</th>
+<th>100 G/450071755 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive</td>
+<td>265.160 s</td>
+<td>332.685 s</td>
+<td>197.688 s</td>
+<td>271.324 s</td>
+<td>363.762 s</td>
+</tr>
+<tr>
+<td>XSQL [Hive] 1536M</td>
+<td>55.571 s</td>
+<td>139.857 s</td>
+<td>85.429 s</td>
+<td>79.161 s</td>
+<td>171.741 s</td>
+</tr>
+<tr>
+<td>XSQL [Hive] 5G</td>
+<td>69.143 s</td>
+<td>90.857 s</td>
+<td>62.013 s</td>
+<td>88.219 s</td>
+<td>148.372 s</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\Hive聚合操作柱状图.jpg" /></p>
+<ul>
+<li>子查询操作</li>
+</ul>
+<p>Hive本身不支持where条件后的子查询操作，故本报告不做此处的测试。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>5 G/9105516 rows</th>
+<th>10 G/116119018 rows</th>
+<th>20 G/26252422 rows</th>
+<th>50 G/317473749 rows</th>
+<th>100 G/450071755 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive</td>
+<td>484.135 s</td>
+<td>513.226 s</td>
+<td>267.819 s</td>
+<td>668.408 s</td>
+<td>842.294 s</td>
+</tr>
+<tr>
+<td>XSQL [Hive] 1536M</td>
+<td>150.691 s</td>
+<td>X</td>
+<td>81.608 s</td>
+<td>264.522 s</td>
+<td>363.889 s</td>
+</tr>
+<tr>
+<td>XSQL [Hive] 5G</td>
+<td>126.336 s</td>
+<td>186.671 s</td>
+<td>63.181 s</td>
+<td>248.902 s</td>
+<td>261.815 s</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\Hive子查询操作柱状图.jpg" /></p>
+<ul>
+<li>连接操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>5 G/9105516 rows</th>
+<th>10 G/116119018 rows</th>
+<th>20 G/26252422 rows</th>
+<th>50 G/317473749 rows</th>
+<th>100 G/450071755 rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive</td>
+<td>428.481 s</td>
+<td>2058.069 s</td>
+<td>521.880 s</td>
+<td>6674.270 s</td>
+<td>552.231 s</td>
+</tr>
+<tr>
+<td>XSQL [Hive] 1536M</td>
+<td>168.356 s</td>
+<td>348.017 s</td>
+<td>162.350 s</td>
+<td>778.396 s</td>
+<td>335.320 s</td>
+</tr>
+<tr>
+<td>XSQL [Hive] 5G</td>
+<td>142.399 s</td>
+<td>188.24 s</td>
+<td>81.000 s</td>
+<td>558.605 s</td>
+<td>211.967 s</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\Hive连接操作柱状图.jpg" /></p>
+<h3 id="_11"><strong>结论</strong></h3>
+<ul>
+<li>XSQL相比于Hive，执行性能得到明显的提升。</li>
+<li>子查询、连接操作，XSQL配给Executor的内存多少，对执行时间也有影响。</li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

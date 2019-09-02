@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>Elasticsearch - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../datasources/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../mysql/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../mongo/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#elasticsearch">Elasticsearch性能测试报告</a></li>
+            <li class="second-level"><a href="#_1">测试环境</a></li>
+                
+            <li class="second-level"><a href="#tpcds">基于TPCDS的性能测试报告</a></li>
+                
+                <li class="third-level"><a href="#_2">测试目标</a></li>
+                <li class="third-level"><a href="#1g9710124">测试数据集大小：1G/9710124</a></li>
+                <li class="third-level"><a href="#_3">测试语句集</a></li>
+                <li class="third-level"><a href="#_4">测试结果（单位：秒）</a></li>
+                <li class="third-level"><a href="#_5">结论</a></li>
+            <li class="second-level"><a href="#_6">基于业务数据的性能测试报告</a></li>
+                
+                <li class="third-level"><a href="#_7">测试目标</a></li>
+                <li class="third-level"><a href="#_8">测试数据集大小</a></li>
+                <li class="third-level"><a href="#_9">测试语句集</a></li>
+                <li class="third-level"><a href="#_10">测试结果（单位：秒）</a></li>
+                <li class="third-level"><a href="#_11">结论</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="elasticsearch">Elasticsearch性能测试报告</h1>
+<p>Elasticsearch的性能测试报告分为基于TPCDS的性能测试报告和基于业务数据的性能测试报告。</p>
+<h2 id="_1">测试环境</h2>
+<p><strong>操作系统</strong>：   CentOS release 6.2 (Final)
+​ <br />
+<strong>虚拟机版本</strong>： Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+​ <br />
+<strong>测试机器</strong>：   client01v.qss.zzzc.qihoo.net、clientadmin.dfs.shbt.qihoo.net</p>
+<p><strong>XSQL配置</strong>： </p>
+<ul>
+<li>Driver Memory：5G</li>
+<li>Executor Instances：100</li>
+<li>Executor Memory：1536M或5G</li>
+</ul>
+<h2 id="tpcds">基于TPCDS的性能测试报告</h2>
+<h3 id="_2">测试目标</h3>
+<p>本次测试涵盖性能测试与功能测试，主要包含两个目的：</p>
+<blockquote>
+<ul>
+<li>
+<p>展示XSQL在针对单数据源、多数据源的SQL解析及执行能力</p>
+</li>
+<li>
+<p>找出XSQL在复杂SQL处理以及大规模数据集计算时存在的问题</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="1g9710124">测试数据集大小：1G/9710124</h3>
+<h3 id="_3">测试语句集</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL语句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>select * from myes.xitong_xsql_test.taxis</td>
+</tr>
+<tr>
+<td>2</td>
+<td>select * from myes.xitong_xsql_test.taxis where do_location_id="249"</td>
+</tr>
+<tr>
+<td>3</td>
+<td>select * from myes.xitong_xsql_test.taxis where fare_amount &lt; 3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>select * from myes.xitong_xsql_test.taxis where dropoff_datetime is null</td>
+</tr>
+<tr>
+<td>5</td>
+<td>select * from myes.xitong_xsql_test.taxis where dropoff_datetime is not null</td>
+</tr>
+<tr>
+<td>6</td>
+<td>select * from myes.xitong_xsql_test.taxis where rate_code_id in ("1","2")</td>
+</tr>
+<tr>
+<td>7</td>
+<td>select  vendor_id,total_amount,trip_distance from myes.xitong_xsql_test.taxis where payment_type = "1" and tolls_amount = 0</td>
+</tr>
+<tr>
+<td>8</td>
+<td>select * from myes.xitong_xsql_test.taxis order by total_amount desc</td>
+</tr>
+<tr>
+<td>9</td>
+<td>select * from myes.xitong_xsql_test.taxis order by vendor_id</td>
+</tr>
+<tr>
+<td>10</td>
+<td>select * from myes.xitong_xsql_test.taxis limit 20</td>
+</tr>
+<tr>
+<td>11</td>
+<td>select count(payment_type),sum(total_amount) from myes.xitong_xsql_test.taxis</td>
+</tr>
+<tr>
+<td>12</td>
+<td>select avg(population) from myes.xitong_xsql_test.geonames_all</td>
+</tr>
+<tr>
+<td>13</td>
+<td>select payment_type from myes.xitong_xsql_test.taxis group by payment_type</td>
+</tr>
+<tr>
+<td>14</td>
+<td>select count(payment_type),payment_type from myes.xitong_xsql_test.taxis group by payment_type</td>
+</tr>
+<tr>
+<td>15</td>
+<td>select count(payment_type),payment_type,total_amount from myes.xitong_xsql_test.taxis group by payment_type,total_amount</td>
+</tr>
+<tr>
+<td>16</td>
+<td>select sum(total_amount) from myes.xitong_xsql_test.taxis group by vendor_id</td>
+</tr>
+<tr>
+<td>17</td>
+<td>select sum(population) from myes.xitong_xsql_test.geonames_all group by country_code,timezone</td>
+</tr>
+<tr>
+<td>18</td>
+<td>select sum(total_amount),vendor_id,payment_type from myes.xitong_xsql_test.taxis group by vendor_id,payment_type</td>
+</tr>
+<tr>
+<td>19</td>
+<td>select max(population) from myes.xitong_xsql_test.geonames_all group by country_code</td>
+</tr>
+<tr>
+<td>20</td>
+<td>select min(population),country_code from myes.xitong_xsql_test.geonames_all group by country_code</td>
+</tr>
+<tr>
+<td>21</td>
+<td>select avg(population) from myes.xitong_xsql_test.geonames_all group by country_code</td>
+</tr>
+<tr>
+<td>22</td>
+<td>select count(population),country_code from myes.xitong_xsql_test.geonames_all group by country_code order by country_code limit 100</td>
+</tr>
+<tr>
+<td>23</td>
+<td>select avg(population),max(population),timezone,country_code from myes.xitong_xsql_test.geonames_all group by country_code,timezone order by max(population) limit 100</td>
+</tr>
+<tr>
+<td>24</td>
+<td>select count(population),timezone,country_code from myes.xitong_xsql_test.geonames_all group by country_code,timezone  order by count(population) limit 100</td>
+</tr>
+<tr>
+<td>25</td>
+<td>select distinct dem,location from myes.xitong_xsql_test.geonames_all</td>
+</tr>
+<tr>
+<td>26</td>
+<td>select count(distinct passenger_count) from myes.xitong_xsql_test.taxis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">测试结果（单位：秒）</h3>
+<table>
+<thead>
+<tr>
+<th>执行引擎</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+<th>16</th>
+<th>17</th>
+<th>18</th>
+<th>19</th>
+<th>20</th>
+<th>21</th>
+<th>22</th>
+<th>23</th>
+<th>24</th>
+<th>25</th>
+<th>26</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XSQL [Pushdown]</td>
+<td>0.211</td>
+<td>0.163</td>
+<td>0.173</td>
+<td>0.223</td>
+<td>0.224</td>
+<td>0.249</td>
+<td>0.262</td>
+<td>0.271</td>
+<td>0.195</td>
+<td>0.227</td>
+<td>0.288</td>
+<td>0.158</td>
+<td>0.135</td>
+<td>0.134</td>
+<td>0.198</td>
+<td>0.138</td>
+<td>0.226</td>
+<td>0.161</td>
+<td>0.351</td>
+<td>0.137</td>
+<td>0.132</td>
+<td>0.205</td>
+<td>0.736</td>
+<td>0.559</td>
+<td>0.487</td>
+<td>0.137</td>
+</tr>
+<tr>
+<td>ES</td>
+<td>0.147</td>
+<td>0.088</td>
+<td>0.102</td>
+<td>0.177</td>
+<td>0.148</td>
+<td>0.162</td>
+<td>0.165</td>
+<td>0.16</td>
+<td>0.161</td>
+<td>0.178</td>
+<td>0.098</td>
+<td>0.113</td>
+<td>0.08</td>
+<td>0.08</td>
+<td>0.1</td>
+<td>0.098</td>
+<td>0.173</td>
+<td>0.114</td>
+<td>0.116</td>
+<td>0.097</td>
+<td>0.114</td>
+<td>0.145</td>
+<td>0.286</td>
+<td>0.243</td>
+<td>0.262</td>
+<td>0.114</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\ES-XSQL.jpg" /></p>
+<h3 id="_5"><strong>结论</strong></h3>
+<ul>
+<li>XSQL [Pushdown]相比于直接调用Elasticsearch的API，执行性能仅有轻微的损耗。</li>
+</ul>
+<h2 id="_6">基于业务数据的性能测试报告</h2>
+<h3 id="_7">测试目标</h3>
+<p>本次测试涵盖性能测试与功能测试，主要包含两个目的：</p>
+<blockquote>
+<ul>
+<li>
+<p>展示XSQL在针对单数据源、多数据源的SQL解析及执行能力</p>
+</li>
+<li>
+<p>找出XSQL在复杂SQL处理以及大规模数据集计算时存在的问题</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="_8">测试数据集大小</h3>
+<table>
+<thead>
+<tr>
+<th>数据源</th>
+<th>50 G/63178212 docs</th>
+<th>100 G/123714760 docs</th>
+<th>200 G/260567692 docs</th>
+<th>500G/371503959 docs</th>
+<th>1 T /466168986 docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elasticsearch</td>
+<td>logsget-user-qdas-newuser-channel-all.msdocker_frontmidres1</td>
+<td>logsget-user-qdas-newuser-channel-all.huajiao_frontmidres1</td>
+<td>logsget-user-qdas-newuser-channel-all.chromium_frontmidres1</td>
+<td>logsget-user-pc-profile-v1.profile</td>
+<td>logsget-user-profile.profile</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">测试语句集</h3>
+<ul>
+<li>选择操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SELECT m2, active_channel FROM msdocker_frontmidres1 WHERE m2 IS NOT NULL LIMIT 10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SELECT m2, active_channel FROM huajiao_frontmidres1 WHERE m2 IS NOT NULL LIMIT 10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SELECT m2, active_channel FROM chromium_frontmidres1 WHERE m2 IS NOT NULL LIMIT 10</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SELECT city, ip FROM logsget_user_pc_profile_v1.profile WHERE city IS NOT NULL LIMIT 10</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SELECT city, ip FROM logsget_user_profile.profile WHERE city IS NOT NULL LIMIT 10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>聚合操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SELECT appkey, COUNT(m2) FROM msdocker_frontmidres1 WHERE m2 IS NOT NULL GROUP BY appkey LIMIT 10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SELECT appkey, COUNT(m2) FROM huajiao_frontmidres1 WHERE m2 IS NOT NULL GROUP BY appkey LIMIT 10</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SELECT appkey, COUNT(m2) FROM chromium_frontmidres1 WHERE m2 IS NOT NULL GROUP BY appkey LIMIT 10</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SELECT province, COUNT(ip), SUM(pro_daohang), AVG(pro_daohang) FROM logsget_user_pc_profile_v1.profile WHERE ip IS NOT NULL GROUP BY province LIMIT 10</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SELECT pro_zhushou, COUNT(m2), SUM(pro_info_flow), AVG(pro_info_flow) FROM logsget_user_profile.profile WHERE m2 IS NOT NULL GROUP BY pro_zhushou LIMIT 10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>子查询操作</p>
+</li>
+<li>
+<p>连接操作</p>
+</li>
+</ul>
+<h3 id="_10">测试结果（单位：秒）</h3>
+<ul>
+<li>选择操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>50G/63178212 docs</th>
+<th>100G/123714760 docs</th>
+<th>200G/260567692 docs</th>
+<th>500G/371503959 docs</th>
+<th>1T/466168986 docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elasticsearch</td>
+<td>0.399 s</td>
+<td>0.558 s</td>
+<td>0.949 s</td>
+<td>1.080 s</td>
+<td>0.381 s</td>
+</tr>
+<tr>
+<td>XSQL Pushdown [Elasticsearch]</td>
+<td>0.426 s</td>
+<td>0.575 s</td>
+<td>1.025 s</td>
+<td>1.107 s</td>
+<td>0.407 s</td>
+</tr>
+<tr>
+<td>XSQL [Elasticsearch]</td>
+<td>324.813</td>
+<td>568.389</td>
+<td>1045.91</td>
+<td>1121.31</td>
+<td>271.082</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\ES选择操作柱状图-all.jpg" /></p>
+<p><img src="..\pictures\tpcds\ES选择操作柱状图.jpg" /></p>
+<ul>
+<li>聚合操作</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>50G/63178212 docs</th>
+<th>100G/123714760 docs</th>
+<th>200G/260567692 docs</th>
+<th>500G/371503959 docs</th>
+<th>1T/466168986 docs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Elasticsearch</td>
+<td>0.774 s</td>
+<td>1.436 s</td>
+<td>2.665 s</td>
+<td>0.096 s</td>
+<td>0.094 s</td>
+</tr>
+<tr>
+<td>XSQL Pushdown [Elasticsearch]</td>
+<td>0.790 s</td>
+<td>1.478 s</td>
+<td>2.671 s</td>
+<td>0.135 s</td>
+<td>0.130 s</td>
+</tr>
+<tr>
+<td>XSQL [Elasticsearch]</td>
+<td>338.514</td>
+<td>896.007</td>
+<td>2507.09</td>
+<td>3915.32</td>
+<td>3886.388</td>
+</tr>
+</tbody>
+</table>
+<p><img src="..\pictures\tpcds\ES聚合操作柱状图-all.jpg" /></p>
+<p><img src="..\pictures\tpcds\ES聚合操作柱状图.jpg" /></p>
+<ul>
+<li>子查询操作</li>
+</ul>
+<p>ES本身不支持where条件后的子查询操作，故本报告不做此处的测试。</p>
+<ul>
+<li>连接操作</li>
+</ul>
+<p>ES本身支持的连接操作非常有限且昂贵，故本报告不做此处的测试。</p>
+<h3 id="_11"><strong>结论</strong></h3>
+<ul>
+<li>XSQL [Pushdown]相比于直接调用Elasticsearch的API，执行性能仅有约30毫秒的损耗。</li>
+<li>XSQL借助于Spark执行时，执行效率很低。</li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

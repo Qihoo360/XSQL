@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>Common Troubleshooting - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../datasources/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../functions/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../spark2.3-troubleshooting/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#spark">Spark故障诊断</a></li>
+            <li class="second-level"><a href="#_1">一、通用故障</a></li>
+                
+                <li class="third-level"><a href="#1">1、集群环境类</a></li>
+                <li class="third-level"><a href="#2spark">2、spark应用类</a></li>
+                <li class="third-level"><a href="#3pyspark">3、PySpark相关</a></li>
+                <li class="third-level"><a href="#4">4、用户程序自身问题</a></li>
+            <li class="second-level"><a href="#spark23">二、Spark2.3特有故障</a></li>
+                
+            <li class="second-level"><a href="#spark16">三、Spark1.6特有故障</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="spark">Spark故障诊断</h1>
+<p>目前系统部运维的Spark主要有Spark2.3和Spark1.6两个版本。用户在使用的过程中难免会发生各种各样的问题，为了提高故障诊断的效率，也为了对经验进行沉淀，这里将对各类问题如何处理进行介绍。</p>
+<p>本文将Spark故障分为通用故障、Spark2.3特有故障、Spark1.6特有故障。</p>
+<h2 id="_1">一、通用故障</h2>
+<h3 id="1">1、集群环境类</h3>
+<h4>1-1、提交的spark任务，长时间处于ACCEPTED状态。</h4>
+<p>​   这种问题非常常见，此时需要从客户端日志中找到tracking URL，例如：</p>
+<pre><code class="verilog">18/12/14 17:42:29 INFO Client: 
+     client token: N/A
+     diagnostics: N/A
+     ApplicationMaster host: N/A
+     ApplicationMaster RPC port: -1
+     queue: root.test
+     start time: 1544780544655
+     final status: UNDEFINED
+     tracking URL: http://test.qihoo.net:8888/proxy/application_1543893582405_838478/
+     user: test
+18/12/14 17:42:32 INFO Client: Application report for application_1543893582405_838478 (state: ACCEPTED)
+</code></pre>
+
+<p>其中的tracking URL为http://test.qihoo.net:8888/proxy/application_1543893582405_838478/，从浏览器打开页面将看到类似信息：</p>
+<pre><code class="properties">User: test
+Queue:  root.test
+clientHost: 
+Name: runFeatureAnalysis
+Application Type: SPARK
+Application Tags: 
+Application Priority: NORMAL (Higher Integer value indicates higher priority)
+YarnApplicationState: ACCEPTED: waiting for AM container to be allocated, launched and register with RM.
+FinalStatus Reported by AM: Application has not completed yet.
+Started:  Fri Dec 14 15:50:20 +0800 2018
+Elapsed:  2hrs, 3mins, 55sec
+Tracking URL: ApplicationMaster
+Diagnostics:  
+</code></pre>
+
+<p>可以看到状态也是ACCEPTED。并且队列是root.test。</p>
+<p>打开http://test.qihoo.net:8888/cluster/scheduler?openQueues=root.test，找到root.test队列的资源，将看到如下信息：</p>
+<pre><code class="properties">Used Resources: &lt;memory:799232, vCores:224, gCores:0&gt;
+Reserved Resources: &lt;memory:0, vCores:0, gCores:0&gt;
+Num Active Applications:  2
+Num Pending Applications: 12
+Min Resources:  &lt;memory:40000, vCores:20, gCores:0&gt;
+Max Resources:  &lt;memory:800000, vCores:400, gCores:0&gt;
+Accessible Node Labels: CentOS6,CentOS7,DEFAULT_LABEL
+Steady Fair Share:  &lt;memory:800000, vCores:0, gCores:0&gt;
+Instantaneous Fair Share: &lt;memory:800000, vCores:0, gCores:0&gt;
+</code></pre>
+
+<p>主要关注Max Resources和Used Resources，说明用户队列的资源已经消耗完了。</p>
+<h4>1-2、没有安装Java8</h4>
+<p>用户提交的作业在未运行task之前，AM已经退出，导致作业失败。</p>
+<pre><code>Container exited with a non-zero exit code 127
+Failing this attempt. Failing the application.
+     ApplicationMaster host: N/A
+     ApplicationMaster RPC port: -1
+     queue: root.default
+     start time: 1546850986115
+     final status: FAILED
+     tracking URL: http://xxxxxxxx:8888/cluster/app/application_1493705730010_45634
+     user: hdp-360sec
+Moved to trash: /home/spark/cache/.sparkStaging/application_1493705730010_45634
+19/01/07 16:48:07 INFO Client: Deleted staging directory hdfs://xxxxxxx:9000/home/spark/cache/.sparkStaging/application_1493705730010_45634
+19/01/07 16:48:07 ERROR SparkContext: Error initializing SparkContext.
+org.apache.spark.SparkException: Yarn application has already ended! It might have been killed or unable to launch application master.
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.waitForApplication(YarnClientSchedulerBackend.scala:89)
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.start(YarnClientSchedulerBackend.scala:63)
+    at org.apache.spark.scheduler.TaskSchedulerImpl.start(TaskSchedulerImpl.scala:164)
+    at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:502)
+    ...
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:497)
+    at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+    at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:879)
+    at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:197)
+    at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:227)
+    at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:136)
+    at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Exception in thread &quot;main&quot; java.lang.ExceptionInInitializerError
+    ...
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:497)
+    at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+    at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:879)
+    at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:197)
+    at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:227)
+    at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:136)
+    at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: org.apache.spark.SparkException: Yarn application has already ended! It might have been killed or unable to launch application master.
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.waitForApplication(YarnClientSchedulerBackend.scala:89)
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.start(YarnClientSchedulerBackend.scala:63)
+    at org.apache.spark.scheduler.TaskSchedulerImpl.start(TaskSchedulerImpl.scala:164)
+    at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:502)
+    ... 11 more
+</code></pre>
+
+<p>查看tracking URL，发现如下信息：</p>
+<pre><code class="language">/bin/bash: /home/xxx/xxxxx/java8/bin/java: &amp;ucirc;&amp;#65533;&amp;#65533;&amp;#65533;&amp;#504;&amp;#65533;&amp;#65533;&amp;#316;&amp;#65533;&amp;#65533;&amp;#65533;&amp;#319;&amp;frac14;
+</code></pre>
+
+<p>和明显是集群的一些机器漏装java8了</p>
+<h3 id="2spark">2、spark应用类</h3>
+<h4>2-1、连不上某个executor，导致任务失败</h4>
+<pre><code>Caused by: java.net.ConnectException: Connection refused: /10.160.113.58:39941 
+    at sun.nio.ch.SocketChannelImpl.checkConnect(Native Method) 
+    at sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:735) 
+    at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:223)
+</code></pre>
+
+<p>该节点上的nodemanager上某个container的日志显示</p>
+<pre><code>INFO org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorImpl: Memory usage of ProcessTree 29181 for container-ia
+container e124 1 888381: 10.7 GB of 11 GB physical memory used; 11.7 GB of 23.1 GB virtual memory used
+INFO org.apac e.hadoop.yarn.server.nodemanager.containermanager.container.ContainerImpl: Container container e124 1543893582485 1154818 81 
+transitioned f om RUNNING to KILLING
+INFO org.apache.hadoop.yarn.server.nodemanager.contaxnermanager.launcher.ContaznerLaunch. Cleaning up container container e124 1543893582485 1154
+18 
+INFO org.apache.hadoop.yarn.server.nodemanager.containermanager.monitor.ContainersMonitorImpl: Memory usage of ProcessTree 29181 for container-ia container e124 1543893582485 1154818 81 888381: -1B of 11 GB physical memory used; -1B of 23.1 GB virtual memory used
+INFO org.apache.hadoop.yarn.server.nodemanager.containermanager.container.ContainerImpl: Container container e124 1543893582485 1154818 81 
+transitioned from KILLING to EXITED WITH FAIIURE
+WARN org.apache.hadoop.yarn.server.nodemanager.NMAuditLogger: USER=hdp-portrait OPERATION=Container Finished — Failed TARGET=ContainerImpl P SULT=FAILURE DESCRIPTION=Container failed with state: EXITED WITH FAILURE APPID=application 1543893582485 1154818 CONTAINERID=container e124 1543893582485 115481 1 888381
+INFO org.apache.hadoop.yarn.server.nodemanager.containermanager.container.ContainerImpl: Container container e124 1543893582485 1154818 81 888381 transitioned from EXITED WITH FAILURE to DONE
+</code></pre>
+
+<p>或者任务日志显示</p>
+<pre><code>ERROR executor.CoarseGrainedExecutorBackend: RECEIVED SIGNAL 15: SIGTERM
+</code></pre>
+
+<p>原因：</p>
+<pre><code>问题的最终原因是某个节点上的某个executor挂掉了，导致无法获取上面的数据，导致任务失败。
+</code></pre>
+
+<p>解决方法：</p>
+<pre><code>归根结底还是内存的问题，有两个方法可以解决这个错误，加大excutor-memory的值 或者 减少executor-cores的数量 或者增加分区等手段就可以解决。
+</code></pre>
+
+<h4>2-2、spark kryo size 设置太小或者超过最大值（&lt;2G）</h4>
+<pre><code>Job aborted due to stage failure: Task 2 in stage 3.0 failed 4 times, most recent failure: 
+Lost task 2.3 in stage 3.0 (TID 28, hpc152.sys.lycc.qihoo.net, executor 11): 
+org.apache.spark.SparkException: Kryo serialization failed: Buffer overflow. Available: 2, required: 8
+</code></pre>
+
+<p>合理设置spark.kryoserializer.buffer.max,spark.kryoserializer.buffer
+spark.kryoserializer.buffer.max应该小于2G
+如果设置小于2G还是报错，可能是输入数据太大或者逻辑复杂生成的数据多，建议减少每个task的处理数据量</p>
+<h4>2-3、executor 内存溢出</h4>
+<pre><code>executor java.lang.OutOfMemoryError:Java heap space
+</code></pre>
+
+<p>解决方法：</p>
+<pre><code>加大excutor-memory的值或者减少executor-cores的数量或者增加分区等手段就可以解决。
+</code></pre>
+
+<h4>2-4、spark作业超时</h4>
+<pre><code>Connection to /10.203.34.203:36650 has been quiet for 300000 ms while there are outstanding requests. Assuming connection is dead; please adjust spark.network.timeout if this is wrong.
+Connection to /10.203.34.203:36650 has been quiet for 300000 ms while there are outstanding requests. Assuming connection is dead; please adjust spark.network.timeout if this is wrong.
+Connection to /10.203.34.203:36650 has been quiet for 300000 ms while there are outstanding requests. Assuming connection is dead; please adjust spark.network.timeout if this is wrong.
+Connection to /10.203.34.203:36650 has been quiet for 300000 ms while there are outstanding requests. Assuming connection is dead; please adjust spark.network.timeout if this is wrong.
+Connection to /10.203.34.203:36650 has been quiet for 300000 ms while there are outstanding requests. Assuming connection is dead; please adjust spark.network.timeout if this is wrong
+</code></pre>
+
+<p>原因</p>
+<pre><code>该executor gc非常频繁，导致超时
+</code></pre>
+
+<p>解决方法：</p>
+<pre><code>1、加大excutor-memory的值或者减少executor-cores的数量或者增加分区等手段就可以解决。
+2、合理设置spark.network.timeout
+</code></pre>
+
+<h4>2-5、WARN cannot remove /xxxxx/data_mode=d/xxx:No such file or directory</h4>
+<pre><code>18/12/17 17:17:17 WARN FileSystem:java.io.FileNotFoundException: 
+cannot remove /xxxxx/data_mode=d/hist_dur=1/part-00000-cad0a9bc-0c8b-4298-b636-207f107732c1-c000: 
+No such file or directory. at org.apache.hadoop.fs.FsShell.delete(FsShell.java:1423) 
+at org.apache.hadoop.hdfs.DistributedFileSystem.deleteUsingTrash(DistributedFileSystem.java:956)        
+</code></pre>
+
+<p>对于这种警告信息，不影响作业，用户可以忽略。</p>
+<h4>2-6、WARN fs.TrashPolicyDefault: Can’t create trash directory: hdfs://xxx/xxx/...</h4>
+<pre><code>19/01/07 11:51:31 WARN fs.TrashPolicyDefault: Can’t create trash directory: hdfsold://xxxxx:9000/user/xxxxx/.Trash/Current/home/xxxxx/project/bool/userdata/optimization/targeting/xxxxxxxxxx/xxxxxxx
+Problem with Trash.java.io.FileNotFoundException: Parent path is not a directory: /user/xxxxx/.Trash/Current/home/xxxxx/project/bool/userdata/optimization/targeting/xxxxxxx/xxxxxxx
+at org.apache.hadoop.hdfs.server.namenode.FSDirectory.mkdirs(FSDirectory.java:1637)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirsInternal(FSNamesystem.java:4177)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:4107)
+at org.apache.hadoop.hdfs.server.namenode.NameNode.mkdirs(NameNode.java:1184)
+at sun.reflect.GeneratedMethodAccessor122.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at org.apache.hadoop.ipc.RPCServer.call(RPC.java:743) at org.apache.hadoop.ipc.ServerServer.call(RPC.java:743)atorg.apache.hadoop.ipc.ServerHandler1.run(Server.java:1189) at org.apache.hadoop.ipc.Server1.run(Server.java:1189)atorg.apache.hadoop.ipc.ServerHandler1.run(Server.java:1185) at java.security.AccessController.doPrivileged(Native Method) at javax.security.auth.Subject.doAs(Subject.java:415) at org.apache.hadoop.ipc.Server1.run(Server.java:1185)atjava.security.AccessController.doPrivileged(NativeMethod)atjavax.security.auth.Subject.doAs(Subject.java:415)atorg.apache.hadoop.ipc.ServerHandler.run(Server.java:1183)
+. Consider using -skipTrash option
+</code></pre>
+
+<p>对于这种警告信息，不影响作业，用户可以忽略。</p>
+<h4>2-7、Total size of serialized results of ... is bigger than spark.driver.maxResultSize (1024.0 MB)</h4>
+<p>用户执行的报错信息：</p>
+<pre><code class="verilog">ERROR TaskSetManager: Total size of serialized results of 329 tasks (1025.4 MB) is bigger than spark.driver.maxResultSize (1024.0 MB)
+</code></pre>
+
+<p>​   这种问题一般是用户在spark-sql或spark-hive中直接查询返回的数据量过大造成。也可能是用户应用中使用了拉取数据到driver端的API（例如：collect、show）。</p>
+<p>​   解决方法：用户应该考虑拉取数据到driver端是否合理？如果不合理，增加过滤条件或者采用insert overwrite directory命令解决；如果合理，则适当增加spark.driver.maxResultSize的大小。</p>
+<h4>2-8、 Current usage: 3.5 GB of 3.5 GB physical memory used</h4>
+<p>用户作业出现如下错误：</p>
+<pre><code>19/01/10 16:01:01 ERROR YarnScheduler: Lost executor 70 on 10.162.90.26: Executor for container container_e46_1545125871120_683318_01_000071 exited because of a YARN event (e.g., pre-emption) and not because of an error in the running j
+ob.
+19/01/10 16:02:32 ERROR YarnScheduler: Lost executor 265 on 10.160.98.120: Container marked as failed: container_e46_1545125871120_683318_01_000252 on host: 10.160.98.120. Exit status: 137. Diagnostics: Container killed on request. Exit
+code is 137. More Information
+Container exited with a non-zero exit code 137
+Killed by external signal
+
+19/01/10 16:02:35 ERROR YarnScheduler: Lost executor 159 on 10.160.107.169: Container marked as failed: container_e46_1545125871120_683318_01_000164 on host: 10.160.107.169. **\*==Exit status: 15. Diagnostics: Container [pid=31942,containerID=container_e46_1545125871120_683318_01_000164] is running beyond physical memory limits. Current usage: 3.5 GB of 3.5 GB physical memory used; 5.3 GB of 7.3 GB virtual memory used. Killing container.**==*
+</code></pre>
+
+<p>遇到这种问题，应该首先查看数据是否有倾斜，如果没有倾斜，看看能否适当增加分区数（分区设置过多是有代价的），或者从源头过滤或者减少数据量。最后不行，再调高executor的内存。</p>
+<h3 id="3pyspark">3、PySpark相关</h3>
+<h4>3-1、python使用不当</h4>
+<pre><code>ERROR ApplicationMaster: User class threw exception: java.io.IOException: Cannot run 
+program &quot;./python27/bin/python&quot;: error=2, No such file or directory
+java.io.IOException:Cannot run program &quot;./python27/bin/python&quot;: error=2, 
+No such file or directory   
+</code></pre>
+
+<p>解决方法：用户使用archives方式提交python2.7.tgz，该tgz有多级目录指定的Python的路径不对。</p>
+<h4>3-2、python任务长时间不结束</h4>
+<p>查看用户的executor线程，发现：</p>
+<pre><code class="language">java.net.SocketInputStream.socketRead0(Native Method)
+java.net.SocketInputStream.read(SocketInputStream.java:152)
+java.net.SocketInputStream.read(SocketInputStream.java:122)
+java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+java.io.BufferedInputStream.read1(BufferedInputStream.java:275)
+java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+java.io.DataInputStream.readFully(DataInputStream.java:195)
+java.io.DataInputStream.readFully(DataInputStream.java:169)
+org.apache.spark.api.python.PythonRunner$$anon$1.read(PythonRDD.scala:142)
+org.apache.spark.api.python.PythonRunner$$anon$1.next(PythonRDD.scala:129)
+org.apache.spark.api.python.PythonRunner$$anon$1.next(PythonRDD.scala:125)
+org.apache.spark.InterruptibleIterator.next(InterruptibleIterator.scala:43)
+scala.collection.Iterator$$anon$11.next(Iterator.scala:328)
+org.apache.spark.shuffle.sort.BypassMergeSortShuffleWriter.write(BypassMergeSortShuffleWriter.java:149)
+org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:73)
+org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:41)
+org.apache.spark.scheduler.Task.run(Task.scala:89)
+org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:213)
+java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+java.lang.Thread.run(Thread.java:724)
+</code></pre>
+
+<p>pyspark实际是创建了python进程与java进程通过socket通信实现的，pyspark执行在架构上天生就有效率、性能差的问题。建议改为scala实现。有spark同行告诉我，可以通过apache arrow来优化，不过目前暂时没有调研这块。</p>
+<h3 id="4">4、用户程序自身问题</h3>
+<p>这类问题是用户代码本身的错误，比如空指针异常，数组访问越界什么的。</p>
+<h4>4-1、测试代码</h4>
+<p>用户反馈：使用yarn-client模式运行成功，但是切换成cluster模式执行失败。经过排查，发现用户的代码中的测试代码没有改成正式的。用户的部分代码如下：</p>
+<pre><code class="scala">def main(args: Array[String]): Unit={
+  val spark = SparkSession.builder().master(&quot;local&quot;)
+  .appName(&quot;test****&quot;).getOrCreate()
+
+  // 省略其余代码逻辑
+  spark.stop()
+}
+</code></pre>
+
+<h4>4-2、SparkSession、SparkContext等核心类，不要写在main函数外</h4>
+<p>用户的作业提交执行不成功，经过排查发现代码使用方式不对。</p>
+<pre><code>val sparkConf = new SparkConf().setAppName(&quot;xxxxxx&quot;)
+.set(&quot;spark.driver.maxResultSize&quot;,&quot;3g&quot;)
+.setMaster(&quot;yarn-client&quot;)
+val sc = new SparkContext(sparkConf)
+
+def main (args: Array[String]): Unit = {
+val checklist = sc.textFile(&quot;hdfs://xxxxxx:9000/home/xxxxx/xxxxx/*/*.txt&quot;)
+.filter(x=&gt;x.split(&quot;,&quot;).length==9).map(x=&gt;x.toString.replace(&quot; &quot;,&quot;&quot;))
+</code></pre>
+
+<h2 id="spark23">二、Spark2.3特有故障</h2>
+<p>请阅读<a href="../spark2.3-troubleshooting/">Spark2.3特有故障</a>。</p>
+<h2 id="spark16">三、Spark1.6特有故障</h2>
+<p>请阅读<a href="../spark1.6-troubleshooting/">Spark1.6特有故障</a>。</p></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

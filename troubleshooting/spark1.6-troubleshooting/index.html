@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>Spark1.6 Troubleshooting - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../datasources/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../spark2.3-troubleshooting/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#spark16">Spark1.6特有故障</a></li>
+            <li class="second-level"><a href="#_1">一、集群环境类</a></li>
+                
+            <li class="second-level"><a href="#spark-submit">二、spark-submit使用</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="spark16">Spark1.6特有故障</h2>
+<h3 id="_1">一、集群环境类</h3>
+<h4>1、ExecutorLostFailure</h4>
+<h5>1-1、Diagnostics: Container released on a <em>lost</em> node</h5>
+<p>​   用户提交的任务在运行过程中，部分executor出现以下异常：</p>
+<pre><code class="verilog">ExecutorLostFailure (executor 268 exited caused by one of the running tasks) Reason: Container marked as failed: container_e46_1545125871120_21448_01_000282 on host: 10.160.140.153. Exit status: -100. Diagnostics: Container released on a *lost* node
+</code></pre>
+
+<p>实际是NodeManager重启所致。</p>
+<h5>1-2、Killed by external signal</h5>
+<p>​   用户提交的任务，executor设置了较大的内存后，部分executor出现以下异常：</p>
+<pre><code class="verilog">ExecutorLostFailure (executor 335 exited caused by one of the running tasks) Reason: Container marked as failed: container_e124_1543893582405_1626578_01_000394 on host: 10.203.21.109. Exit status: 143. Diagnostics: Container killed on request. Exit code is 143. More Information 
+Container exited with a non-zero exit code 143
+Killed by external signal
+</code></pre>
+
+<p>初步判断executor是因为内存超限，被NodeManager杀掉。但是具体原因需要进一步诊断。</p>
+<p>经过诊断，发现如下信息：</p>
+<h4>Summary Metrics for 409 Completed Tasks</h4>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Min</th>
+<th>25th percentile</th>
+<th>Median</th>
+<th>75th percentile</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duration</td>
+<td>62 ms</td>
+<td>0.6 s</td>
+<td>0.7 s</td>
+<td>1 s</td>
+<td>33 s</td>
+</tr>
+<tr>
+<td>Scheduler Delay</td>
+<td>26 ms</td>
+<td>0.1 s</td>
+<td>0.1 s</td>
+<td>0.1 s</td>
+<td>0.9 s</td>
+</tr>
+<tr>
+<td>Task Deserialization Time</td>
+<td>26 ms</td>
+<td>2 s</td>
+<td>2 s</td>
+<td>2 s</td>
+<td>6 s</td>
+</tr>
+<tr>
+<td>GC Time</td>
+<td>0 ms</td>
+<td>53 ms</td>
+<td>66 ms</td>
+<td>87 ms</td>
+<td>4 s</td>
+</tr>
+<tr>
+<td>Result Serialization Time</td>
+<td>0 ms</td>
+<td>1 ms</td>
+<td>2 ms</td>
+<td>2 ms</td>
+<td>30 ms</td>
+</tr>
+<tr>
+<td>Getting Result Time</td>
+<td>0 ms</td>
+<td>0 ms</td>
+<td>0 ms</td>
+<td>0 ms</td>
+<td>0 ms</td>
+</tr>
+<tr>
+<td>Peak Execution Memory</td>
+<td>0.0 B</td>
+<td>64.0 KB</td>
+<td>64.0 KB</td>
+<td>64.1 MB</td>
+<td>1024.0 MB</td>
+</tr>
+<tr>
+<td>Shuffle Read Blocked Time</td>
+<td>0 ms</td>
+<td>0 ms</td>
+<td>0 ms</td>
+<td>0 ms</td>
+<td>16 s</td>
+</tr>
+<tr>
+<td>Shuffle Read Size / Records</td>
+<td>126.0 B / 0</td>
+<td>126.0 B / 0</td>
+<td>126.0 B / 0</td>
+<td>1679.0 B / 11</td>
+<td>74.2 MB / 3936473</td>
+</tr>
+<tr>
+<td>Shuffle Remote Reads</td>
+<td>105.0 B</td>
+<td>126.0 B</td>
+<td>126.0 B</td>
+<td>1378.0 B</td>
+<td>74.2 MB</td>
+</tr>
+<tr>
+<td>Shuffle Write Size / Records</td>
+<td>0.0 B / 0</td>
+<td>0.0 B / 0</td>
+<td>0.0 B / 0</td>
+<td>564.0 B / 11</td>
+<td>5.1 KB / 150</td>
+</tr>
+</tbody>
+</table>
+<p>可以看出有明显的数据倾斜，用户也许觉得74.2 MB的数据倾斜也不应该出现内存问题而被kill。实际上被kill掉的executor的shuffle统计数据无法准确传递到driver UI。</p>
+<h4>2、HDFS环境相关</h4>
+<h5>2-1、DSQuotaExceededException: The DiskSpace quota of /home/logsget is exceeded</h5>
+<p>​   用户提交的任务在运行过程中，部分executor出现以下异常：</p>
+<pre><code class="verilog">org.apache.hadoop.hdfs.protocol.DSQuotaExceededException: org.apache.hadoop.hdfs.protocol.DSQuotaExceededException: The DiskSpace quota of /home/logsget is exceeded: quota=4178144185548800 diskspace consumed=3891200.7g
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+    at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+    at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+    at java.lang.reflect.Constructor.newInstance(Constructor.java:526)
+    at org.apache.hadoop.ipc.RemoteException.instantiateException(RemoteException.java:96)
+    at org.apache.hadoop.ipc.RemoteException.unwrapRemoteException(RemoteException.java:58)
+    at org.apache.hadoop.hdfs.DFSClient$DFSOutputStream.locateFollowingBlock(DFSClient.java:6111)
+    at org.apache.hadoop.hdfs.DFSClient$DFSOutputStream.nextBlockOutputStream(DFSClient.java:5817)
+    at org.apache.hadoop.hdfs.DFSClient$DFSOutputStream.access$3400(DFSClient.java:4660)
+    at org.apache.hadoop.hdfs.DFSClient$DFSOutputStream$DataStreamer.run(DFSClient.java:5023)
+Caused by: org.apache.hadoop.ipc.RemoteException: org.apache.hadoop.hdfs.protocol.DSQuotaExceededException: The DiskSpace quota of /home/logsget is exceeded: quota=4178144185548800 diskspace consumed=3891200.7g
+    at org.apache.hadoop.hdfs.server.namenode.INodeDirectoryWithQuota.verifyQuota(INodeDirectoryWithQuota.java:159)
+    at org.apache.hadoop.hdfs.server.namenode.FSDirectory.verifyQuota(FSDirectory.java:1748)
+    at org.apache.hadoop.hdfs.server.namenode.FSDirectory.updateCount(FSDirectory.java:1506)
+    at org.apache.hadoop.hdfs.server.namenode.FSDirectory.addBlock(FSDirectory.java:499)
+    at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.allocateBlock(FSNamesystem.java:3404)
+    at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getAdditionalBlock(FSNamesystem.java:2768)
+    at org.apache.hadoop.hdfs.server.namenode.NameNode.addBlockWithBlockType(NameNode.java:963)
+    at org.apache.hadoop.hdfs.server.namenode.NameNode.addBlockAndFetchMetaInfoAndBlockType(NameNode.java:919)
+    at sun.reflect.GeneratedMethodAccessor28.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:743)
+    at org.apache.hadoop.ipc.Server$Handler$1.run(Server.java:1189)
+    at org.apache.hadoop.ipc.Server$Handler$1.run(Server.java:1185)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at javax.security.auth.Subject.doAs(Subject.java:415)
+    at org.apache.hadoop.ipc.Server$Handler.run(Server.java:1183)
+
+    at org.apache.hadoop.ipc.Client.call(Client.java:863)
+    at org.apache.hadoop.ipc.RPC$Invoker.invoke(RPC.java:227)
+    at com.sun.proxy.$Proxy18.addBlockAndFetchMetaInfoAndBlockType(Unknown Source)
+    at sun.reflect.GeneratedMethodAccessor77.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at org.apache.hadoop.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:82)
+    at org.apache.hadoop.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:59)
+    at com.sun.proxy.$Proxy18.addBlockAndFetchMetaInfoAndBlockType(Unknown Source)
+    at org.apache.hadoop.hdfs.DFSClient$DFSOutputStream.locateFollowingBlock(DFSClient.java:6051)
+    ... 3 more
+</code></pre>
+
+<p>实际是分配给用户的hdfs的quato满了，需要登录云图申请加资源，具体找何任天审批。</p>
+<h3 id="spark-submit">二、spark-submit使用</h3>
+<h4>1、java.lang.ExceptionInInitializerError</h4>
+<h5>1-1、MountRootFileSystem can not mkdir</h5>
+<p>​   用户提交Scala应用程序，成功提交application，获得application_1544090606001_349694。在获得executor资源后开始运行，在运行过程中发现以下错误：</p>
+<pre><code class="verilog">java.lang.ExceptionInInitializerError
+    at net.qihoo.scanns.Test$$anonfun$transform$1.apply(Test.scala:85)
+    at net.qihoo.scanns.Test$$anonfun$transform$1.apply(Test.scala:85)
+    at org.apache.spark.rdd.PairRDDFunctions$$anonfun$mapValues$1$$anonfun$apply$41$$anonfun$apply$42.apply(PairRDDFunctions.scala:755)
+    at org.apache.spark.rdd.PairRDDFunctions$$anonfun$mapValues$1$$anonfun$apply$41$$anonfun$apply$42.apply(PairRDDFunctions.scala:755)
+    at scala.collection.Iterator$$anon$11.next(Iterator.scala:328)
+    at scala.collection.Iterator$$anon$13.hasNext(Iterator.scala:371)
+    at org.apache.spark.shuffle.sort.UnsafeShuffleWriter.write(UnsafeShuffleWriter.java:163)
+    at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:73)
+    at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:41)
+    at org.apache.spark.scheduler.Task.run(Task.scala:89)
+    at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:213)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+    at java.lang.Thread.run(Thread.java:724)
+Caused by: java.io.IOException: MountRootFileSystem can not mkdir /user/hdp-guanggao/.sparkStaging/application_1544090606001_349710
+    at org.apache.hadoop.fs.viewfs.MountTree$MountRootFileSystem.mkdirs(MountTree.java:372)
+    at org.apache.hadoop.fs.viewfs.ViewFs.mkdirs(ViewFs.java:365)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at net.qihoo.spinner.HYReflection.invoke(HYReflection.java:130)
+    at net.qihoo.spinner.SpinnerDistributedFileSystem.mkdirs(SpinnerDistributedFileSystem.java:466)
+    at org.apache.hadoop.fs.FileSystem.mkdirs(FileSystem.java:1900)
+    at org.apache.hadoop.fs.FileSystem.mkdirs(FileSystem.java:617)
+    at org.apache.spark.deploy.yarn.Client.prepareLocalResources(Client.scala:366)
+    at org.apache.spark.deploy.yarn.Client.createContainerLaunchContext(Client.scala:732)
+    at org.apache.spark.deploy.yarn.Client.submitApplication(Client.scala:142)
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.start(YarnClientSchedulerBackend.scala:57)
+    at org.apache.spark.scheduler.TaskSchedulerImpl.start(TaskSchedulerImpl.scala:144)
+    at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:542)
+    at net.qihoo.scanns.Test$.&lt;init&gt;(Test.scala:18)
+    at net.qihoo.scanns.Test$.&lt;clinit&gt;(Test.scala)
+    ... 14 more
+</code></pre>
+
+<p>在日志中，我们看到：</p>
+<pre><code class="verilog">Caused by: java.io.IOException: MountRootFileSystem can not mkdir /user/hdp-guanggao/.sparkStaging/application_1544090606001_349710
+</code></pre>
+
+<p>怎么会获得application_1544090606001_349694的情况下，还会有application_1544090606001_349710。仔细查看其他executor的输出，发现还有很多其他的application id生成。看来是每个Executor里面都把Test执行了一遍。据此怀疑，用户的spark代码使用上有问题。</p>
+<p>​   查看用户的代码，如下：</p>
+<pre><code class="scala">object Test {
+  private val sparkConfig = new SparkConf().setMaster(&quot;yarn-client&quot;).setAppName(&quot;scanns&quot;)
+  private val sparkContext = new SparkContext(sparkConfig)
+  ...
+
+  def main(args: Array[String]): Unit = {
+      val queryRaw = sparkContext.textFile(keyInput)
+      ...
+  }
+</code></pre>
+
+<p>SparkContext如果在main函数外创建，将会在各个executor上执行。改为main函数中创建后，解决。</p>
+<h5>1-2、java.io.FileNotFoundException</h5>
+<p>​   用户执行发生错误：</p>
+<pre><code class="verilog">java.lang.ExceptionInInitializerError
+Caused by: java.io.FileNotFoundException: File does not exist: /home/spark/spark_eventLog
+</code></pre>
+
+<p>用户的私有集群不存在此目录，且用户账号没有权限，建议联系hdfs同学看。</p>
+<h5>1-3、没有安装java8</h5>
+<p>用户提交的作业在未运行task之前，AM已经退出，导致作业失败。</p>
+<pre><code>Container exited with a non-zero exit code 127
+Failing this attempt. Failing the application.
+     ApplicationMaster host: N/A
+     ApplicationMaster RPC port: -1
+     queue: root.default
+     start time: 1546850986115
+     final status: FAILED
+     tracking URL: http://xxxxxxxx:8888/cluster/app/application_1493705730010_45634
+     user: hdp-360sec
+Moved to trash: /home/spark/cache/.sparkStaging/application_1493705730010_45634
+19/01/07 16:48:07 INFO Client: Deleted staging directory hdfs://xxxxxxx:9000/home/spark/cache/.sparkStaging/application_1493705730010_45634
+19/01/07 16:48:07 ERROR SparkContext: Error initializing SparkContext.
+org.apache.spark.SparkException: Yarn application has already ended! It might have been killed or unable to launch application master.
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.waitForApplication(YarnClientSchedulerBackend.scala:89)
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.start(YarnClientSchedulerBackend.scala:63)
+    at org.apache.spark.scheduler.TaskSchedulerImpl.start(TaskSchedulerImpl.scala:164)
+    at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:502)
+    ...
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:497)
+    at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+    at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:879)
+    at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:197)
+    at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:227)
+    at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:136)
+    at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Exception in thread &quot;main&quot; java.lang.ExceptionInInitializerError
+    ...
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:497)
+    at org.apache.spark.deploy.JavaMainApplication.start(SparkApplication.scala:52)
+    at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:879)
+    at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:197)
+    at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:227)
+    at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:136)
+    at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+Caused by: org.apache.spark.SparkException: Yarn application has already ended! It might have been killed or unable to launch application master.
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.waitForApplication(YarnClientSchedulerBackend.scala:89)
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.start(YarnClientSchedulerBackend.scala:63)
+    at org.apache.spark.scheduler.TaskSchedulerImpl.start(TaskSchedulerImpl.scala:164)
+    at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:502)
+    ... 11 more
+</code></pre>
+
+<p>查看tracking URL，发现如下信息：</p>
+<pre><code class="language">/bin/bash: /home/xxx/xxxxx/java8/bin/java: &amp;ucirc;&amp;#65533;&amp;#65533;&amp;#65533;&amp;#504;&amp;#65533;&amp;#65533;&amp;#316;&amp;#65533;&amp;#65533;&amp;#65533;&amp;#319;&amp;frac14;
+</code></pre>
+
+<p>和明显是集群的一些机器漏装java8了</p>
+<h5>1-4、SparkSession、SparkContext等核心类，不要写在main函数外</h5>
+<p>用户作业出现如下错误：</p>
+<pre><code>java.lang.ExceptionInInitializerError
+at A$$anonfun$transform1.apply(A.scala:62) at A.apply(A.scala:62)atAanonfunanonfuntransform1.apply(A.scala:62) at org.apache.spark.rdd.PairRDDFunctions1.apply(A.scala:62)atorg.apache.spark.rdd.PairRDDFunctionsanonfunanonfunmapValues11anonfunanonfunapply4141anonfunanonfunapply42.apply(PairRDDFunctions.scala:755) at org.apache.spark.rdd.PairRDDFunctions42.apply(PairRDDFunctions.scala:755)atorg.apache.spark.rdd.PairRDDFunctionsanonfunanonfunmapValues11anonfunanonfunapply4141anonfunanonfunapply42.apply(PairRDDFunctions.scala:755) at scala.collection.Iterator42.apply(PairRDDFunctions.scala:755)atscala.collection.Iterator$anon11.next(Iterator.scala:328) at scala.collection.Iterator11.next(Iterator.scala:328)atscala.collection.Iterator$anon13.hasNext(Iterator.scala:371) at org.apache.spark.shuffle.sort.UnsafeShuffleWriter.write(UnsafeShuffleWriter.java:163) at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:73) at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:41) at org.apache.spark.scheduler.Task.run(Task.scala:89) at org.apache.spark.executor.Executor13.hasNext(Iterator.scala:371)atorg.apache.spark.shuffle.sort.UnsafeShuffleWriter.write(UnsafeShuffleWriter.java:163)atorg.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:73)atorg.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:41)atorg.apache.spark.scheduler.Task.run(Task.scala:89)atorg.apache.spark.executor.ExecutorTaskRunner.run(Executor.scala:213)
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+at java.util.concurrent.ThreadPoolExecutorWorker.run(ThreadPoolExecutor.java:615) at java.lang.Thread.run(Thread.java:724) Caused by: java.io.IOException: MountRootFileSystem can not mkdir /user/xxxxx/.sparkStaging/application_1544090606001_349710 at org.apache.hadoop.fs.viewfs.MountTreeWorker.run(ThreadPoolExecutor.java:615)atjava.lang.Thread.run(Thread.java:724)Causedby:java.io.IOException:MountRootFileSystemcannotmkdir/user/xxxxxxx/.sparkStaging/application1544090606001349710atorg.apache.hadoop.fs.viewfs.MountTreeMountRootFileSystem.mkdirs(MountTree.java:372)
+at org.apache.hadoop.fs.viewfs.ViewFs.mkdirs(ViewFs.java:365)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:606)
+at net.qihoo.spinner.HYReflection.invoke(HYReflection.java:130)
+at net.qihoo.spinner.SpinnerDistributedFileSystem.mkdirs(SpinnerDistributedFileSystem.java:466)
+at org.apache.hadoop.fs.FileSystem.mkdirs(FileSystem.java:1900)
+at org.apache.hadoop.fs.FileSystem.mkdirs(FileSystem.java:617)
+at org.apache.spark.deploy.yarn.Client.prepareLocalResources(Client.scala:366)
+at org.apache.spark.deploy.yarn.Client.createContainerLaunchContext(Client.scala:732)
+at org.apache.spark.deploy.yarn.Client.submitApplication(Client.scala:142)
+at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.start(YarnClientSchedulerBackend.scala:57)
+at org.apache.spark.scheduler.TaskSchedulerImpl.start(TaskSchedulerImpl.scala:144)
+at org.apache.spark.SparkContext.(SparkContext.scala:542)
+at A.&lt;init&gt;(sgktoHbase.scala:62) at A.&lt;init&gt;(sgktoHbase.scala:62)atA.(A.scala)
+… 14 more
+</code></pre>
+
+<p>经过排查发现代码使用方式不对。</p>
+<pre><code class="scala">val sparkConf = new SparkConf().setAppName(&quot;xxxxxx&quot;)
+.set(&quot;spark.driver.maxResultSize&quot;,&quot;3g&quot;)
+.setMaster(&quot;yarn-client&quot;)
+val sc = new SparkContext(sparkConf)
+
+def main (args: Array[String]): Unit = {
+val checklist = sc.textFile(&quot;hdfs://xxxxxx:9000/home/xxxxx/xxxxx/*/*.txt&quot;)
+.filter(x=&gt;x.split(&quot;,&quot;).length==9).map(x=&gt;x.toString.replace(&quot; &quot;,&quot;&quot;))
+</code></pre>
+
+<h4>2、java.lang.NullPointerException</h4>
+<p>​   用户代码出现此异常，需要根据线程栈信息，自己修改。</p>
+<h4>3、org.apache.spark.sql.AnalysisException: Table not found</h4>
+<p>​   用户使用spark-submit提交作业，出现此错误，目前有三种可能：</p>
+<ol>
+<li><strong>表不存在</strong></li>
+</ol>
+<p>这种情况最为常见。一般是用户写错的表名或者没有这个表。</p>
+<ol>
+<li><strong>Hive元数据服务不正常</strong></li>
+</ol>
+<p>之前碰到过Hive元数据服务内存不足、频繁GC导致服务不响应的问题。</p>
+<ol>
+<li><strong>没有切换到相应的DB</strong></li>
+</ol>
+<p>这种情况的出现完全是用户使用习惯导致。使用过hive、spark-hive的用户有这样一个经验：进入命令行后已经在自己当前账号的数据库中了，因此不需要切换DB。spark本身不具备这个功能，是系统部在spark-hive上定制增加的一项功能。所以当你使用其他spark命令，如spark-shell、spark-sql、spark-submit时要格外注意这个情况。</p></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
