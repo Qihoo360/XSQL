@@ -4,7 +4,7 @@
 
 XSQL is a multi-datasource query engine which designed easy to use, stable to run.1）First of all, XSQL provides a solution to read data from NoSQL database  with standard SQL，so that big data engineer can concentrate on data but API with special data source . 2）XSQL takes some efforts of optimizing the execute plan of SQL execution as well as monitoring the running status of every SQL, which make user's job running healthier.
 
-[http://xsql.qihoo.net](http://xsql.qihoo.net/)
+[https://qihoo360.github.io/XSQL/](https://qihoo360.github.io/XSQL/)
 
 ## Features
 
@@ -119,11 +119,11 @@ XSQL is a multi-datasource query engine which designed easy to use, stable to ru
 
 ## FAQ
 
-[Connect to more datasource](http://xsql.qihoo.net/datasources/common/)
+[Connect to more datasource](https://qihoo360.github.io/XSQL/datasources/common/)
 
-[Advanced Configuration](http://xsql.qihoo.net/tutorial/configuration/)
+[Advanced Configuration](https://qihoo360.github.io/XSQL/tutorial/configuration/)
 
-[XSQL Specific Query Language](http://xsql.qihoo.net/tutorial/syntax/)
+[XSQL Specific Query Language](https://qihoo360.github.io/XSQL/tutorial/syntax/)
 
 ## Contact Us
 
