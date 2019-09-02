@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>REST API - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../api/">API</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../datasources/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../api/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../datasources/hive/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#livy-rest-api">Livy REST API</a></li>
+            <li class="second-level"><a href="#get-sessions">GET /sessions</a></li>
+                
+            <li class="second-level"><a href="#post-sessions">POST /sessions</a></li>
+                
+            <li class="second-level"><a href="#get-sessionssessionid">GET /sessions/{sessionId}</a></li>
+                
+            <li class="second-level"><a href="#get-sessionssessionidstate">GET /sessions/{sessionId}/state</a></li>
+                
+            <li class="second-level"><a href="#delete-sessionssessionid">DELETE /sessions/{sessionId}</a></li>
+                
+            <li class="second-level"><a href="#get-sessionssessionidlog">GET /sessions/{sessionId}/log</a></li>
+                
+            <li class="second-level"><a href="#get-sessionssessionidstatements">GET /sessions/{sessionId}/statements</a></li>
+                
+            <li class="second-level"><a href="#post-sessionssessionidstatements">POST /sessions/{sessionId}/statements</a></li>
+                
+            <li class="second-level"><a href="#get-sessionssessionidstatementsstatementid">GET /sessions/{sessionId}/statements/{statementId}</a></li>
+                
+            <li class="second-level"><a href="#post-sessionssessionidstatementsstatementidcancel">POST /sessions/{sessionId}/statements/{statementId}/cancel</a></li>
+                
+            <li class="second-level"><a href="#post-sessionssessionidcompletion">POST /sessions/{sessionId}/completion</a></li>
+                
+            <li class="second-level"><a href="#get-batches">GET /batches</a></li>
+                
+            <li class="second-level"><a href="#post-batches">POST /batches</a></li>
+                
+            <li class="second-level"><a href="#get-batchesbatchid">GET /batches/{batchId}</a></li>
+                
+            <li class="second-level"><a href="#get-batchesbatchidstate">GET /batches/{batchId}/state</a></li>
+                
+            <li class="second-level"><a href="#delete-batchesbatchid">DELETE /batches/{batchId}</a></li>
+                
+            <li class="second-level"><a href="#get-batchesbatchidlog">GET /batches/{batchId}/log</a></li>
+                
+        <li class="first-level "><a href="#rest-objects">REST Objects</a></li>
+            <li class="second-level"><a href="#session">Session</a></li>
+                
+            <li class="second-level"><a href="#statement">Statement</a></li>
+                
+            <li class="second-level"><a href="#batch">Batch</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="livy-rest-api">Livy REST API</h2>
+<h3 id="get-sessions">GET /sessions</h3>
+<p>Returns all the active interactive sessions.</p>
+<h4>Request Parameters</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>from</td>
+    <td>The start index to fetch sessions</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Number of sessions to fetch</td>
+    <td>int</td>
+  </tr>
+</table>
+
+<h4>Response Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>from</td>
+    <td>The start index to fetch sessions</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>total</td>
+    <td>Number of sessions to fetch</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>sessions</td>
+    <td><a href="#session">Session</a> list</td>
+    <td>list</td>
+  </tr>
+</table>
+
+<h3 id="post-sessions">POST /sessions</h3>
+<p>Creates a new interactive Scala, Python, or R shell in the cluster.</p>
+<h4>Request Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>kind</td>
+    <td>The session kind<sup><a href="#footnote1">[1]</a></sup></td>
+    <td><a href="#session-kind">session kind</a></td>
+  </tr>
+  <tr>
+    <td>proxyUser</td>
+    <td>User to impersonate when starting the session</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>jars</td>
+    <td>jars to be used in this session</td>
+    <td>List of string</td>
+  </tr>
+  <tr>
+    <td>pyFiles</td>
+    <td>Python files to be used in this session</td>
+    <td>List of string</td>
+  </tr>
+  <tr>
+    <td>files</td>
+    <td>files to be used in this session</td>
+    <td>List of string</td>
+  </tr>
+  <tr>
+    <td>driverMemory</td>
+    <td>Amount of memory to use for the driver process</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>driverCores</td>
+    <td>Number of cores to use for the driver process</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>executorMemory</td>
+    <td>Amount of memory to use per executor process</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>executorCores</td>
+    <td>Number of cores to use for each executor</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>numExecutors</td>
+    <td>Number of executors to launch for this session</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>archives</td>
+    <td>Archives to be used in this session</td>
+    <td>List of string</td>
+  </tr>
+  <tr>
+    <td>queue</td>
+    <td>The name of the YARN queue to which submitted</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>The name of this session</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>conf</td>
+    <td>Spark configuration properties</td>
+    <td>Map of key=val</td>
+  </tr>
+  <tr>
+    <td>heartbeatTimeoutInSecond</td>
+    <td>Timeout in second to which session be orphaned</td>
+    <td>int</td>
+  </tr>
+</table>
+
+<p><a id="footnote1">1</a>: Starting with version 0.5.0-incubating this field is not required. To be
+compatible with previous versions users can still specify this with spark, pyspark or sparkr,
+implying that the submitted code snippet is the corresponding kind.</p>
+<h4>Response Body</h4>
+<p>The created <a href="#session">Session</a>.</p>
+<h3 id="get-sessionssessionid">GET /sessions/{sessionId}</h3>
+<p>Returns the session information.</p>
+<h4>Response Body</h4>
+<p>The <a href="#session">Session</a>.</p>
+<h3 id="get-sessionssessionidstate">GET /sessions/{sessionId}/state</h3>
+<p>Returns the state of session</p>
+<h4>Response</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>id</td>
+    <td>Session id</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>state</td>
+    <td>The current state of session</td>
+    <td>string</td>
+  </tr>
+</table>
+
+<h3 id="delete-sessionssessionid">DELETE /sessions/{sessionId}</h3>
+<p>Kills the <a href="#session">Session</a> job.</p>
+<h3 id="get-sessionssessionidlog">GET /sessions/{sessionId}/log</h3>
+<p>Gets the log lines from this session.</p>
+<h4>Request Parameters</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>from</td>
+    <td>Offset</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Max number of log lines to return</td>
+    <td>int</td>
+  </tr>
+</table>
+
+<h4>Response Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>id</td>
+    <td>The session id</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>from</td>
+    <td>Offset from start of log</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Max number of log lines</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>log</td>
+    <td>The log lines</td>
+    <td>list of strings</td>
+  </tr>
+</table>
+
+<h3 id="get-sessionssessionidstatements">GET /sessions/{sessionId}/statements</h3>
+<p>Returns all the statements in a session.</p>
+<h4>Response Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>statements</td>
+    <td><a href="#statement">statement</a> list</td>
+    <td>list</td>
+  </tr>
+</table>
+
+<h3 id="post-sessionssessionidstatements">POST /sessions/{sessionId}/statements</h3>
+<p>Runs a statement in a session.</p>
+<h4>Request Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>code</td>
+    <td>The code to execute</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>kind</td>
+    <td>The kind of code to execute<sup><a href="#footnote2">[2]</a></sup></td>
+    <td><a href="#session-kind">code kind</a></td>
+  </tr>
+</table>
+
+<p><a id="footnote2">2</a>: If session kind is not specified or the submitted code is not the kind
+specified in session creation, this field should be filled with correct kind.
+Otherwise Livy will use kind specified in session creation as the default code kind.</p>
+<h4>Response Body</h4>
+<p>The <a href="#statement">statement</a> object.</p>
+<h3 id="get-sessionssessionidstatementsstatementid">GET /sessions/{sessionId}/statements/{statementId}</h3>
+<p>Returns a specified statement in a session.</p>
+<h4>Response Body</h4>
+<p>The <a href="#statement">statement</a> object.</p>
+<h3 id="post-sessionssessionidstatementsstatementidcancel">POST /sessions/{sessionId}/statements/{statementId}/cancel</h3>
+<p>Cancel the specified statement in this session.</p>
+<h4>Response Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>msg</td>
+    <td>is always "cancelled"</td>
+    <td>string</td>
+  </tr>
+</table>
+
+<h3 id="post-sessionssessionidcompletion">POST /sessions/{sessionId}/completion</h3>
+<p>Runs a statement in a session.</p>
+<h4>Request Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>code</td>
+    <td>The code for which completion proposals are requested</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>kind</td>
+    <td>The kind of code to execute<sup><a href="#footnote2">[2]</a></sup></td>
+    <td><a href="#session-kind">code kind</a></td>
+  </tr>
+  <tr>
+    <td>cursor</td>
+    <td>cursor position to get proposals</td>
+    <td>string</td>
+  </tr>
+</table>
+
+<h4>Response Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>candidates</td>
+    <td>Code completions proposals</td>
+    <td>array[string]</td>
+  </tr>
+</table>
+
+<h3 id="get-batches">GET /batches</h3>
+<p>Returns all the active batch sessions.</p>
+<h4>Request Parameters</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>from</td>
+    <td>The start index to fetch sessions</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Number of sessions to fetch</td>
+    <td>int</td>
+  </tr>
+</table>
+
+<h4>Response Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>from</td>
+    <td>The start index of fetched sessions</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>total</td>
+    <td>Number of sessions fetched</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>sessions</td>
+    <td><a href="#batch">Batch</a> list</td>
+    <td>list</td>
+  </tr>
+</table>
+
+<h3 id="post-batches">POST /batches</h3>
+<h4>Request Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>file</td>
+    <td>File containing the application to execute</td>
+    <td>path (required)</td>
+  </tr>
+  <tr>
+    <td>proxyUser</td>
+    <td>User to impersonate when running the job</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>className</td>
+    <td>Application Java/Spark main class</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>args</td>
+    <td>Command line arguments for the application</td>
+    <td>list of strings</td>
+  </tr>
+  <tr>
+    <td>jars</td>
+    <td>jars to be used in this session</td>
+    <td>list of strings</td>
+  </tr>
+  <tr>
+    <td>pyFiles</td>
+    <td>Python files to be used in this session</td>
+    <td>list of strings</td>
+  </tr>
+  <tr>
+    <td>files</td>
+    <td>files to be used in this session</td>
+    <td>list of strings</td>
+  </tr>
+  <tr>
+    <td>driverMemory</td>
+    <td>Amount of memory to use for the driver process</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>driverCores</td>
+    <td>Number of cores to use for the driver process</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>executorMemory</td>
+    <td>Amount of memory to use per executor process</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>executorCores</td>
+    <td>Number of cores to use for each executor</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>numExecutors</td>
+    <td>Number of executors to launch for this session</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>archives</td>
+    <td>Archives to be used in this session</td>
+    <td>List of string</td>
+  </tr>
+  <tr>
+    <td>queue</td>
+    <td>The name of the YARN queue to which submitted</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>The name of this session</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>conf</td>
+    <td>Spark configuration properties</td>
+    <td>Map of key=val</td>
+  </tr>
+</table>
+
+<h4>Response Body</h4>
+<p>The created <a href="#batch">Batch</a> object.</p>
+<h3 id="get-batchesbatchid">GET /batches/{batchId}</h3>
+<p>Returns the batch session information.</p>
+<h4>Response Body</h4>
+<p>The <a href="#batch">Batch</a>.</p>
+<h3 id="get-batchesbatchidstate">GET /batches/{batchId}/state</h3>
+<p>Returns the state of batch session</p>
+<h4>Response</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>id</td>
+    <td>Batch session id</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>state</td>
+    <td>The current state of batch session</td>
+    <td>string</td>
+  </tr>
+</table>
+
+<h3 id="delete-batchesbatchid">DELETE /batches/{batchId}</h3>
+<p>Kills the <a href="#batch">Batch</a> job.</p>
+<h3 id="get-batchesbatchidlog">GET /batches/{batchId}/log</h3>
+<p>Gets the log lines from this batch.</p>
+<h4>Request Parameters</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>from</td>
+    <td>Offset</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Max number of log lines to return</td>
+    <td>int</td>
+  </tr>
+</table>
+
+<h4>Response Body</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>id</td>
+    <td>The batch id</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>from</td>
+    <td>Offset from start of log</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Number of log lines</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>log</td>
+    <td>The log lines</td>
+    <td>list of strings</td>
+  </tr>
+</table>
+
+<h2 id="rest-objects">REST Objects</h2>
+<h3 id="session">Session</h3>
+<p>A session represents an interactive shell.</p>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>id</td>
+    <td>The session id</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>appId</td>
+    <td>The application id of this session</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>owner</td>
+    <td>Remote user who submitted this session</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>proxyUser</td>
+    <td>User to impersonate when running</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>kind</td>
+    <td>Session kind (spark, pyspark, or sparkr)</td>
+    <td><a href="#session-kind">session kind</a></td>
+  </tr>
+  <tr>
+    <td>log</td>
+    <td>The log lines</td>
+    <td>list of strings</td>
+  </tr>
+  <tr>
+    <td>state</td>
+    <td>The session state</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>appInfo</td>
+    <td>The detailed application info</td>
+    <td>Map of key=val</td>
+  </tr>
+</table>
+
+<h4>Session State</h4>
+<table class="table">
+  <tr><th>Value</th><th>Description</th></tr>
+  <tr>
+    <td>not_started</td>
+    <td>Session has not been started</td>
+  </tr>
+  <tr>
+    <td>starting</td>
+    <td>Session is starting</td>
+  </tr>
+  <tr>
+    <td>idle</td>
+    <td>Session is waiting for input</td>
+  </tr>
+  <tr>
+    <td>busy</td>
+    <td>Session is executing a statement</td>
+  </tr>
+  <tr>
+    <td>shutting_down</td>
+    <td>Session is shutting down</td>
+  </tr>
+  <tr>
+    <td>error</td>
+    <td>Session errored out</td>
+  </tr>
+  <tr>
+    <td>dead</td>
+    <td>Session has exited</td>
+  </tr>
+  <tr>
+    <td>killed</td>
+    <td>Session has been killed</td>
+  </tr>
+  <tr>
+    <td>success</td>
+    <td>Session is successfully stopped</td>
+  </tr>
+</table>
+
+<h4>Session Kind</h4>
+<table class="table">
+  <tr><th>Value</th><th>Description</th></tr>
+  <tr>
+    <td>spark</td>
+    <td>Interactive Scala Spark session</td>
+  </tr>
+  <tr>
+    <td><a href="#pyspark">pyspark</a></td>
+    <td>Interactive Python Spark session</td>
+  </tr>
+  <tr>
+    <td>sparkr</td>
+    <td>Interactive R Spark session</td>
+  </tr>
+  <tr>
+    <td>sql</td>
+    <td>Interactive SQL Spark session</td>
+  </tr>
+  </table>
+
+<p>Starting with version 0.5.0-incubating, each session can support all four Scala, Python and R
+interpreters with newly added SQL interpreter. The <code>kind</code> field in session creation 
+is no longer required, instead users should specify code kind (spark, pyspark, sparkr or sql) 
+during statement submission.</p>
+<p>To be compatible with previous versions, users can still specify <code>kind</code> in session creation,
+while ignoring <code>kind</code> in statement submission. Livy will then use this session
+<code>kind</code> as default kind for all the submitted statements.</p>
+<p>If users want to submit code other than default <code>kind</code> specified in session creation, users
+need to specify code kind (spark, pyspark, sparkr or sql) during statement submission.</p>
+<h4>pyspark</h4>
+<p>To change the Python executable the session uses, Livy reads the path from environment variable
+<code>PYSPARK_PYTHON</code> (Same as pyspark).</p>
+<p>Starting with version 0.5.0-incubating, session kind "pyspark3" is removed, instead users require
+to set <code>PYSPARK_PYTHON</code> to python3 executable.</p>
+<p>Like pyspark, if Livy is running in <code>local</code> mode, just set the environment variable.
+If the session is running in <code>yarn-cluster</code> mode, please set
+<code>spark.yarn.appMasterEnv.PYSPARK_PYTHON</code> in SparkConf so the environment variable is passed to
+the driver.</p>
+<h3 id="statement">Statement</h3>
+<p>A statement represents the result of an execution statement.</p>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>id</td>
+    <td>The statement id</td>
+    <td>integer</td>
+  </tr>
+  <tr>
+    <td>code</td>
+    <td>The execution code</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>state</td>
+    <td>The execution state</td>
+    <td>statement state</td>
+  </tr>
+  <tr>
+    <td>output</td>
+    <td>The execution output</td>
+    <td>statement output</td>
+  </tr>
+</table>
+
+<h4>Statement State</h4>
+<table class="table">
+  <tr><th>Value</th><th>Description</th></tr>
+  <tr>
+    <td>waiting</td>
+    <td>Statement is enqueued but execution hasn't started</td>
+  </tr>
+  <tr>
+    <td>running</td>
+    <td>Statement is currently running</td>
+  </tr>
+  <tr>
+    <td>available</td>
+    <td>Statement has a response ready</td>
+  </tr>
+  <tr>
+    <td>error</td>
+    <td>Statement failed</td>
+  </tr>
+  <tr>
+    <td>cancelling</td>
+    <td>Statement is being cancelling</td>
+  </tr>
+  <tr>
+    <td>cancelled</td>
+    <td>Statement is cancelled</td>
+  </tr>
+</table>
+
+<h4>Statement Output</h4>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>status</td>
+    <td>Execution status</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>execution_count</td>
+    <td>A monotonically increasing number</td>
+    <td>integer</td>
+  </tr>
+  <tr>
+    <td>data</td>
+    <td>Statement output</td>
+    <td>An object mapping a mime type to the result. If the mime type is
+    ``application/json``, the value is a JSON value.</td>
+  </tr>
+</table>
+
+<h3 id="batch">Batch</h3>
+<table class="table">
+  <tr><th>Name</th><th>Description</th><th>Type</th></tr>
+  <tr>
+    <td>id</td>
+    <td>The session id</td>
+    <td>int</td>
+  </tr>
+  <tr>
+    <td>appId</td>
+    <td>The application id of this session</td>
+    <td>string</td>
+  </tr>
+  <tr>
+    <td>appInfo</td>
+    <td>The detailed application info</td>
+    <td>Map of key=val</td>
+  </tr>
+  <tr>
+    <td>log</td>
+    <td>The log lines</td>
+    <td>list of strings</td>
+  </tr>
+  <tr>
+    <td>state</td>
+    <td>The batch state</td>
+    <td>string</td>
+  </tr>
+</table></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

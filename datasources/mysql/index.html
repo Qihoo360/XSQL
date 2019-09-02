@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>MySQL - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hive/">Hive</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../hive/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../elasticsearch/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#installation">Installation</a></li>
+        <li class="first-level "><a href="#mysql-configuration">MySQL Configuration</a></li>
+        <li class="first-level "><a href="#execution">Execution</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>MySQL是一个关系型数据库管理系统，关系数据库将数据保存在不同的表中，而不是将所有数据放在一个大仓库内，这样就增加了速度并提高了灵活性。MySQL是XSQL支持的数据源之一。本节将对MySQL接入XSQL的安装、配置、运行作简单的介绍。</p>
+<h2 id="installation">Installation</h2>
+<p>​   XSQL通过JDBC访问MySQL数据库，所以不需要任何安装。对于想要了解MySQL的用户请查阅<a href="https://dev.mysql.com/doc/refman/8.0/en/" title="MySQL帮助文档">MySQL官网</a>。</p>
+<h2 id="mysql-configuration">MySQL Configuration</h2>
+<p>MySQL参数配置继承自XSQL,通用的配置信息请查看<a href="../configurations/common.md">Configurations</a>，以下表中为MySQL独有的配置：</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.xsql.datasource.$dataSource.partitionConf</td>
+<td>None</td>
+<td>在非下推情况下用于指定MySQL数据源的Database中Table的分区信息</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.showSchemaDatabase</td>
+<td>false</td>
+<td>用于控制是否显示MySQL自带的信息数据库information_schema.默认为不显示</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.pushdown.considerRows</td>
+<td>true</td>
+<td>在设置数据源下推的情况下，用于控制是否根据表的行数（表的行数从information_schema库中获取，为近似值）来决定下推执行。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.pushdown.considerIndex</td>
+<td>true</td>
+<td>在设置数据源下推的情况下，用于控制是否根据表的索引信息来决定下推执行。目前仅用于多表连接的情况。</td>
+</tr>
+</tbody>
+</table>
+<p>这里给出一个MySQL接入XSQL的配置示例：</p>
+<pre><code class="properties">spark.xsql.datasources                   mysql
+spark.xsql.default.datasource            mysql
+spark.xsql.default.database              mysqltest
+
+spark.xsql.datasource.mysql.type         mysql
+spark.xsql.datasource.mysql.url          jdbc:mysql://10.142.97.177:2336
+spark.xsql.datasource.mysql.user         mysqltest
+spark.xsql.datasource.mysql.password     37ec19604101cd8a
+spark.xsql.datasource.mysql.version      5.6.19
+spark.xsql.datasource.mysql.pushdown       true
+spark.xsql.datasource.mysql.isShowSchemaDatabase  false
+spark.xsql.datasource.mysql.partitionConf  mysql-tablePartition.conf
+spark.xsql.datasource.mysql.whitelist      mysql-whitelist.json
+</code></pre>
+
+<p><strong>partitionConf</strong></p>
+<p>表格的分区信息是通过json格式的配置文件进行配置的，这里给出一个简单的mysql-tablePartition.conf的配置内容。建议在编辑该conf文件时使用 <a href="../../jsoneditor/index.html?c={  &quot;mysqltest&quot;:[ { &quot;table&quot;:&quot;geonames&quot;,&quot;partitionColumn&quot;:&quot;id&quot;, &quot;lowerBound&quot;:&quot;38225&quot;,&quot;upperBound&quot;:&quot;11903131&quot;, &quot;numPartitions&quot;:&quot;10&quot; }]}">JSON编辑器</a> 避免低级错误。</p>
+<pre><code class="json">{
+  &quot;mysqltest&quot;:[
+    { &quot;table&quot;:&quot;geonames&quot;,
+      &quot;partitionColumn&quot;:&quot;id&quot;,
+      &quot;lowerBound&quot;:&quot;38225&quot;,
+      &quot;upperBound&quot;:&quot;11903131&quot;,
+      &quot;numPartitions&quot;:&quot;10&quot;
+    }
+  ]
+}
+</code></pre>
+
+<p>以上例子中，mysqltest为<strong><em>数据库名</em></strong>，用户可在此位置自行指定自己的数据库名。以下表格为分区信息的各字段的具体说明：</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>table</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>partitionColumn</td>
+<td>用于分区的列名，一般最好是表的索引字段，且要求为字段类型为数字，并最好是连续的，这样分区才不会数据倾斜</td>
+</tr>
+<tr>
+<td>lowerBound</td>
+<td>用于分区的列的下限</td>
+</tr>
+<tr>
+<td>upperBound</td>
+<td>用于分区的列的上限</td>
+</tr>
+<tr>
+<td>numPartitions</td>
+<td>分区数，数值应该小于等于upperBound-lowerBound</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong></p>
+<p>目前仅支持partitionColumn的数据类型为long型，lowerBound和upperBound的值可自行查询数据库。如有分区列为其他类型的需要，请联系开发人员。</p>
+<h2 id="execution">Execution</h2>
+<p>​   MySQL接入XSQL支持<a href="../execution/common.md">Common Commands</a>中介绍的通用原则。在XSQL中创建、删除、修改MySQL表的方式与直接在MySQL中的操作方式相同，但要注意的一点是创建表时需要在末尾加上using mysql来申明创建的是MySQL数据源的table。以下分别为XSQL中MySQL数据源实现的DDL的示例：</p>
+<p><strong>Create MySQL table</strong></p>
+<pre><code class="sql">CREATE TABLE [IF NOT EXISTS] [db_name.]table_name(
+    `col0` int not null auto_increment PRIMARY KEY,
+    `col1` varchar(255),
+    ...
+    ) USING mysql
+</code></pre>
+
+<p><strong>Drop  table if exists</strong></p>
+<pre><code class="sql">DROP TABLE IF EXISTS mysqltest.test1
+</code></pre>
+
+<p><strong>Alter table  add/drop/change  columns</strong></p>
+<pre><code class="sql"># 添加表字段
+ALTER TABLE mysqltest.test1 ADD(`col2` datetime，`col3` bigint DEFAULT 0)
+# 修改表字段
+ALTER TABLE mysqltest.test1 CHANGE `col3` `col4` int
+# 删除表字段
+ALTER TABLE mysqltest.test1 DROP column `col2`,DROP `col3
+</code></pre>
+
+<p><strong>Rename table</strong></p>
+<pre><code class="sql"># 方式一
+ALTER TABLE mysqltest.test1 RENAME TO test2
+# 方式二
+RENAME TABLE Mysqltest.test1 TO test2
+</code></pre></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

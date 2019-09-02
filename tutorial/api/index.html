@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>API - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../datasources/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../datasources/druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../syntax/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../rest-api/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#cli">CLI</a></li>
+        <li class="first-level "><a href="#scala">Scala</a></li>
+        <li class="first-level "><a href="#java">Java</a></li>
+        <li class="first-level "><a href="#thrift">Thrift</a></li>
+        <li class="first-level "><a href="#http-rest">HTTP REST</a></li>
+        <li class="first-level "><a href="#jdbc">JDBC</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>​   XSQL作为统一的查询平台，必然需要提供丰富的接口形式。XSQL目前支持CLI、Scala、Java、Thrift、HTTP REST、JDBC等六种类型的API，本文将逐一进行介绍。</p>
+<h2 id="cli">CLI</h2>
+<p>​   命令行接入XSQL，可以参考<a href="../../getting_started/Getting_Started/#running">Running</a>一节的内容，在此不再赘述。</p>
+<h2 id="scala">Scala</h2>
+<p>在使用Scala API开发之前，请先从maven仓库下载XSQL的相关jar包。下面给出一个例子：</p>
+<pre><code class="scala">object XSQLScalaExample{
+  def main(args: Array[String]) {
+    val spark = SparkSession
+      .builder()
+      .enableXSQLSupport()
+      .appName(&quot;XSQL Scala Example&quot;)
+      .getOrCreate()
+    spark.sql(&quot;SELECT * FROM src&quot;).show()
+    spark.stop()
+  }
+}
+</code></pre>
+
+<p>将XSQLScalaExample打成jar包后，使用${XSQL_HOME}/bin/spark-submit命令进行提交即可。</p>
+<h2 id="java">Java</h2>
+<p>在使用Java API开发之前，请先从maven仓库下载XSQL的相关jar包。下面给出一个例子：</p>
+<pre><code class="java">public class XSQLJavaExample {
+
+    public static void main(String[] args) {
+        SparkSession spark = SparkSession
+                .builder()
+                .appName(&quot;XSQL Java Example&quot;)
+                .enableXSQLSupport()
+                .getOrCreate();
+        spark.sql(&quot;SELECT * FROM src&quot;).show();
+        spark.stop();
+    }
+
+}
+</code></pre>
+
+<p>将XSQLJavaExample打成jar包后，使用${XSQL_HOME}/bin/spark-submit命令进行提交即可。</p>
+<h2 id="thrift">Thrift</h2>
+<p>​   Hive和Spark都提供了对Thrift协议的支持，XSQL也不例外。你可以使用多种语言按照Thrift协议进行开发。这里仅给出Java语言的。</p>
+<p><strong>QueryTool.java</strong></p>
+<pre><code class="java">public class QueryTool {
+    public static TTransport getSocketInstance(String host, int port, String USER, String PASSWORD) throws TTransportException {
+        TSocket tSocket = new TSocket(host, port);
+        tSocket.setTimeout(100000);
+        return tSocket;
+    }
+
+    public static TOpenSessionResp openSession(TCLIService.Client client) throws TException {
+        TOpenSessionReq openSessionReq = new TOpenSessionReq();
+        return client.OpenSession(openSessionReq);
+    }
+
+}
+</code></pre>
+
+<p><strong>QueryInstance.java</strong></p>
+<pre><code class="java">public class QueryInstance {
+  private static String host = &quot;127.0.0.1&quot;;
+  private static int port = 10000;
+  private static String username = &quot;test&quot;;
+  private static String passsword = &quot;&quot;;
+  private static TTransport transport;
+  private static TCLIService.Client client;
+  private TOperationState tOperationState = null;
+  private Map&lt;String, Object&gt; resultMap = new HashMap&lt;String, Object&gt;();
+
+  static {
+    try {
+      transport = QueryTool.getSocketInstance(host, port, username,
+          passsword);
+      client = new TCLIService.Client(new TBinaryProtocol(transport));
+      transport.open();
+    } catch (TTransportException e) {
+      System.out.println(&quot;hive collection error!&quot;);
+    }
+  }
+
+  public TOperationHandle submitQuery(String command) throws Exception {
+    TOperationHandle tOperationHandle;
+    TExecuteStatementResp resp = null;
+
+    TSessionHandle sessHandle = QueryTool.openSession(client)
+        .getSessionHandle();
+
+    TExecuteStatementReq execReq = new TExecuteStatementReq(sessHandle,
+        command);
+    // 异步运行
+    execReq.setRunAsync(true);
+    // 执行sql
+    resp = client.ExecuteStatement(execReq);// 执行语句
+
+    tOperationHandle = resp.getOperationHandle();// 获取执行的handle
+
+    if (tOperationHandle == null) {
+      // 语句执行异常时，会把异常信息放在resp.getStatus()中。
+      throw new Exception(resp.getStatus().getErrorMessage());
+    }
+    return tOperationHandle;
+  }
+
+  public String getQueryLog(TOperationHandle tOperationHandle) throws Exception {
+    String log = &quot;&quot;;
+    return log;
+  }
+
+  public TOperationState getQueryHandleStatus(TOperationHandle tOperationHandle) throws Exception {
+    if (tOperationHandle != null) {
+      TGetOperationStatusReq statusReq = new TGetOperationStatusReq(
+          tOperationHandle);
+      TGetOperationStatusResp statusResp = client
+          .GetOperationStatus(statusReq);
+      tOperationState = statusResp.getOperationState();
+    }
+    return tOperationState;
+  }
+
+  public List&lt;String&gt; getColumns(TOperationHandle tOperationHandle) throws Throwable {
+    TGetResultSetMetadataResp metadataResp;
+    TGetResultSetMetadataReq metadataReq;
+    TTableSchema tableSchema;
+    metadataReq = new TGetResultSetMetadataReq(tOperationHandle);
+    metadataResp = client.GetResultSetMetadata(metadataReq);
+    List&lt;TColumnDesc&gt; columnDescs;
+    List&lt;String&gt; columns = null;
+    tableSchema = metadataResp.getSchema();
+    if (tableSchema != null) {
+      columnDescs = tableSchema.getColumns();
+      columns = new ArrayList&lt;String&gt;();
+      for (TColumnDesc tColumnDesc : columnDescs) {
+        columns.add(tColumnDesc.getColumnName());
+      }
+    }
+    return columns;
+  }
+
+  /**
+  * 获取执行结果 select语句
+  */
+  public List&lt;Object&gt; getResults(TOperationHandle tOperationHandle) throws Throwable {
+    TFetchResultsReq fetchReq = new TFetchResultsReq();
+    fetchReq.setOperationHandle(tOperationHandle);
+    fetchReq.setMaxRows(1000);
+    TFetchResultsResp re = client.FetchResults(fetchReq);
+    List&lt;TColumn&gt; list = re.getResults().getColumns();
+    List&lt;Object&gt; list_row = new ArrayList&lt;Object&gt;();
+    for (TColumn field : list) {
+      if (field.isSetStringVal()) {
+        list_row.add(field.getStringVal().getValues());
+      } else if (field.isSetDoubleVal()) {
+        list_row.add(field.getDoubleVal().getValues());
+      } else if (field.isSetI16Val()) {
+        list_row.add(field.getI16Val().getValues());
+      } else if (field.isSetI32Val()) {
+        list_row.add(field.getI32Val().getValues());
+      } else if (field.isSetI64Val()) {
+        list_row.add(field.getI64Val().getValues());
+      } else if (field.isSetBoolVal()) {
+        list_row.add(field.getBoolVal().getValues());
+      } else if (field.isSetByteVal()) {
+        list_row.add(field.getByteVal().getValues());
+      }
+    }
+    for (Object obj : list_row) {
+      System.out.println(obj);
+    }
+    return list_row;
+  }
+
+  public void cancelQuery(TOperationHandle tOperationHandle) throws Throwable {
+     if (tOperationState != TOperationState.FINISHED_STATE) {
+       TCancelOperationReq cancelOperationReq = new TCancelOperationReq();
+       cancelOperationReq.setOperationHandle(tOperationHandle);
+       client.CancelOperation(cancelOperationReq);
+     }
+  }
+}
+</code></pre>
+
+<p><strong>Test.java</strong></p>
+<pre><code class="java">public class Test {
+    public static void main(String[] args) {
+        try {
+            QueryInstance base = new QueryInstance();
+            String sql = &quot;SELECT * FROM src&quot;;
+            TOperationHandle handle = base.submitQuery(sql);
+            TOperationState state = base.getQueryHandleStatus(handle);
+            while(state.equals(TOperationState.RUNNING_STATE) || state.equals(TOperationState.INITIALIZED_STATE)) {
+                TimeUnit.SECONDS.sleep(1);
+                state = base.getQueryHandleStatus(handle);
+            }
+            if (state.equals(TOperationState.FINISHED_STATE)) {
+                base.getResults(handle);
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+
+<h2 id="http-rest">HTTP REST</h2>
+<p>​   XSQL使用 <a href="http://livy.incubator.apache.org/">Apache Livy</a> 实现Restful服务，这里内置了 <a href="../rest-api/">Livy REST API</a>，这里是帮助您快速开始的 <a href="https://www.notion.so/Livy-Demo-5c50bbbec1414e23acad4b2c7856192a">Livy接口使用Demo(JAVA、PHP)</a> 。XSQL对Livy的结果缓存机制进行了优化，优化后的Livy查询状态图如下：</p>
+<p><img alt="" src="../../images/livy-statement.png" /></p>
+<p>这里列举了使用XSQL Restful服务之前，务必知晓的配置项：</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>livy.rsc.sql.interpreter.threadPool.size</td>
+<td>1</td>
+<td><strong>执行线程池的大小</strong>，即最多x个查询处于Running状态（所有执行线程共用一个SparkSession，建议配置为5）</td>
+</tr>
+<tr>
+<td>livy.rsc.retained-statements</td>
+<td>100</td>
+<td>查询结果<strong>缓冲队列的大小</strong></td>
+</tr>
+<tr>
+<td>livy.rsc.result-discard.timeout</td>
+<td>10m</td>
+<td><strong>查询过期时间</strong>，当用户获取查询结果之后，状态由Available变为Readed，10分钟后自动变为Expired，当缓冲队列空间不足时，可能被移出缓冲队列。（不接受小数，时间单位=[us,ms,s,m,min,h,d]）（0s表示阅后即焚）</td>
+</tr>
+<tr>
+<td>livy.rsc.result-retained.timeout</td>
+<td>1h</td>
+<td><strong>查询过期时间</strong>，若用户在查询结果Available的1个小时之内，仍未获取查询结果，则状态自动变为Expired。</td>
+</tr>
+<tr>
+<td>livy.rsc.server.session.timeout</td>
+<td>0h</td>
+<td><strong>Session过期时间</strong>，若xx个小时之内，SparkSession未收到任何查询请求，将自动关闭，0h表示永不过期。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为了帮助您合理利用集群资源，我们为每个Session维持了SessionState。</strong></p>
+<ul>
+<li>idle: 当已提交的查询数小于livy.rsc.sql.interpreter.threadPool.size时，SessionState为idle，此时提交的查询可以立即获得执行线程，查询状态表现为Running。</li>
+<li>busy: 当已提交的查询数大于livy.rsc.sql.interpreter.threadPool.size，小于livy.rsc.retained-statements时，SessionState为busy，此时提交查询进行FIFO等待，查询状态表现为Waiting。</li>
+<li>exhaust: 当已提交的查询数等于livy.rsc.retained-statements时，SessionState为exhaust，此时提交的查询将被拒绝服务，查询状态表现为Rejected。用户可以选择外部程序轮询等待，也可以选择申请创建新的Sesssion。 </li>
+</ul>
+<p><strong>推荐的使用方式：</strong>建议总是保持一个或多个长驻的Sesssion，当并发数不足时，利用livy.rsc.server.session.timeout创建可自动销毁的Session，从而最大程度的实现即时查询同时节省队列资源。</p>
+<p>我们在 <a href="http://client01v.qss.zzzc.qihoo.net:11224/#/">http://client01v.qss.zzzc.qihoo.net:11224/#/</a> 为您提供了Zeppelin页面，用公司域账号登录后，创建Livy类型的note，就可以试用XSQL的各种功能了。该页面由XSQL团队提供给XSQL用户学习以及测试使用，内置的xsql试用部署包含四种数据源：hive、es、mysql、redis，均为测试数据库（只读权限）。</p>
+<p>如果您想要访问自己的数据源，可以加入一个云图项目，由项目负责人向weiwenda@360.cn申请XSQL Restful服务，申请成功后在note页面将出现 <code>your_project项目部署</code> 的可选下拉。</p>
+<p>具体的操作流程如视频所示：</p>
+<video width="100%" controls poster="../../images/zeppelin使用介绍.png">
+  <source src="../../images/zeppelin使用介绍.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<h2 id="jdbc">JDBC</h2>
+<p>​   Hive和Spark都提供了对JDBC的支持，XSQL也不例外。这里给出Java语言使用JDBC连接XSQL的例子。</p>
+<pre><code class="java">public class XSQLJdbcExample {
+
+    private static String driverName = &quot;org.apache.hive.jdbc.HiveDriver&quot;;
+
+    public static void main(String[] args) throws SQLException {
+        try {
+            Class.forName(driverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet res = null;
+        try {
+            con = DriverManager.
+                getConnection(&quot;jdbc:hive2://127.0.0.1:10000/test;auth=noSasl&quot;,
+                &quot;test&quot;, &quot;test&quot;);
+            stmt = con.createStatement();
+            String sql = &quot;SELECT * FROM src&quot;;
+            res = stmt.executeQuery(sql);
+            while (res.next()) {
+                System.out.println(res.getString(&quot;ip&quot;));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (res != null) {
+                res.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>由于XSQL继承了HIVE实现JDBC的设计，因此这里的JDBC Driver依然是org.apache.hive.jdbc.HiveDriver。</p></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

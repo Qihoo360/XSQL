@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>Kafka - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../mongo/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../hbase/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#installation">Installation</a></li>
+        <li class="first-level "><a href="#configuration">Configuration</a></li>
+            <li class="second-level"><a href="#streaming-configuration">Streaming Configuration</a></li>
+                
+        <li class="first-level "><a href="#concept-mapping">Concept Mapping</a></li>
+        <li class="first-level "><a href="#kafka-schema">Kafka Schema</a></li>
+        <li class="first-level "><a href="#execution">Execution</a></li>
+            <li class="second-level"><a href="#desc-kafka-topic">Desc Kafka Topic</a></li>
+                
+            <li class="second-level"><a href="#how-to-treat-kafka-value">How to treat Kafka value?</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>Kafka是一个分布式数据流平台，具有三种关键的能力：</p>
+<ul>
+<li>发布和订阅消息记录</li>
+<li>存储消息记录的容错、可靠</li>
+<li>实时处理消息记录</li>
+</ul>
+<p>Kafka是XSQL支持的数据源之一。本节将对Kafka接入XSQL的安装、配置、运行作简单的介绍。</p>
+<h2 id="installation">Installation</h2>
+<p>​   由于Kafka提供了Java API，所以不需要任何安装。对于想要了解Kafka的用户请查阅<a href="http://kafka.apache.org" title="Kafka官网">Kafka官网</a>。</p>
+<h2 id="configuration">Configuration</h2>
+<p>​   Kafka接入XSQL的配置继承了<a href="../configurations/common.md">Configurations</a>中介绍的通用配置（<strong>注意</strong>：Kafka接入XSQL不支持通用配置spark.xsql.datasource.$dataSource.pushdown和spark.xsql.datasource.$dataSource.url）。Kafka接入XSQL还有一些特有的配置，下表将对他们进行介绍。</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.xsql.datasource.$dataSource.bootstrap.servers</td>
+<td>None</td>
+<td>Kafka的brokers</td>
+</tr>
+</tbody>
+</table>
+<p>这里给出一个Kafka接入XSQL的配置示例：</p>
+<pre><code class="properties">spark.xsql.datasources        default
+
+spark.xsql.datasource.default.type   kafka
+spark.xsql.datasource.default.bootstrap.servers   127.0.0.1:9092
+spark.xsql.datasource.default.user   test
+spark.xsql.datasource.default.password   test
+spark.xsql.datasource.default.version   2.2
+</code></pre>
+
+<p>注意：以上配置相当于把Kafka当做了数据库使用。我们查询数据库的数据时，往往只会返回查询那一刻所存储的数据，所以Kafka的行为也是类似。Kafka作为流式数据平台，里面的数据是持续变化、连续生成的，如果想要获取连续的数据，那么请看<a href="#Streaming">Streaming</a>。</p>
+<h3 id="streaming-configuration">Streaming Configuration</h3>
+<p>上文将Kafka作为数据库看待，如果需要启用流的能力，需要打开Kafka数据源的流开关。以上文的“Kafka接入XSQL的配置示例”为例，我们需要加入：</p>
+<pre><code class="properties">spark.xsql.datasource.default.stream   true
+</code></pre>
+
+<p>流式处理中，有诸多额外的配置参数可以控制，参照下表：</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.xsql.datasource.$dataSource.stream</td>
+<td>True</td>
+<td>XSQL流式处理Kafka的总开关</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.checkpointLocation</td>
+<td>None</td>
+<td>XSQL流式处理Kafka的检查点路径。此路径必须是分布式文件系统的路径，例如：S3、HDFS等。注意：在开启流式处理后，此参数必须配置。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.sink</td>
+<td>None</td>
+<td>流式处理后的结果的输出目标。sink有多种可供选择，请参考<a href="#Streaming Sink">Streaming Sink</a>，默认为parquet。更多相关信息，请阅读<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#output-sinks" title="Spark Structed Streaming对Sink的介绍">Spark Structed Streaming对Sink的介绍</a>。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.sink.path</td>
+<td>None</td>
+<td>当Sink选择的是文件格式输出时（如：parquet），必须指定此配置。此路径必须是分布式文件系统的路径，例如：S3、HDFS等。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.sink.kafka.bootstrap.servers</td>
+<td>None</td>
+<td>当Sink选择输出到Kafka时，必须指定此配置。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.sink.kafka.topic</td>
+<td>None</td>
+<td>当Sink选择输出到Kafka时，必须指定此配置。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.output.mode</td>
+<td>Append</td>
+<td>流式处理的输出模式。有多种选择，请参考<a href="#Streaming Output Modes">Streaming Output Modes</a>，默认为Append。更多相关信息，请阅读<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#output-modes" title="Spark Structed Streaming对Output Modes的介绍">Spark Structed Streaming对Output Modes的介绍</a>。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.trigger.type</td>
+<td>microbatch</td>
+<td>流式处理所用触发器的类型。有多种选择，请参考<a href="#Streaming Triggers">Streaming Triggers</a>，默认为processing。注意：Continuous只支持Projections、Selections相关SQL语法、除了聚合函数、<code>current_timestamp()</code> 、 <code>current_date()</code>以外的所有函数。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.trigger.duration</td>
+<td>1 second</td>
+<td>在触发器类型不同时，有不同的含义。触发器是processing时，则表示微批之间的间隔；触发器是processing时，则表示异步写检查点的时间间隔。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.watermark</td>
+<td>None</td>
+<td>用于跟踪数据中的当前事件时间，并尝试相应地清理旧状态。有了Watermark，XSQL就能够处理延迟数据。更多内容，请阅读<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#handling-late-data-and-watermarking" title="Spark Structed Streaming对Watermark的介绍">Spark Structed Streaming对Watermark的介绍</a></td>
+</tr>
+</tbody>
+</table>
+<h4>Streaming Sink</h4>
+<table>
+<thead>
+<tr>
+<th>Sink</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>console</td>
+<td>输出到命令行控制台</td>
+</tr>
+<tr>
+<td>parquet</td>
+<td>输出为Parquet格式</td>
+</tr>
+<tr>
+<td>orc</td>
+<td>输出为Orc格式</td>
+</tr>
+<tr>
+<td>text</td>
+<td>输出为Text格式</td>
+</tr>
+<tr>
+<td>json</td>
+<td>输出为Json格式</td>
+</tr>
+<tr>
+<td>csv</td>
+<td>输出为Csv格式</td>
+</tr>
+<tr>
+<td>kafka</td>
+<td>输出到Kafka</td>
+</tr>
+</tbody>
+</table>
+<h4>Streaming Output Modes</h4>
+<table>
+<thead>
+<tr>
+<th>Output Modes</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Append</strong></td>
+<td>追加模式</td>
+</tr>
+<tr>
+<td><strong>Complete</strong></td>
+<td>完全模式</td>
+</tr>
+<tr>
+<td><strong>Update</strong></td>
+<td>更新模式</td>
+</tr>
+</tbody>
+</table>
+<h4>Streaming Triggers</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Trigger Type</strong></th>
+<th>Meaning</th>
+<th>Notice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>microbatch</strong></td>
+<td>采用微批方式处理，微批之间保持固定的时间间隔</td>
+<td>适用于连续不断地消费、加工数据流。如果前一个微批执行的时间小于间隔大小，XSQL也将等待该间隔结束后，才开始下一个微批；如果前一个微批执行的时间大于间隔大小，下一个微批将在前一个微批执行结束后开始，而不会考虑间隔大小；如果数据流中没有数据可用，则不会触发下一个微批。</td>
+</tr>
+<tr>
+<td><strong>once</strong></td>
+<td>采用微批方式处理，但只执行一次</td>
+<td>非常适用于用户按照自己的周期（如：天、周）处理自上一个时间段以来可用的所有内容。</td>
+</tr>
+<tr>
+<td><strong>continuous</strong></td>
+<td>采用连续流方式处理</td>
+<td>只支持Projections、Selections相关SQL语法、除了聚合函数、<code>current_timestamp()</code> 、 <code>current_date()</code>以外的所有函数。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="concept-mapping">Concept Mapping</h2>
+<p>Kafka毕竟不是数据库，跟别说与传统关系型数据库相比较，因此在底层设计上有巨大的差异。比如：Kafka中是没有table的。那么用户会在XSQL中看到table时，造成一些困惑。下表对Kafka与关系型数据库在XSQL中的映射关系逐一说明。</p>
+<table>
+<thead>
+<tr>
+<th>Kafka概念</th>
+<th>关系数据库概念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kafka集群（也可以理解为Brokers）</td>
+<td>数据库实例，名称固定为kafka</td>
+</tr>
+<tr>
+<td>主题（即Topic）</td>
+<td>表</td>
+</tr>
+<tr>
+<td>事件（即Event）</td>
+<td>行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kafka-schema">Kafka Schema</h2>
+<p>XSQL直接借用了Spark对于Kafka的schema定义：</p>
+<pre><code class="scala">  def kafkaSchema: StructType = StructType(Seq(
+    StructField(&quot;key&quot;, BinaryType),
+    StructField(&quot;value&quot;, BinaryType),
+    StructField(&quot;topic&quot;, StringType),
+    StructField(&quot;partition&quot;, IntegerType),
+    StructField(&quot;offset&quot;, LongType),
+    StructField(&quot;timestamp&quot;, TimestampType),
+    StructField(&quot;timestampType&quot;, IntegerType)
+  ))
+</code></pre>
+
+<p>无论你要消费的Kafka消息的key和value究竟是怎样的格式，它们都被当做字节数组来处理。因此，key或者value，往往需要转换为字符串来处理。key或者value可以存储键值对、Json串、Xml，甚至任何你自定义的格式。下面对Schema中的各个字段对照Kafka进行一个简短的说明：</p>
+<table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>Field Type</th>
+<th>Kafka mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>Binary</td>
+<td>Message key</td>
+</tr>
+<tr>
+<td>value</td>
+<td>Binary</td>
+<td>Message value</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>String</td>
+<td>Kafka topic</td>
+</tr>
+<tr>
+<td>partition</td>
+<td>Integer</td>
+<td>Topic partition</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Long</td>
+<td>Partition offset</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>Timestamp</td>
+<td>Message timestamp</td>
+</tr>
+<tr>
+<td>timestampType</td>
+<td>Integer</td>
+<td>Message timestamp type，分别是：-1:NoTimestampType, 0: CreateTime（消息创建时间）, 1:LogAppendTime（日志追加时间）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="execution">Execution</h2>
+<p>​   Kafka接入XSQL支持<a href="../execution/common.md">Common Commands</a>中介绍的通用原则。Kafka接入XSQL后，XSQL会把SQL转换为Kafka的Java API。在<a href="#Kafka Schema">Kafka Schema</a>一节提到Kafka的Schema定义是固定的，因此XSQL目前没有考虑实现Kafka对应的会修改元信息的DDL，例如：create table, create database, alter table等。本节使用XSQL，执行Desc语句，来查看它的元信息是否与<a href="#Kafka Schema">Kafka Schema</a>一节的描述相一致。</p>
+<h3 id="desc-kafka-topic">Desc Kafka Topic</h3>
+<p>查看Kafka的Topic，与关系型数据库（例如MySQL、Oracle等）查看表的方式几乎相同。例如：</p>
+<pre><code class="sql">spark-xsql&gt; desc mykafka.kafka.xsql_test;
+key     binary  NULL
+value   binary  NULL
+topic   string  NULL
+partition       int     NULL
+offset  bigint  NULL
+timestamp       timestamp       NULL
+timestampType   int     NULL
+Time taken: 2.681 s
+</code></pre>
+
+<p>如果想要查看更多的元信息，例如Topic的Partition信息，可以执行：</p>
+<pre><code class="sql">spark-xsql&gt; desc formatted mykafka.kafka.xsql_test;
+key     binary  NULL
+value   binary  NULL
+topic   string  NULL
+partition       int     NULL
+offset  bigint  NULL
+timestamp       timestamp       NULL
+timestampType   int     NULL
+
+# Detailed Table Information
+Database        kafka
+Table   xsql_test
+Created Time    Thu Aug 08 11:27:33 CST 2019
+Last Access     Thu Jan 01 07:59:59 CST 1970
+Created By      Spark 
+Type    TOPIC
+Provider        kafka
+Table Properties        [originDBName=kafka]
+Storage Properties      [kafka_partitions=Buffer(Partition(topic = xsql_test, partition = 0, leader = 0, replicas = [0,], isr = [0,], Partition(topic = xsql_test, partition = 1, leader = 0, replicas = [0,], isr = [0,]), subscribe=xsql_test, output.mode=append, sink=console, bootstrap.servers=127.0.0.1:9092, version=2.2, kafka.bootstrap.servers=127.0.0.1:9092, stream=true, checkpointLocation=hdfs://127.0.0.1:9000/home/spark/ss/checkpoint, cache.level=2, type=kafka, watermark=10 minutes]
+Time taken: 0.08 s
+</code></pre>
+
+<h3 id="how-to-treat-kafka-value">How to treat Kafka value?</h3>
+<p>在<a href="#Kafka Schema">Kafka Schema</a>一节对Kafka的Topic的固定结构进行了说明。其中，Kafka消息的value是被作为二进制数组看待的。Kafka的value中可以存储千变万化的数据形式，如果要对value中的内容进行更详细的处理该怎么办？本节以经典的word count例子，来引导大家如何操作。</p>
+<p>我们有一个动物相关的Topic，名为animals. 有个Kafka生产者一直向animals写入以空格分隔的动物名称，现在我们使用XSQL来实现对动物名称的计数。下面是实现此功能的SQL：</p>
+<pre><code class="sql">select count(t1.value2) as num, t1.value2 as name from (select explode(split(CAST(value AS STRING), ' ')) value2 from mykafka.kafka.animals) t1 group by t1.value2;
+</code></pre>
+
+<p>我们对上面的SQL进行一个详细的分析：</p>
+<p>首先，由于value是字节数组，我们将它通过CAST函数转换为字符串；</p>
+<p>然后，使用split函数将字符串以空格进行拆分，并使用explode函数把每个单词从水平方向转换到垂直方向；</p>
+<p>最后，结合count函数，使用group by从句，输出计算和对应的动物名称。</p></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

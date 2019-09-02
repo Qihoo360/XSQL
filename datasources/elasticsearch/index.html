@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>Elasticsearch - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../mysql/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../mongo/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#installation">Installation</a></li>
+        <li class="first-level "><a href="#configuration">Configuration</a></li>
+        <li class="first-level "><a href="#concept-mapping">Concept Mapping</a></li>
+        <li class="first-level "><a href="#schema-discover">Schema Discover</a></li>
+        <li class="first-level "><a href="#limit-with-group-by">Limit with Group By</a></li>
+        <li class="first-level "><a href="#execution">Execution</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>Elasticsearch是一个高度可扩展的开源全文搜索和分析引擎。它允许您快速，近实时地存储，搜索和分析大量数据。Elasticsearch是XSQL支持的第二个数据源。本节将对Elasticsearch接入XSQL的安装、配置、运行作简单的介绍。</p>
+<h2 id="installation">Installation</h2>
+<p>​   由于Elasticsearch提供了REST API，所以不需要任何安装。对于想要了解Elasticsearch的用户请查阅<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.2/getting-started.html" title="Elasticsearch帮助文档">Elasticsearch官方文档</a>。</p>
+<h2 id="configuration">Configuration</h2>
+<p>​   Elasticsearch接入XSQL的配置继承了<a href="../configurations/common.md">Configurations</a>中介绍的通用配置。Elasticsearch接入XSQL还有一些特有的配置，下表将对他们进行介绍。</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.xsql.datasource.$dataSource.es.mapping.date.rich</td>
+<td>true</td>
+<td>是否启用date自动转换，其实际影响的是Elasticsearch的es.mapping.date.rich配置。在处理日期时，Elasticsearch始终使用ISO 8601格式作为日期/时间。如果需要自定义日期格式，请将其添加到默认选项，而不是替换它。 有关详细信息，请参阅<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html">Elasticsearch参考文档中的/mapping-date-format.html 部分</a>。 请注意，在读取数据时，如果日期不是ISO8601格式，则默认情况下XSQL可能无法理解，因为它不会复制Elasticsearch中精心设置的日期解析。 在这些情况下，可以通过es.mapping.date.rich属性简单地禁用日期转换并将原始信息作为long或String传递。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.es.scroll.keepalive</td>
+<td>5m</td>
+<td>查询之间的scroll结果的最大周期。目前仅在关闭下推时有效。请参阅https://www.elastic.co/guide/en/elasticsearch/hadoop/5.2/configuration.html中对es.scroll.keepalive的详细介绍。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.es.scroll.size</td>
+<td>50</td>
+<td>单个请求返回的条目（结果）数。目前仅在关闭下推时有效。请参阅https://www.elastic.co/guide/en/elasticsearch/hadoop/5.2/configuration.html中对es.scroll.size的详细介绍。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.es.scroll.limit</td>
+<td>20</td>
+<td>单个scroll所返回的条目（结果）总数。目前仅在关闭下推时有效。负数代表返回所有匹配的文档。请参阅https://www.elastic.co/guide/en/elasticsearch/hadoop/5.2/configuration.html中对es.scroll.limit的详细介绍。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.es.field.read.empty.as.null</td>
+<td>yes</td>
+<td>是否将空field作为null。目前仅在关闭下推时有效。请参阅https://www.elastic.co/guide/en/elasticsearch/hadoop/5.2/configuration.html中对es.field.read.empty.as.null的详细介绍。</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.discover</td>
+<td>None</td>
+<td>是否启用并配置数据源的类型推断。实际会影响Elasticsearch的es.read.field.as.array.include配置。Elasticsearch中的字段（也可称为属性）默认都是可以存储Array的。XSQL没有办法准确获得一个字段是它的定义类型，还是数组类型。此配置用于告诉XSQL，哪些字段需要进行类型推断。有关详细信息，请参阅https://www.elastic.co/guide/en/elasticsearch/hadoop/5.2/configuration.html中对es.read.field.as.array.include的详细介绍。</td>
+</tr>
+</tbody>
+</table>
+<p>这里给出一个Elasticsearch接入XSQL的配置示例：</p>
+<pre><code class="properties">spark.xsql.datasources        default
+
+spark.xsql.datasource.default.type   elasticsearch
+spark.xsql.datasource.default.url   http://127.0.0.1:9025
+spark.xsql.datasource.default.user   test
+spark.xsql.datasource.default.password   test
+spark.xsql.datasource.default.version   5.2
+spark.xsql.datasource.default.whitelist  es-whitelist.conf
+</code></pre>
+
+<h2 id="concept-mapping">Concept Mapping</h2>
+<p>​   Elasticsearch相比于传统关系型数据库，在底层设计上有诸多不同。比如：Elasticsearch中是没有table的。那么用户会在XSQL中看到table时，造成一些困惑。下表对Elasticsearch与关系型数据库在XSQL中的映射关系逐一说明。</p>
+<table>
+<thead>
+<tr>
+<th>Elasticsearch概念</th>
+<th>关系数据库概念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>索引（即Index）</td>
+<td>数据库实例</td>
+</tr>
+<tr>
+<td>类型（即Type）</td>
+<td>表</td>
+</tr>
+<tr>
+<td>文档（即Document）</td>
+<td>行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="schema-discover">Schema Discover</h2>
+<p>​   Elasticsearch中的字段（也可称为属性）默认都是可以存储Array的，这使得XSQL没有办法准确获得一个字段是它的定义类型，还是数组类型。用户可以通过提供Json格式的配置文件，并通过spark.xsql.datasource.$dataSource.discover属性来指定路径。这里给出Discover文件的格式定义示例：</p>
+<pre><code class="json">{
+  &quot;es_index_example_one&quot;: {
+    &quot;es_type_example_one&quot;: &quot;field_A.property_A_0,field_B.property_B_0&quot;,
+    &quot;es_type_example_two&quot;: &quot;field_C.property_C_0,field_D&quot;,
+  },
+  &quot;es_index_example_two&quot;: {
+    &quot;es_type_example_thr&quot;: &quot;field_E.property_E_0,field_F.property_F_0&quot;
+  }
+}
+</code></pre>
+
+<p>可以看出每个Type的各个需要探测的字段之间用英文逗号分隔。</p>
+<h2 id="limit-with-group-by">Limit with Group By</h2>
+<p>XSQL在<a href="../../getting_started/Getting_Started/#pushdown">下推模式</a>中实现group by时，借助了Elasticsearch的<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations.html">Aggregations</a>。<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-aggregations.html">Aggregations</a>是可以嵌套的，通过给size添加size属性只能控制局部的结果限制。这种方式无法实现全局的结果限制，因此XSQL将忽略group by语句后跟随的limit限制，查询的结果数目可能跟你的预期有些不同。如果你真的想要group by后的limit依然起作用，可以关闭下推模式。</p>
+<h2 id="execution">Execution</h2>
+<p>​   Elasticsearch接入XSQL支持<a href="../execution/common.md">Common Commands</a>中介绍的通用原则。Elasticsearch接入XSQL后，XSQL会把SQL转换为Elasticsearch的REST API。XSQL支持大多数的Elasticsearch功能。本节将XSQL的SQL为例，来介绍如何使用XSQL查询Elasticsearch。</p>
+<p><strong>Create Elasticsearch Type</strong></p>
+<p>创建Elasticsearch的type，与关系型数据库（例如MySQL、Oracle等）创建表的方式有很多不同之处。例如：</p>
+<pre><code class="sql">create table test (
+  key keyword,
+  value text,
+  other String
+) using org.elasticsearch.spark.sql
+</code></pre>
+
+<p>上面using的含义是创建Elasticsearch中的type。不过，这种用法也许会让人觉得繁琐，所以也可以用下面的SQL：</p>
+<pre><code class="mysql">create table test (
+  key keyword,
+  value text,
+  other String
+) using es
+</code></pre></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

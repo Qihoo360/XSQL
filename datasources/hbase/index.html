@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>HBase - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../druid/">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../kafka/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../redis/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#installation">Installation</a></li>
+        <li class="first-level "><a href="#configuration">Configuration</a></li>
+        <li class="first-level "><a href="#advanced-configuration">Advanced Configuration</a></li>
+            <li class="second-level"><a href="#_1">两种元数据注册方式：</a></li>
+                
+            <li class="second-level"><a href="#1-schemas">1. 直接编辑schemas文件</a></li>
+                
+            <li class="second-level"><a href="#2-create-if-not-exists-table">2. create [if not exists] table</a></li>
+                
+        <li class="first-level "><a href="#execution">Execution</a></li>
+            <li class="second-level"><a href="#select">可下推的select语句</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>HBase是一个分布式的、面向列的开源数据库，旨在为非结构化数据提供海量存储空间，同时提供索引查询。</p>
+<h2 id="installation">Installation</h2>
+<p>​ 由于HBase提供了Java API，所以不需要任何安装。对于想要了解HBase Java API的用户请查阅 <a href="https://hbase.apache.org/2.0/apidocs/index.html">官方文档</a>。</p>
+<h2 id="configuration">Configuration</h2>
+<p>​    HBase接入XSQL的配置继承了<a href="../configurations/common.md">Configurations</a>中针对特定数据源的type、version、pushdown、schemas配置。HBase接入XSQL还有一些特有的配置，下表将对他们进行介绍。</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.xsql.datasource.$dataSource.host</td>
+<td>None</td>
+<td>配置hbase.zookeeper.quorum</td>
+</tr>
+<tr>
+<td>spark.xsql.datasource.$dataSource.port</td>
+<td>2181</td>
+<td>配置hbase.zookeeper.property.clientPort</td>
+</tr>
+</tbody>
+</table>
+<p>这里给出一个HBase接入XSQL的配置示例：</p>
+<pre><code class="python">spark.xsql.datasources          hbase_ds_name
+spark.xsql.default.datasource   hbase_ds_name
+spark.xsql.datasource.hbase_ds_name.type  hbase
+spark.xsql.datasource.hbase_ds_name.host jlxx.sys.lyct.qihoo.net,jlxx.sys.lyct.qihoo.net,jlxx.sys.lyct.qihoo.net
+spark.xsql.datasource.hbase_ds_name.port  2181
+# 配置元数据存储文件名称，需要放置在SPARK_CONF_DIR中
+spark.xsql.datasource.hbase_ds_name.schemas  hbase.schemas
+# version为预留配置，目前只支持连接HBase 2.0+
+spark.xsql.datasource.hbase_ds_name.version  2.0
+spark.xsql.datasource.hbase_ds_name.pushdown  true
+</code></pre>
+
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+<p>xsql为了访问HBase，使用了 <a href="https://github.com/hortonworks-spark/shc">shc</a> 作为底层连接工具，延用了shc的元数据定义方式。</p>
+<table>
+<thead>
+<tr>
+<th>HBase概念</th>
+<th>对应的关系数据库概念</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命名空间</td>
+<td>数据库名</td>
+</tr>
+<tr>
+<td>表名</td>
+<td>表名</td>
+</tr>
+<tr>
+<td>列族名:列名</td>
+<td>列名</td>
+</tr>
+<tr>
+<td>ROW</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>列在反序列化后的类型</td>
+<td>字段类型</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong></p>
+<p>xsql目前不支持timestamp相关的操作，如有需要，请联系开发人员。</p>
+<h3 id="_1">两种元数据注册方式：</h3>
+<p>HBase自身只维护列族级别的元数据，用户在使用xsql查询HBase之前，必须显式给出数据表的完整元数据，具体可以通过以下两种方式：</p>
+<h3 id="1-schemas">1. 直接编辑schemas文件</h3>
+<p>​    xsql延用了shc的元数据定义方法，详情请参考 <a href="https://github.com/hortonworks-spark/shc#application-usage">链接</a> 。hbase.schemas文件是多个表元数据json对象构成的数组，建议在编辑schemas文件时使用 <a href="../../jsoneditor/index.html?c=[{&quot;table&quot;: {&quot;namespace&quot;: &quot;default&quot;, &quot;name&quot;: &quot;HBaseSourceExampleTable&quot;}, &quot;rowkey&quot;: &quot;key&quot;, &quot;columns&quot;: {&quot;col0&quot;: {&quot;cf&quot;: &quot;rowkey&quot;, &quot;col&quot;: &quot;key&quot;, &quot;type&quot;: &quot;string&quot;}, &quot;col1&quot;: {&quot;cf&quot;: &quot;cf1&quot;, &quot;col&quot;: &quot;col1&quot;, &quot;type&quot;: &quot;boolean&quot;} } }, {&quot;another table&quot;:{} } ]">JSON编辑器</a> 避免低级错误。</p>
+<p><strong>Examples</strong></p>
+<pre><code class="json">[
+    {
+        &quot;table&quot;: {
+            &quot;namespace&quot;: &quot;default&quot;,
+            &quot;name&quot;: &quot;HBaseSourceExampleTable&quot;
+        },
+        &quot;rowkey&quot;: &quot;key&quot;,
+        &quot;columns&quot;: {
+            &quot;col0&quot;: {
+                &quot;cf&quot;: &quot;rowkey&quot;,
+                &quot;col&quot;: &quot;key&quot;,
+                &quot;type&quot;: &quot;string&quot;
+            },
+            &quot;col1&quot;: {
+                &quot;cf&quot;: &quot;cf1&quot;,
+                &quot;col&quot;: &quot;col1&quot;,
+                &quot;type&quot;: &quot;boolean&quot;
+            }
+        }
+    },
+    {
+        &quot;another table&quot;:{
+
+        }
+    }
+]
+</code></pre>
+
+<p><strong>Note</strong></p>
+<p>上例中的 <code>"rowkey": "key"</code>，其中 <code>"key"</code>可以是任意字符串，与<code>columns</code>中的<code>col0</code>的 <code>col</code> 保持引用一致即可。</p>
+<p><strong>Note</strong></p>
+<p>关于shc元数据的高级用法，如复合主键，Avro数据类型，由于测试不稳定，不建议进行尝试。如有需要，请联系开发人员。</p>
+<h3 id="2-create-if-not-exists-table">2. create [if not exists] table</h3>
+<p><strong>Examples</strong></p>
+<pre><code class="sql">CREATE IF NOT EXISTS TABLE HBaseSourceExampleTable (
+        `col0` string PRIMARY KEY,
+        `col1` boolean
+        ) using hbase
+        options (col1='cf1:col1')
+        tblproperties (write_schemas = true)
+</code></pre>
+
+<p><strong>Note</strong></p>
+<p><code>create if not exists table</code> 在表未注册但已存在时，可以实现元数据注册</p>
+<p><code>create table</code> 在表不存在时，会创建表且注册它，但不推荐使用。原因是：</p>
+<ol>
+<li>xsql目前还不支持批量写入hbase，用户始终需要在其他场景下产生待查询数据。</li>
+<li>xsql无法提供HBase表的全参数创建，使用默认参数创建出的表很可能存在性能问题。</li>
+</ol>
+<p><strong>Note</strong></p>
+<p><code>write_schemas = true</code> 表示create table注册后的表会自动以json格式追加在schemas文件末尾。另外，使用drop [if exists] table可以同时删除该表在hbase.schemas中的元数据和HBase 数据库中的真实数据，数据无价，请谨慎使用。</p>
+<h2 id="execution">Execution</h2>
+<h3 id="select">可下推的select语句</h3>
+<h4>select *</h4>
+<hr />
+<p>返回所有字段</p>
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select * from geonames limit 3;
+geoname_id  dem population  latitude    longitude   name    alternatenames  country_code    feature_code    feature_class   admin1_code timezone
+10003397    385 0   -17 145 Rifle Creek NULL    AU  STM H   NULL    Australia/Brisbane
+10004419    300 0   -32 116 Canning Mills   NULL    AU  PPLX    P   NULL    Australia/Perth
+10006947    28  737 -32 116 Carabooda   NULL    AU  PPLX    P   NULL    Australia/Perth
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select * from geonames limit 3;</code></td>
+</tr>
+<tr>
+<td>hbase shell</td>
+<td><code>scan 'geonames',{LIMIT=&gt;3}</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Scan scan = new Scan();</code> <br /><code>scan.setLimit(3);</code></td>
+</tr>
+</tbody>
+</table>
+<h4>select col...</h4>
+<hr />
+<p>返回选择字段</p>
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select dem,population from geonames limit 3;
+dem population
+385 0
+300 0
+28  737
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select dem,population from geonames limit 3;</code></td>
+</tr>
+<tr>
+<td>hbase shell</td>
+<td><code>scan 'geonames',{COLUMNS=&gt;['ct:dem','ct:population'],LIMIT=&gt;10}</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Scan scan = new Scan();</code><br /> <code>scan.setLimit(3);</code><br /> <code>scan.addColumn(Bytes.toByte("ct"),Bytes.toByte("dem"));</code> <br /><code>scan.addColumn(Bytes.toByte("ct"),Bytes.toByte("population"));</code></td>
+</tr>
+</tbody>
+</table>
+<h4>select + where</h4>
+<h5>点过滤 <code>=</code> <code>==</code> <code>&lt;&gt;</code> <code>in</code> <code>not in</code></h5>
+<hr />
+<p>返回rowkey或列等于/不等于 某些特定值 的记录</p>
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select geoname_id,dem,population from geonames where geoname_id = '10003397';
+geoname_id  dem population
+10003397    385 0
+&gt; select geoname_id,dem,population from geonames where geoname_id == '10003397';
+geoname_id  dem population
+10003397    385 0
+&gt; select geoname_id,dem,population from geonames where geoname_id &lt;&gt; '10003397' limit 2;
+geoname_id  dem population
+10004419    300 0
+10006947    28  737
+&gt; select geoname_id,dem,population from geonames where geoname_id in ('10003397','10004419');
+geoname_id  dem population
+10003397    385 0
+10004419    300 0
+&gt; select geoname_id,dem,population from geonames where geoname_id not in ('10003397','10004419') limit 2;
+geoname_id  dem population
+10006947    28  737
+10035407    37  6354
+&gt; select geoname_id,name,latitude from geonames where latitude = '40' limit 2;
+geoname_id  name    latitude
+10055326    Porto Eda   40
+10063141    Royal Tulip Grand   40
+&gt; select geoname_id,name,latitude from geonames where latitude &lt;&gt; '40' limit 2;
+geoname_id  name    latitude
+10003397    Rifle Creek -17
+10004419    Canning Mills   -32
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select geoname_id,dem,population from geonames where geoname_id = '10003397';</code></td>
+</tr>
+<tr>
+<td>hbase shell</td>
+<td><code>get 'geonames','10003397',{COLUMNS=&gt;['ct:dem','ct:population']}</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Get get = new Get(Bytes.toBytes("10003397"));</code><br /><code>get.addColumn(Bytes.toByte("ct"),Bytes.toByte("name"));</code><br /><code>get.addColumn(Bytes.toByte("ct"),Bytes.toByte("name"));</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select geoname_id,name,latitude from geonames where latitude = '40' limit 2;</code></td>
+</tr>
+<tr>
+<td>hbase shell</td>
+<td><code>scan 'geonames',{LIMIT=&gt;2,FILTER=&gt;"SingleColumnValueFilter('ct','latitude',=,'binary:40')"}</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Scan scan = new Scan();</code><br /><code>scan.setLimit(2);</code><br /><code>scan.addColumn(Bytes.toByte("ct"),Bytes.toByte("name"));</code> <br /><code>scan.addColumn(Bytes.toByte("ct"),Bytes.toByte("latitude"));</code><br /><code>scan.setFilter(new SingleColumnValueFilter(Bytes.toBytes("ct"),Bytes.toBytes("latitude"),     CompareOperator,EQUAL,new BinaryComparator(Bytes.toBytes("40")));</code></td>
+</tr>
+</tbody>
+</table>
+<h5>范围过滤 <code>&lt;</code> <code>&lt;=</code> <code>&gt;=</code> <code>&gt;</code> <code>!&gt;</code> <code>!&lt;</code> <code>between and</code></h5>
+<hr />
+<p>返回rowkey或列 介于 特定范围 的记录</p>
+<p><strong>Note</strong></p>
+<p><code>between and</code> 相当于<code>&gt;= and &lt;=</code></p>
+<p><strong>xsql在对有符号数类型字段进行比较时，会自动根据符号位是否为1，切割比较范围</strong></p>
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select geoname_id from geonames where geoname_id between '10003397' and '10009999';
+geoname_id
+10003397
+10004419
+10006947
+&gt; select dem from geonames where dem &lt;= 1000 and dem &gt; 990 limit 3;
+dem
+993
+993
+1000
+&gt; select dem from geonames where dem &lt; 1000 and dem &gt; 990 limit 3;
+dem
+993
+993
+993
+
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select geoname_id from geonames where geoname_id between '10003397' and '10009999';</code></td>
+</tr>
+<tr>
+<td>hbase shell</td>
+<td><code>scan 'geonames',{STARTROW=&gt;'10003397',STOPROW=&gt;'10009999'}</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Scan scan = new Scan();</code><br /><code>scan.withStartRow('10003397',true).withStopRow('10009999',true);</code></td>
+</tr>
+</tbody>
+</table>
+<h5>模糊过滤 <code>like</code> <code>not like</code></h5>
+<hr />
+<p>返回rowkey或列匹配/不匹配 某些模式 的记录</p>
+<p><strong>Note</strong></p>
+<p>目前仅支持两个通配符：</p>
+<table>
+<thead>
+<tr>
+<th>任意单个字符</th>
+<th>任意多个字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_</code></td>
+<td><code>%</code></td>
+</tr>
+</tbody>
+</table>
+<p>仅支持四种模式：</p>
+<table>
+<thead>
+<tr>
+<th>startsWith</th>
+<th>endsWith</th>
+<th>startsAndEndsWith</th>
+<th>contains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>([^_%]+)%</code></td>
+<td><code>%([^_%]+)</code></td>
+<td><code>([^_%]+)%([^_%]+)</code></td>
+<td><code>%([^_%]+)%</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select geoname_id from geonames where geoname_id like '111101%' limit 2;
+geoname_id
+11110100
+11110101
+&gt; select name from geonames where name like 'Ca%' limit 2;
+name
+Canning Mills
+Carabooda
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select geoname_id from geonames where geoname_id like '111101%' limit 2;</code></td>
+</tr>
+<tr>
+<td>hbase shell</td>
+<td><code>scan 'geonames',{ROWPREFIXFILTER=&gt;'111101',LIMIT=&gt;2}</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Scan scan = new Scan();</code><br /><code>scan.setLimit(2);</code><br /><code>scan.setFilter(new PrefixFilter(Bytes.toBytes("111101"));</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select name from geonames where name like 'Ca%' limit 2;</code></td>
+</tr>
+<tr>
+<td>hbase shell</td>
+<td><code>scan 'geonames',{LIMIT=&gt;2,FILTER=&gt;"SingleColumnValueFilter('ct','name',=,'binaryprefix:Ca')"}</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Scan scan = new Scan();</code><br /> <code>scan.setLimit(2);</code><br /> <code>scan.setFilter(new SingleColumnValueFilter(Bytes.toBytes("ct"),Bytes.toBytes("name"),     CompareOperator,EQUAL,new BinaryPrefixComparator(Bytes.toBytes("Ca")));</code></td>
+</tr>
+</tbody>
+</table>
+<h5>空值过滤 <code>is null</code> <code>is not null</code></h5>
+<hr />
+<p>返回特定列 为空/不为空 的记录</p>
+<p><strong>Note</strong></p>
+<p>xsql将列不存在、byte[0]均视为<code>is null</code>，较之HBase的NullComparator，额外将byte[0]判定为空值，原因是byte[0]同样无法进行后续计算。</p>
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select name,alternatenames from geonames where alternatenames is null limit 2;
+name    alternatenames
+Rifle Creek NULL
+Canning Mills   NULL
+&gt; select name,alternatenames from geonames where alternatenames is not null limit 2;
+name    alternatenames
+Suhūl az̧ Z̧afrah   Suhul az Zafrah,Suhūl az̧ Z̧afrah
+Mählsack    Gendarmen
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select name,alternatenames from geonames where alternatenames is null;</code></td>
+</tr>
+<tr>
+<td>hbase shell</td>
+<td><code>scan 'geonames',{FILTER=&gt;"SingleColumnValueFilter('ct','alternatenames',=,'binary:')"}</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Scan scan = new Scan();</code> <br /><code>scan.setFilter(new SingleColumnValueFilter(Bytes.toBytes("ct"),Bytes.toBytes("alternatenames"),     CompareOperator,EQUAL,new BinaryComparator(Bytes.toBytes("")));</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select name,alternatenames from geonames where alternatenames is not null;</code></td>
+</tr>
+<tr>
+<td>hbase java api</td>
+<td><code>Scan scan = new Scan();</code><br /><code>Filter filter = new SingleColumnValueFilter(Bytes.toBytes("ct"),Bytes.toBytes("alternatenames"),     CompareOperator,NOT_EQUAL,new BinaryComparator(Bytes.toBytes("")));</code> <code>filter.setFilterIfMissing(true);</code><br /> <code>scan.setFilter(filter);</code><br /></td>
+</tr>
+</tbody>
+</table></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

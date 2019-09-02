@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="../../img/favicon.ico">
+
+    
+    <title>Druid - XSQL</title>
+    
+
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="../../css/highlight.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">XSQL</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../../getting_started/Getting_Started/">Overview</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/configuration/">Configuration</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/syntax/">Special Syntax</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/api/">API</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/rest-api/">REST API</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Sources <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../kafka/">Kafka</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../redis/">Redis</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Druid</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance Report <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../performance_report/hive/">Hive</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mysql/">MySQL</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/elasticsearch/">Elasticsearch</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/mongo/">MongoDB</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/hbase/">HBase</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/redis/">Redis</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../performance_report/multi_datasource/">Multiple Data Sources</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../jsoneditor/">Json Editor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../functions/">Functions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/common/">Common Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark2.3-troubleshooting/">Spark2.3 Troubleshooting</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../troubleshooting/spark1.6-troubleshooting/">Spark1.6 Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../redis/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../performance_report/hive/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#installation">Installation</a></li>
+        <li class="first-level "><a href="#configuration">Configuration</a></li>
+        <li class="first-level "><a href="#execution">Execution</a></li>
+            <li class="second-level"><a href="#1select-queries">1、Select Queries</a></li>
+                
+            <li class="second-level"><a href="#2groupby-queries">2、GroupBy Queries</a></li>
+                
+            <li class="second-level"><a href="#3timeseries-queries">3、Timeseries queries</a></li>
+                
+            <li class="second-level"><a href="#4topn-queries">4、TopN queries</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<p>Druid 是一个开源的，分布式的，列存储的，适用于实时数据分析的存储系统，能够快速聚合、灵活过滤、毫秒级查询、和低延迟数据导入。</p>
+<h2 id="installation">Installation</h2>
+<p>​ 由于Druid提供了Rest API，所以不需要任何安装。对于想要了解Druid Rest API的用户请查阅 <a href="http://druid.io/docs/latest/querying/querying.html">官方文档</a>。</p>
+<h2 id="configuration">Configuration</h2>
+<p>Druid接入XSQL的配置继承了<a href="../configurations/common.md">Configurations</a>中针对特定数据源的type、version、schemas配置。Druid接入XSQL还有一些特有的配置，下表将对他们进行介绍。</p>
+<table>
+<thead>
+<tr>
+<th>Property Name</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.xsql.datasource.$dataSource.coordinator.uri</td>
+<td>None</td>
+<td>配置coordinator uri</td>
+</tr>
+</tbody>
+</table>
+<p>这里给出一个Druid接入XSQL的配置示例：</p>
+<pre><code>xsql.conf文件:
+spark.xsql.datasource.mydruid.type   DRUID
+spark.xsql.datasource.mydruid.uri    http://r883.dfs.shbt.qihoo.net:8082
+spark.xsql.datasource.mydruid.coordinator.uri    r883.dfs.shbt.qihoo.net:8081
+spark.xsql.datasource.mydruid.user   xxxx
+spark.xsql.datasource.mydruid.password   xxxx
+spark.xsql.datasource.mydruid.version   0.10.1
+spark.xsql.datasource.mydruid.whitelist druid-whitelist.conf
+
+druid-whitelist.conf文件：
+数据库名称必须为：druid
+lineitem10,xsql为Druid的DataSource
+{
+  &quot;druid&quot;: {
+    &quot;includes&quot;: [
+        &quot;lineitem10&quot;,
+        &quot;xsql&quot;
+    ],
+    &quot;excludes&quot;: []
+   }
+}
+</code></pre>
+
+<h2 id="execution">Execution</h2>
+<h3 id="1select-queries">1、Select Queries</h3>
+<pre><code>select * from xx where __time &gt;= '' and __time &lt;= '' and xxx or xxx 
+</code></pre>
+
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select * 
+&gt; from mydruid.druid.lineitem10 
+&gt; where __time &gt;='1991-01-01' and __time &lt;'1999-01-01' 
+&gt; and l_commitdate='1997-02-08'
+&gt; limit 10;
+结果：
+1996-11-11T00:00:00.000+08:00   1       ic deposits. quickly    1997-02-08      0.07999999821186066     59096.3984375   3       O       36001798        1222868    33      1996-11-23      N       COLLECT COD     TRUCK   72893   0.07000000029802322     NULL
+1996-11-11T00:00:00.000+08:00   1       ns. requests cajole blith       1997-02-08      0.05000000074505806     28436.0703125   2       O       43300226  57715    17      1996-11-12      N       COLLECT COD     MAIL    57716   0.05999999865889549     NULL
+1996-11-11T00:00:00.000+08:00   1       lar sentiments. quickly pen     1997-02-08      0.07999999821186066     5510.1298828125 4       O       45456578  979757   3       1996-11-18      N       NONE    SHIP    29776   0.03999999910593033     NULL
+1996-11-11T00:00:00.000+08:00   1        serve carefully along th       1997-02-08      0.019999999552965164    45402.4609375   2       O       47689120  455032   46      1996-11-16      N       COLLECT COD     MAIL    80037   0.07999999821186066     NULL
+1996-11-11T00:00:00.000+08:00   1       ar requests wa  1997-02-08      0.03999999910593033     40127.4296875   1       O       47689120        934876  211996-12-05       N       NONE    AIR     34877   0.019999999552965164    NULL
+1996-11-11T00:00:00.000+08:00   1        never final accounts wake carefully qu 1997-02-08      0.0     3999.659912109375       4       O       58656996  971262   3       1996-11-12      N       NONE    RAIL    46290   0.05000000074505806     NULL
+1996-11-12T00:00:00.000+08:00   1       al requests wake. blithely unusual dep  1997-02-08      0.07999999821186066     68074.078125    4       O       31170243   1046893 37      1996-11-23      N       DELIVER IN PERSON       MAIL    46894   0.029999999329447746    NULL
+1996-11-12T00:00:00.000+08:00   1       uctions affix carefully! furio  1997-02-08      0.029999999329447746    21567.69921875  2       O       35882630  1417623  14      1996-12-01      N       COLLECT COD     AIR     17624   0.029999999329447746    NULL
+1996-11-12T00:00:00.000+08:00   1       carefully alo   1997-02-08      0.03999999910593033     9488.580078125  4       O       44366240        1192489 6 1996-11-20       N       TAKE BACK RETURN        FOB     42512   0.05000000074505806     NULL
+1996-11-12T00:00:00.000+08:00   1       tes. fluffily ironic deposits   1997-02-08      0.05999999865889549     54193.6015625   1       O       46005638  1758635  32      1996-12-02      N       COLLECT COD     RAIL    33687   0.05999999865889549     NULL
+
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select * from mydruid.druid.lineitem10  limit 3;</code></td>
+</tr>
+<tr>
+<td>druid json</td>
+<td>{"queryType":"select","dataSource":"lineitem10","granularity":"all"...}</td>
+</tr>
+</tbody>
+</table>
+<pre><code>1、__time:必写项 转换成Druid intervals
+2、granularity:&quot;all&quot;, &quot;none&quot;, &quot;second&quot;,&quot;minute&quot;, &quot;fifteen_minute&quot;, &quot;thirty_minute&quot;,&quot;hour&quot;, &quot;day&quot;, &quot;week&quot;, &quot;month&quot;, &quot;quarter&quot;, &quot;year&quot; 默认&quot;all&quot;
+3、where 后面的条件除了__time,granularity 其他条件转化Druid的filter &lt;/font&gt;
+</code></pre>
+
+<h3 id="2groupby-queries">2、GroupBy Queries</h3>
+<pre><code>select l_shipinstruct,sum(l_quantity),sum(l_discount) 
+from mydruid.druid.lineitem10 
+where __time &gt;='1991-01-01' and __time &lt;'1999-01-03' and l_commitdate='1997-02-08' 
+group by l_shipinstruct limit 10;
+</code></pre>
+
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select l_shipinstruct,sum(l_quantity) as l_quantity,sum(l_discount) 
+&gt; from mydruid.druid.lineitem10 
+&gt; where __time &gt;='1991-01-01' and __time &lt;'1999-01-03' and l_commitdate='1997-02-08' 
+&gt; group by l_shipinstruct 
+&gt; limit 10;
+结果:
+COLLECT COD         158972  311.4700002372265
+DELIVER IN PERSON   158778  305.7599999830127
+NONE                160785  313.9799999296665
+TAKE BACK RETURN    160337  314.15999987721443
+</code></pre>
+
+<pre><code>--也支持granularity时间粒度的查询
+select l_shipinstruct,sum(l_quantity) as l_quantity,sum(l_discount),count(__time) 
+from mydruid.druid.lineitem10 
+where __time &gt;='1991-01-01' and __time &lt;'1999-01-01' and granularity = 'year' 
+group by l_shipinstruct order by l_quantity asc limit 10;
+结果：
+DELIVER IN PERSON       48373277        94782.64012855478       1895995
+TAKE BACK RETURN        48412356        94971.76013177447       1899524
+NONE    48446820        94990.60012911633       1899514
+COLLECT COD     48472785        95076.87012936734       1900477
+TAKE BACK RETURN        58044094        113911.56015220843      2277249
+DELIVER IN PERSON       58048477        113781.76015352085      2276162
+带有granularity时间粒度时，如果没有group by __time 不显示时间，也可以如下操作
+该操作其实是druid TopN query
+</code></pre>
+
+<pre><code>带时间的group by
+select __time,l_shipinstruct,sum(l_quantity) as l_quantity,sum(l_discount),count(__time) 
+from mydruid.druid.lineitem10 
+where __time &gt;='1991-01-01' and __time &lt;'1999-01-01' and granularity = 'year' 
+group by l_shipinstruct,__time order by l_quantity asc limit 10;
+结果：
+1992-01-01T00:00:00.000+08:00   DELIVER IN PERSON       48373277        94782.63984715939       1895995
+1992-01-01T00:00:00.000+08:00   TAKE BACK RETURN        48412356        94971.75982236862       1899524
+1992-01-01T00:00:00.000+08:00   NONE    48446820        94990.59980535507       1899514
+1992-01-01T00:00:00.000+08:00   COLLECT COD     48472785        95076.869743824 1900477
+1993-01-01T00:00:00.000+08:00   TAKE BACK RETURN        58044094        113911.56018066406      2277249
+1993-01-01T00:00:00.000+08:00   DELIVER IN PERSON       58048477        113781.75991821289      2276162
+1993-01-01T00:00:00.000+08:00   COLLECT COD     58057693        113913.849609375        2276807
+1993-01-01T00:00:00.000+08:00   NONE    58137066        113969.76986694336      2279423
+1994-01-01T00:00:00.000+08:00   NONE    57931103        113608.79022216797      2272749
+1994-01-01T00:00:00.000+08:00   TAKE BACK RETURN        58047015        113828.31967163086      2275702
+该SQL与上面的SQL不用，该操作是Druid的group by query
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select l_shipinstruct,sum(l_quantity),sum(l_discount)...;</code></td>
+</tr>
+<tr>
+<td>druid json</td>
+<td><code>{"queryType":"groupBy","dataSource":"lineitem10"...}</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code>1、支持的聚合函数：sum,max,min,count,count(distinct)
+2、count:对应Druid  { &quot;type&quot; : &quot;count&quot;, &quot;name&quot; : &lt;output_name&gt; }
+3、count(distinct a,b):支持多个字段，会根据a,b数据类型采用不同的算法
+    hyperUnique:{ &quot;type&quot;:&quot;hyperUnique&quot;,&quot;name&quot;:,&quot;fieldName&quot;:&lt;metric_name&gt;}
+    cardinality:{&quot;type&quot;: &quot;cardinality&quot;,&quot;name&quot;: &quot;xxx&quot;,&quot;fields&quot;: xx,&quot;byRow&quot; : true}
+    cardinality:{&quot;type&quot;: &quot;cardinality&quot;,&quot;name&quot;: &quot;xxx&quot;,&quot;fields&quot;: xx,&quot;byRow&quot; : true}
+    多个字段时转换成 {&quot;type&quot;: &quot;cardinality&quot;,&quot;name&quot;: &quot;distinct_people&quot;,&quot;fields&quot;: [ &quot;first_name&quot;, &quot;last_name&quot; ],&quot;byRow&quot; : true}，cardinality只支持&quot;byRow&quot; : true
+4、order by 目前只支持数字类型的asc,desc 字符类型的支持asc (druid中的lexicographic)&lt;/font&gt;
+</code></pre>
+
+<h3 id="3timeseries-queries">3、Timeseries queries</h3>
+<pre><code>select sum(l_extendedprice), sum(l_discount) 
+from mydruid.druid.lineitem10 
+where __time &gt;='1991-01-01' and __time &lt;'1999-01-03';
+</code></pre>
+
+<hr />
+<p><strong>Examples</strong></p>
+<pre><code class="bash">&gt; select sum(l_extendedprice), sum(l_discount) 
+&gt; from mydruid.druid.lineitem10 
+&gt; where __time &gt;='1991-01-01' and __time &lt;'1999-01-03';
+结果：
+2.29381315672004E12     2999373.2440630347
+</code></pre>
+
+<pre><code>当有聚合函数但是没有group by时，转换成druid timeseries查询
+</code></pre>
+
+<pre><code>select __time,sum(l_quantity) as l_quantity,sum(l_discount),count(__time)
+from mydruid.druid.lineitem10
+where __time &gt;='1991-01-01' and __time &lt;'1997-01-04' and  granularity = 'year' 
+group by __time limit 10;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select sum(l_extendedprice), sum(l_discount) where xxx</code></td>
+</tr>
+<tr>
+<td>druid json</td>
+<td><code>{"queryType":"timeseries","dataSource":"lineitem10"...}</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="bash">&gt; select __time,sum(l_quantity) as l_quantity,sum(l_discount),count(__time) 
+&gt; from mydruid.druid.lineitem10 
+&gt; where __time &gt;='1991-01-01' and __time &lt;'1997-01-04' and  granularity = 'year' 
+&gt; group by __time limit 10;
+结果：
+1992-01-01T00:00:00.000+08:00   193705238       379821.8705188129       7595510
+1993-01-01T00:00:00.000+08:00   232287330       455576.94061456993      9109641
+1994-01-01T00:00:00.000+08:00   232113470       454986.6906189304       9099165
+1995-01-01T00:00:00.000+08:00   232236548       455190.7406086065       9106637
+1996-01-01T00:00:00.000+08:00   232654414       456373.2906226516       9123688
+1997-01-01T00:00:00.000+08:00   1904679         3737.5100051425397      74869
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select __time,sum(l_quantity) granularity = 'year'  group by __time</code></td>
+</tr>
+<tr>
+<td>druid json</td>
+<td><code>{"queryType":"timeseries","dataSource":"lineitem10"...}</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code>当group by 只有一个字段且为__time时,也会转换成druid timeseries查询
+granularity指的是时间粒度也就是对某个时间段的统计
+</code></pre>
+
+<h3 id="4topn-queries">4、TopN queries</h3>
+<pre><code>select l_shipinstruct,sum(l_quantity) as l_quantity,sum(l_discount),count(__time)
+from mydruid.druid.lineitem10 
+where __time &gt;='1991-01-01' and __time &lt;'1999-01-01'
+group by l_shipinstruct 
+order by l_quantity asc 
+limit 10;
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>实现方式</th>
+<th>等效查询</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xsql</td>
+<td><code>select sum(l_extendedprice), sum(l_discount) group by oder by</code></td>
+</tr>
+<tr>
+<td>druid json</td>
+<td><code>{"queryType":"topN","dataSource":"lineitem10"...}</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="bash">&gt; select l_shipinstruct,sum(l_quantity) as l_quantity,sum(l_discount),count(__time)
+&gt; from mydruid.druid.lineitem10 
+&gt; where __time &gt;='1991-01-01' and __time &lt;'1999-01-01' 
+&gt; group by l_shipinstruct 
+&gt; order by l_quantity asc 
+&gt; limit 10;
+
+结果：
+TAKE BACK RETURN        382377564       749815.1810177844       14995638
+COLLECT COD     382410465       749926.601011185        14995241
+DELIVER IN PERSON       382437327       749621.3410196826       14994611
+NONE    382512680       750010.1210143827       15000562
+</code></pre></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
