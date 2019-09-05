@@ -26,7 +26,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spark-sql_2.11</artifactId>
+  <artifactId>xsql-sql_2.11</artifactId>
   <packaging>jar</packaging>
   <name>Spark Project SQL</name>
   <url>http://spark.apache.org/</url>
@@ -57,12 +57,12 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
+      <artifactId>xsql-catalyst_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
+      <artifactId>xsql-catalyst_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
       <type>test-jar</type>
       <scope>test</scope>

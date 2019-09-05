@@ -8,7 +8,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spark-xsql_2.11</artifactId>
+  <artifactId>xsql_2.11</artifactId>
   <packaging>jar</packaging>
   <name>Spark Project XSQL</name>
   <url>http://spark.apache.org/</url>
@@ -62,7 +62,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-sql_${scala.binary.version}</artifactId>
+      <artifactId>xsql-sql_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
       <type>test-jar</type>
       <scope>test</scope>
@@ -75,7 +75,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
+      <artifactId>xsql-catalyst_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
       <type>test-jar</type>
       <scope>test</scope>
@@ -88,7 +88,7 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-hive_${scala.binary.version}</artifactId>
+      <artifactId>xsql-hive_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>
     </dependency>
