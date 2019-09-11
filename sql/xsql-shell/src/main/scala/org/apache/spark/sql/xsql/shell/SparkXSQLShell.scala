@@ -227,7 +227,8 @@ object SparkXSQLShell extends Logging {
           }
           if (!silent && !sql.toLowerCase.startsWith("add") && !sql.toLowerCase.startsWith("set")) {
             //modify for spark2.3 , to first start local , then restart scheduler
-            if (!restarted && sql.toLowerCase.contains("select ") &&
+            if (!restarted && (sql.toLowerCase.contains("select ") ||
+                sql.toLowerCase.contains("select\\n")) &&
                 spark.sparkContext.isLocal && originMaster != "local") {
               val parsed = spark.sessionState.sqlParser.parsePlan(sql)
               val analyzed = spark.sessionState.analyzer.executeAndCheck(parsed)
