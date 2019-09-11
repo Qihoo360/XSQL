@@ -4,7 +4,7 @@
 
 XSQL是一款低门槛、更稳定的跨数据源查询引擎。1）XSQL提供了使用标准SQL读写NoSQL数据库的解决方案，能够大幅降低学习曲线，节省人力成本。 2）XSQL通过对SQL的优化以及一系列监控插件，为用户任务的稳定运行保驾护航。
 
-[http://xsql.qihoo.net](http://xsql.qihoo.net/)
+[https://qihoo360.github.io/XSQL/](https://qihoo360.github.io/XSQL/)
 
 ## 功能特性
 
@@ -38,15 +38,16 @@ XSQL是一款低门槛、更稳定的跨数据源查询引擎。1）XSQL提供�
    如果你已经有现成的Spark，可以将XSQL编译为Spark插件：
 
    ```
-   XSQL/build-plugin.sh //成功后源码根目录出现xsql-0.6.0-bin-spark-2.4.3.tgz
+   XSQL/build-plugin.sh
    ```
+   编译成功后源码根目录将出现xsql-0.6.0-plugin-spark-2.4.3.tgz
 
    如果你没有现成的Spark，那么你可以编译完整版的XSQL（内置Spark）：
 
    ```
-   XSQL/build.sh //成功后源码根目录出现xsql-0.6.0-plugin-spark-2.4.3.tgz
+   XSQL/build.sh
    ```
-
+   编译成功后源码根目录将出现xsql-0.6.0-bin-spark-2.4.3.tgz
 
 ### 运行环境依赖
 
@@ -108,11 +109,11 @@ XSQL是一款低门槛、更稳定的跨数据源查询引擎。1）XSQL提供�
 
 ## FAQ
 
-[访问更多数据源](http://xsql.qihoo.net/datasources/common/)
+[访问更多数据源](https://qihoo360.github.io/XSQL/datasources/common/)
 
-[高级配置](http://xsql.qihoo.net/tutorial/configuration/)
+[高级配置](https://qihoo360.github.io/XSQL/tutorial/configuration/)
 
-[特殊语法](http://xsql.qihoo.net/tutorial/syntax/)
+[特殊语法](https://qihoo360.github.io/XSQL/tutorial/syntax/)
 
 ## 联系我们
 
