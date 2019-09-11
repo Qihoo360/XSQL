@@ -14,7 +14,6 @@ export SPARK_HOME="$FWDIR"
 SPARK_HIVE_SHELL_LIB="$SPARK_HOME/jars/$(cd ${SPARK_HOME}/jars; ls *spark-xsql-shell*)"
 export SPARK_HIVE_MANCLASS_NAME="org.apache.spark.sql.xsql.shell.SparkXSQLShell"
 
-. "$SPARK_HOME"/conf/spark-hive-env.sh
 export SPARK_CLASSPATH=$DRIVER_CLASSPATH:$SPARK_CLASSPATH
 SPARK_CONFS=""
 ARGS=`getopt -o "c:m:M:n:N:p:q:f:e:vDh" -l "conf:" -n "spark-xsql" -- "$@"`
@@ -119,9 +118,6 @@ while true; do
             ;;
     esac
 done
-
-
-SPARK_OPTS=" $VERBOSE --files $SPARK_HOME/conf/AM/log4j.properties "
 
 if [ ! -z "$CORES" ] ; then
         SPARK_OPTS=$SPARK_OPTS"--num-executors $CORES "
