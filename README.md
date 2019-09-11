@@ -30,7 +30,7 @@ XSQL is a multi-datasource query engine which designed easy to use, stable to ru
    git clone https://github.com/Qihoo360/XSQL
    ```
 
-   You can also get pre-built XSQL from [Release Pages](https://github.com/shadowsocks/Qihoo360/XSQL/releases) .
+   You can also get pre-built XSQL from [Release Pages](https://github.com/Qihoo360/XSQL/releases) .
 
 2. When you want to create a XSQL distribution of source code, which is similar to the release package in the [Release Pages](https://github.com/Qihoo360/XSQL/releases) , use `build-plugin.sh` in the root directory of project. For example:
 
