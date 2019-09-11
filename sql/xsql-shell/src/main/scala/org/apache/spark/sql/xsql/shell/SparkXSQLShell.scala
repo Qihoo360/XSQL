@@ -161,7 +161,7 @@ object SparkXSQLShell extends Logging {
     def run(commands: String, silent: Boolean = false) = {
       var startTime = System.currentTimeMillis()
       for (command <- commands.split(";")) {
-        var sql = command.trim()
+        var sql = command.trim().replaceAll("[\\t\\n\\r]", " ")
         if (sql != "") {
           if (sql.equals("exit") || sql.equals("quit")) {
             exit()
@@ -230,8 +230,6 @@ object SparkXSQLShell extends Logging {
             if (!restarted && sql.toLowerCase.contains("select ") &&
                 spark.sparkContext.isLocal && originMaster != "local") {
               val parsed = spark.sessionState.sqlParser.parsePlan(sql)
-              val analyzed = spark.sessionState.analyzer.executeAndCheck(parsed)
-              val optimized = spark.sessionState.optimizer.execute(analyzed)
               if (resolve.isRunOnYarn(parsed)) {
                 restart(resolve.selectYarnCluster(parsed))
                 setDescription(sql)
