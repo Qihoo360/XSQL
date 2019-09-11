@@ -9,7 +9,7 @@ SPARK_VERSION=$(mvn help:evaluate -Dexpression=spark.version $@ 2>/dev/null\
     | grep -v "INFO"\
     | grep -v "WARNING"\
     | tail -n 1)
-TGZ_NAME=spark-assembly_2.11-$VERSION-dist.tgz
+TGZ_NAME=xsql-assembly_2.11-$VERSION-dist.tgz
 FINAL_NAME=xsql-$VERSION-plugin-spark-$SPARK_VERSION.tgz
 cd assembly/target
 mv $TGZ_NAME ../../$FINAL_NAME

@@ -10,7 +10,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <name>Spark Project XSQL Monitor</name>
-  <artifactId>spark-xsql-monitor_2.11</artifactId>
+  <artifactId>xsql-monitor_2.11</artifactId>
 
   <properties>
     <common.email.ver>1.5</common.email.ver>
