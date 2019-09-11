@@ -25,7 +25,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spark-assembly_2.11</artifactId>
+  <artifactId>xsql-assembly_2.11</artifactId>
   <name>Spark Project Assembly</name>
   <url>http://spark.apache.org/</url>
   <packaging>pom</packaging>
@@ -66,8 +66,20 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-sql_${scala.binary.version}</artifactId>
+      <artifactId>xsql-sql_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
         <groupId>org.apache.spark</groupId>
@@ -168,12 +180,12 @@
       <dependencies>
         <dependency>
           <groupId>org.apache.spark</groupId>
-          <artifactId>spark-xsql_${scala.binary.version}</artifactId>
+          <artifactId>xsql_${scala.binary.version}</artifactId>
           <version>${project.version}</version>
         </dependency>
         <dependency>
           <groupId>org.apache.spark</groupId>
-          <artifactId>spark-xsql-shell_${scala.binary.version}</artifactId>
+          <artifactId>xsql-shell_${scala.binary.version}</artifactId>
           <version>${project.version}</version>
         </dependency>
       </dependencies>
@@ -183,7 +195,7 @@
       <dependencies>
         <dependency>
           <groupId>org.apache.spark</groupId>
-          <artifactId>spark-xsql-monitor_2.11</artifactId>
+          <artifactId>xsql-monitor_2.11</artifactId>
           <version>${project.version}</version>
         </dependency>
       </dependencies>
@@ -193,8 +205,14 @@
       <dependencies>
         <dependency>
           <groupId>org.apache.spark</groupId>
-          <artifactId>spark-hive_${scala.binary.version}</artifactId>
+          <artifactId>xsql-hive_${scala.binary.version}</artifactId>
           <version>${project.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.spark</groupId>
+          <artifactId>spark-hive_${scala.binary.version}</artifactId>
+          <version>${spark.version}</version>
+          <scope>provided</scope>
         </dependency>
       </dependencies>
     </profile>
@@ -203,8 +221,14 @@
       <dependencies>
         <dependency>
           <groupId>org.apache.spark</groupId>
-          <artifactId>spark-hive-thriftserver_${scala.binary.version}</artifactId>
+          <artifactId>xsql-hive-thriftserver_${scala.binary.version}</artifactId>
           <version>${project.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.spark</groupId>
+          <artifactId>spark-hive-thriftserver_${scala.binary.version}</artifactId>
+          <version>${spark.version}</version>
+          <scope>provided</scope>
         </dependency>
       </dependencies>
     </profile>

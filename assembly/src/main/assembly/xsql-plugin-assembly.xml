@@ -41,11 +41,11 @@
   <dependencySets>
     <dependencySet>
       <includes>
-        <include>org.apache.spark:spark-catalyst_2.11</include>
-        <include>org.apache.spark:spark-sql_2.11</include>
-        <include>org.apache.spark:spark-hive_2.11</include>
-        <include>org.apache.spark:spark-hive-thriftserver_2.11</include>
-        <include>org.apache.spark:spark-xsql*:jar</include>
+        <include>org.apache.spark:xsql-catalyst_2.11</include>
+        <include>org.apache.spark:xsql-sql_2.11</include>
+        <include>org.apache.spark:xsql-hive_2.11</include>
+        <include>org.apache.spark:xsql-hive-thriftserver_2.11</include>
+        <include>org.apache.spark:xsql*:jar</include>
       </includes>
       <outputDirectory>xsql-jars</outputDirectory>
     </dependencySet>
