@@ -209,7 +209,7 @@ spark.xsql.datasource.default.password     real_password
 spark.xsql.datasource.default.version      5.6.19
 ```
 
-这个配置中指定了一个名为default的数据源，XSQL默认会选择default数据源作为最初的当前数据源。default数据源的类型是MySQL，此外还提供了default数据源的其他连接配置信息及版本号。默认情况下，XSQL除了选择default数据源作为当前数据源外，还会选择default数据源中的default数据库实例作为默认数据库，这有些类似于进入Hive命令行后的默认数据库。由于我们提供的MySQL数据源中没有名为default的数据库实例，因此额外指定了默认的数据库为mysqltest。更多的配置介绍请阅读[Configurations](../tutorial/configuration.md)
+这个配置中指定了一个名为default的数据源，XSQL默认会选择别名是default的数据源作为默认数据源。本例中，default数据源的类型是MySQL，此外还提供了default数据源的其他连接配置信息及版本号。默认情况下，XSQL除了选择default数据源作为当前数据源外，还会选择默认数据源中的default数据库实例作为默认数据库，这有些类似于进入Hive命令行后的默认数据库。如果用户提供的数据源中没有名为default的数据库实例，那么需要通过`spark.xsql.default.database`指定默认数据库。本例中，通过`spark.xsql.default.database`指定默认数据库为实际存在的real_database。更多的配置介绍请阅读[Configurations](../tutorial/configuration.md)
 
 ## Running
 
