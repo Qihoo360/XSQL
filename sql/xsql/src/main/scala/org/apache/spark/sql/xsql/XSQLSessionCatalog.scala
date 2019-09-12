@@ -79,8 +79,11 @@ private[xsql] class XSQLSessionCatalog(
   assert(externalCatalogWithListener.unwrapped.isInstanceOf[XSQLExternalCatalog])
   val xsqlExternalCatalog =
     externalCatalogWithListener.unwrapped.asInstanceOf[XSQLExternalCatalog]
-
-  setCurrentDatabase(getCurrentCatalogDatabase.get.name)
+  /**
+    * Synchronize currentDb of SessionCatalog with XSQLExternalCatalog
+    */
+  val catalogDB = getCurrentCatalogDatabase.get
+  setCurrentDatabase(catalogDB.dataSourceName, catalogDB.name)
 
   /**
    * Get default cluster.
