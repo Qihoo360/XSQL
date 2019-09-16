@@ -81,8 +81,9 @@ private[xsql] class XSQLSessionCatalog(
     externalCatalogWithListener.unwrapped.asInstanceOf[XSQLExternalCatalog]
 
   /**
-    * Reset currentDb in SessionCatalog.
-    * Keep the currentDb in SessionCatalog and currentDataBase in XSQLExternalCatalog the same
+    * Reset `currentDb` in [[SessionCatalog]].
+    * Keep the `currentDb` in [[SessionCatalog]] and
+    * `currentDataBase` in [[XSQLExternalCatalog]] the same.
     */
   val catalogDB = getCurrentCatalogDatabase.get
   setCurrentDatabase(catalogDB.dataSourceName, catalogDB.name)
