@@ -120,7 +120,7 @@ public class ThriftHttpCLIService extends ThriftCLIService {
 
       // Thrift configs
       hiveAuthFactory = new HiveAuthFactory(hiveConf);
-      TProcessor processor = new org.apache.hive.service.cli.thrift.TCLIService.Processor<Iface>(this);
+      TProcessor processor = new TCLIService.Processor<Iface>(this);
       TProtocolFactory protocolFactory = new TBinaryProtocol.Factory();
       // Set during the init phase of HiveServer2 if auth mode is kerberos
       // UGI for the hive/_HOST (kerberos) principal
