@@ -82,7 +82,7 @@ private[xsql] class XSQLSessionCatalog(
 
   /**
     * Reset currentDb in SessionCatalog.
-    * Keep the same currentDb in SessionCatalog and XSQLExternalCatalog.
+    * Keep the currentDb in SessionCatalog and currentDataBase in XSQLExternalCatalog the same
     */
   val catalogDB = getCurrentCatalogDatabase.get
   setCurrentDatabase(catalogDB.dataSourceName, catalogDB.name)
