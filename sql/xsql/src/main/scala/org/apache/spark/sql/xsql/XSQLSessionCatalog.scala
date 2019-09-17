@@ -81,10 +81,10 @@ private[xsql] class XSQLSessionCatalog(
     externalCatalogWithListener.unwrapped.asInstanceOf[XSQLExternalCatalog]
 
   /**
-    * Keep the `currentDb` in [[SessionCatalog]] and `currentDataBase` in
-    * [[XSQLExternalCatalog]] the same when initializing [[SessionCatalog]].
-    * See https://github.com/Qihoo360/XSQL/pull/21 for additional details
-    */
+   * Keep the `currentDb` in [[SessionCatalog]] and `currentDataBase` in
+   * [[XSQLExternalCatalog]] the same when initializing [[SessionCatalog]].
+   * See https://github.com/Qihoo360/XSQL/pull/21 for additional details
+   */
   val catalogDB = getCurrentCatalogDatabase.get
   setCurrentDatabase(catalogDB.dataSourceName, catalogDB.name)
 
