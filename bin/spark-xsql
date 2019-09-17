@@ -11,7 +11,7 @@ DRIVER_MEM=5G
 
 # Export this as SPARK_HOME
 export SPARK_HOME="$FWDIR"
-SPARK_HIVE_SHELL_LIB="$SPARK_HOME/jars/$(cd ${SPARK_HOME}/jars; ls *spark-xsql-shell*)"
+SPARK_HIVE_SHELL_LIB="$SPARK_HOME/jars/$(cd ${SPARK_HOME}/jars; ls *xsql-shell*)"
 export SPARK_HIVE_MANCLASS_NAME="org.apache.spark.sql.xsql.shell.SparkXSQLShell"
 
 export SPARK_CLASSPATH=$DRIVER_CLASSPATH:$SPARK_CLASSPATH
