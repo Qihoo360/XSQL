@@ -216,12 +216,13 @@ public class Test {
 	}
 }
 ```
-
-## HTTP REST
-
+## HTTP REST [未开源]
+    
 ​	XSQL使用 [Apache Livy](http://livy.incubator.apache.org/) 实现Restful服务，这里内置了 [Livy REST API](./rest-api.md)，这里是帮助您快速开始的 [Livy接口使用Demo(JAVA、PHP)](https://www.notion.so/Livy-Demo-5c50bbbec1414e23acad4b2c7856192a) 。XSQL对Livy的结果缓存机制进行了优化，优化后的Livy查询状态图如下：
 
 ![](../images/livy-statement.png)
+
+ XSQL目前只开源了将Livy适配到XSQL的必要修改，详情见[GitHub链接](https://github.com/WeiWenda/incubator-livy/tree/XSQL)，以下内容仅适用于内部用户。
 
 这里列举了使用XSQL Restful服务之前，务必知晓的配置项：
 
@@ -235,8 +236,9 @@ public class Test {
 
 **为了帮助您合理利用集群资源，我们为每个Session维持了SessionState。**
 
-- idle: 当已提交的查询数小于livy.rsc.sql.interpreter.threadPool.size时，SessionState为idle，此时提交的查询可以立即获得执行线程，查询状态表现为Running。
-- busy: 当已提交的查询数大于livy.rsc.sql.interpreter.threadPool.size，小于livy.rsc.retained-statements时，SessionState为busy，此时提交查询进行FIFO等待，查询状态表现为Waiting。
+- idle: 当已提交的查询数为0时，SessionState为idle，此时提交的查询可以立即获得执行线程，查询状态表现为Running。
+- busy: 当已提交的查询数大于0，小于livy.rsc.sql.interpreter.threadPool.size时，SessionState为busy，此时提交查询可即时进行计算，但无法获得SparkSession的全部资源，查询效率有所下降，查询状态表现为Running。
+- queued: 当已提交的查询数大于livy.rsc.sql.interpreter.threadPool.size，小于livy.rsc.retained-statements时，SessionState为Queued，此时提交查询进行FIFO等待，查询状态表现为Waiting。
 - exhaust: 当已提交的查询数等于livy.rsc.retained-statements时，SessionState为exhaust，此时提交的查询将被拒绝服务，查询状态表现为Rejected。用户可以选择外部程序轮询等待，也可以选择申请创建新的Sesssion。 
 
 **推荐的使用方式：**建议总是保持一个或多个长驻的Sesssion，当并发数不足时，利用livy.rsc.server.session.timeout创建可自动销毁的Session，从而最大程度的实现即时查询同时节省队列资源。

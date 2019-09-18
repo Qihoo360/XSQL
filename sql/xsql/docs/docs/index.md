@@ -43,7 +43,7 @@
 | <img src="images/hadoop.png" width="120" height="40" />      | 2.7.3   |                             |                                                             | This is the recommended version      |
 | <img src="images/hive.png" width="80" height="60" />         | 1.2     | PRODUCTION                  | [Hive Doc](datasources/hive.md)                        |                                    |
 | <img src="images/mysql.png" width="100" height="67" />       | 5.6.19    | PRODUCTION                  | [Mysql Doc](datasources/mysql.md)                      | POWER BY mysql-jdbc                   |
-| <img src="images/druid.png" width="120" height="40" />       | 0.82    | PRODUCTION                  | [Druid Doc](datasources/druid.md)                      |                                   |
+| <img src="images/druid.png" width="120" height="40" />       | 0.10.0    | PRODUCTION                  | [Druid Doc](datasources/druid.md)                      |                                   |
 | <img src="images/elasticsearch.png" width="120" height="60" /> | 5.2  | PRODUCTION                  | [ElasticSearch Doc](datasources/elasticsearch.md)      |        |
 | <img src="images/mongo.png" width="120" height="35" />       | 2.3.0    | PRODUCTION                  | [MongoDB Doc](datasources/mongo.md)                      |                                  |
 | <img src="images/hbase.png" width="100" height="35" />       | 2.0     | PRODUCTION WITH LIMITATIONS | [HBase Doc](datasources/hbase.md)                      | POWER BY SHC Connector  |
