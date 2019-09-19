@@ -161,7 +161,7 @@ object SparkXSQLShell extends Logging {
     def run(commands: String, silent: Boolean = false) = {
       var startTime = System.currentTimeMillis()
       for (command <- commands.split(";")) {
-        var sql = command.trim().replaceAll("[\\t\\n\\r]", " ")
+        var sql = command.trim()
         if (sql != "") {
           if (sql.equals("exit") || sql.equals("quit")) {
             exit()
@@ -227,7 +227,8 @@ object SparkXSQLShell extends Logging {
           }
           if (!silent && !sql.toLowerCase.startsWith("add") && !sql.toLowerCase.startsWith("set")) {
             //modify for spark2.3 , to first start local , then restart scheduler
-            if (!restarted && sql.toLowerCase.contains("select ") &&
+            if (!restarted && (sql.toLowerCase.contains("select ") ||
+                sql.toLowerCase.contains("select\\n")) &&
                 spark.sparkContext.isLocal && originMaster != "local") {
               val parsed = spark.sessionState.sqlParser.parsePlan(sql)
               if (resolve.isRunOnYarn(parsed)) {
