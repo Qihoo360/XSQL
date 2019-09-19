@@ -10,7 +10,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <name>Spark Project XSQL Druid Connector</name>
-  <artifactId>spark-xsql-druid_2.11</artifactId>
+  <artifactId>xsql-druid_2.11</artifactId>
   <properties>
     <build.testJarPhase>none</build.testJarPhase>
   </properties>
@@ -22,13 +22,13 @@
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-xsql_${scala.binary.version}</artifactId>
+      <artifactId>xsql_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
-      <artifactId>spark-sql_${scala.binary.version}</artifactId>
+      <artifactId>xsql-sql_${scala.binary.version}</artifactId>
       <version>${project.version}</version>
       <scope>provided</scope>
     </dependency>
