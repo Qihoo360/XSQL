@@ -231,6 +231,8 @@ object SparkXSQLShell extends Logging {
                 sql.toLowerCase.contains("select\\n")) &&
                 spark.sparkContext.isLocal && originMaster != "local") {
               val parsed = spark.sessionState.sqlParser.parsePlan(sql)
+              val analyzed = spark.sessionState.analyzer.executeAndCheck(parsed)
+              val optimized = spark.sessionState.optimizer.execute(analyzed)
               if (resolve.isRunOnYarn(parsed)) {
                 restart(resolve.selectYarnCluster(parsed))
                 setDescription(sql)
