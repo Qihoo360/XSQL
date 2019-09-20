@@ -431,7 +431,7 @@ spark.xsql.datasource.default.password     real_password
 spark.xsql.datasource.default.version      5.6.19
 </code></pre>
 
-<p>这个配置中指定了一个名为default的数据源，XSQL默认会选择default数据源作为最初的当前数据源。default数据源的类型是MySQL，此外还提供了default数据源的其他连接配置信息及版本号。默认情况下，XSQL除了选择default数据源作为当前数据源外，还会选择default数据源中的default数据库实例作为默认数据库，这有些类似于进入Hive命令行后的默认数据库。由于我们提供的MySQL数据源中没有名为default的数据库实例，因此额外指定了默认的数据库为mysqltest。更多的配置介绍请阅读<a href="../../tutorial/configuration/">Configurations</a></p>
+<p>这个配置中指定了一个名为default的数据源，XSQL默认会选择别名是default的数据源作为默认数据源。本例中，default数据源的类型是MySQL，此外还提供了default数据源的其他连接配置信息及版本号。默认情况下，XSQL除了选择default数据源作为当前数据源外，还会选择默认数据源中的default数据库实例作为默认数据库，这有些类似于进入Hive命令行后的默认数据库。如果用户提供的数据源中没有名为default的数据库实例，那么需要通过<code>spark.xsql.default.database</code>指定默认数据库。本例中，通过<code>spark.xsql.default.database</code>指定默认数据库为实际存在的real_database。更多的配置介绍请阅读<a href="../../tutorial/configuration/">Configurations</a></p>
 <h2 id="running">Running</h2>
 <p>如果你严格按照<a href="#Installation">Installation</a>一节的方式启动了XSQL，现在可以来看看我们能做些什么？我们犹如刚刚经过了激烈的颤抖后脱离了地球引力，面前是浩渺、幽暗的太空。我十分理解新用户对于一个陌生工具的恐惧，但是XSQL团队始终与你同坐在同一艘飞船上。暂时不妨将XSQL理解成我们所熟知世界的MySQL或Hive，它们能做什么？地球上的用户每天都在使用这两个工具。即便如此，由于健忘是人类与生俱来的能力，因此绝大多数用户依然习惯于输入以下命令：</p>
 <pre><code class="mysql">show databases;
