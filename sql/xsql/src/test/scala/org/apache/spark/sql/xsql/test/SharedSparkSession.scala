@@ -33,6 +33,9 @@ import org.apache.spark.sql.xsql.XSQLSessionCatalog
 import org.apache.spark.sql.xsql.execution.command.{PushDownQueryCommand, ScanTableCommand}
 import org.apache.spark.sql.xsql.util.Utils
 
+/**
+ * Helper trait for SQL test suites where all tests share a single [[XSQLTestSparkSession]].
+ */
 trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { self: Suite =>
 
   def getResourceFile(path: String): File = {
