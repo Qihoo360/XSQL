@@ -55,7 +55,7 @@ trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { 
   }
 
   /**
-   * Check whether the [[LogicalPlan]] of [[DataFrame]] contains pushdown operation as SubQuery
+   * Check whether the [[LogicalPlan]] of [[DataFrame]] contains pushdown operation as subquery
    * for fast.
    */
   def assertSubQueryPushDown(df: DataFrame): Unit = {
