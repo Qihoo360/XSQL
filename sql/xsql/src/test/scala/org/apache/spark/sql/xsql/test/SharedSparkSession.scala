@@ -40,9 +40,9 @@ trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { 
   }
 
   /**
-   * Similar to SQLTestUtilsBase's activateDatabase, but have `ds` parameter in addition.
-   * Activates database `ds`.`db` before executing `f`, then switches back to previous database
-   * after `f` returns.
+   * Similar to [[org.apache.spark.sql.test.SQLTestUtilsBase]]'s activateDatabase, but have
+   * `ds` parameter in addition. Activates database `ds`.`db` before executing `f`, then switches
+   * back to previous database after `f` returns.
    */
   protected def activateDatabase(ds: String, db: String)(f: => Unit): Unit = {
     val catalog = spark.sessionState.catalog.asInstanceOf[XSQLSessionCatalog]
@@ -55,7 +55,7 @@ trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { 
   }
 
   /**
-   * Check whether the [[LogicalPlan]] of [[DataFrame]] contains PushDown operation as SubQuery
+   * Check whether the [[LogicalPlan]] of [[DataFrame]] contains pushdown operation as SubQuery
    * for fast.
    */
   def assertSubQueryPushDown(df: DataFrame): Unit = {
@@ -67,7 +67,7 @@ trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { 
   }
 
   /**
-   * Check whether the [[LogicalPlan]] of [[DataFrame]] contains PushDown operation for fast.
+   * Check whether the [[LogicalPlan]] of [[DataFrame]] contains pushdown operation for fast.
    */
   def assertContainsPushDown(df: DataFrame, num: Int = 1): Unit = {
     val analyzed = df.queryExecution.analyzed
@@ -81,7 +81,7 @@ trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { 
   }
 
   /**
-   * Check whether the [[LogicalPlan]] of [[DataFrame]] is wholly PushDown operation for fast.
+   * Check whether the [[LogicalPlan]] of [[DataFrame]] is wholly pushdown operation for fast.
    */
   def assertPushDown(df: DataFrame): Unit = {
     val analyzed = df.queryExecution.analyzed
@@ -105,8 +105,8 @@ trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { 
   }
 
   /**
-   * Start a local[2] SparkSession with XSQL support, and load configuration from `xsql.conf`
-   * found in classpath.
+   * Start a local[2] [[org.apache.spark.sql.SparkSession]] with XSQL support, and load
+   * configuration from `xsql.conf` found in classpath.
    */
   override protected def createSparkSession: TestSparkSession = {
     val properties = new Properties()
