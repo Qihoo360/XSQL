@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.apache.spark.sql.xsql.test
 
 import java.io.{File, FileInputStream}
@@ -26,7 +27,7 @@ import org.scalatest.Suite
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql.catalyst.plans.logical.{LogicalPlan, SubqueryAlias}
+import org.apache.spark.sql.catalyst.plans.logical.LogicalPlan
 import org.apache.spark.sql.test.TestSparkSession
 import org.apache.spark.sql.xsql.XSQLSessionCatalog
 import org.apache.spark.sql.xsql.execution.command.{PushDownQueryCommand, ScanTableCommand}
@@ -38,27 +39,39 @@ trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { 
     new File(Thread.currentThread().getContextClassLoader.getResource(path).getFile)
   }
 
+  /**
+   * Similar to SQLTestUtilsBase's activateDatabase, but have `ds` parameter in addition.
+   * Activates database `ds`.`db` before executing `f`, then switches back to previous database
+   * after `f` returns.
+   */
   protected def activateDatabase(ds: String, db: String)(f: => Unit): Unit = {
     val catalog = spark.sessionState.catalog.asInstanceOf[XSQLSessionCatalog]
     val catalogDB = catalog.getCurrentCatalogDatabase
-    val curds = catalogDB.get.dataSourceName
-    val curdb = catalogDB.get.name
+    val currentDS = catalogDB.get.dataSourceName
+    val currentDB = catalogDB.get.name
     catalog.setCurrentDatabase(ds, db)
     try f
-    finally catalog.setCurrentDatabase(curds, curdb)
+    finally catalog.setCurrentDatabase(currentDS, currentDB)
   }
 
+  /**
+   * Check whether the [[LogicalPlan]] of [[DataFrame]] contains PushDown operation as SubQuery
+   * for fast.
+   */
   def assertSubQueryPushDown(df: DataFrame): Unit = {
-    val analyed = df.queryExecution.analyzed
-    val expressions = analyed.flatMap(_.subqueries)
+    val analyzed = df.queryExecution.analyzed
+    val expressions = analyzed.flatMap(_.subqueries)
     assert(
       expressions
         .exists(e => e.isInstanceOf[PushDownQueryCommand] || e.isInstanceOf[ScanTableCommand]))
   }
 
+  /**
+   * Check whether the [[LogicalPlan]] of [[DataFrame]] contains PushDown operation for fast.
+   */
   def assertContainsPushDown(df: DataFrame, num: Int = 1): Unit = {
-    val analyed = df.queryExecution.analyzed
-    val pds = analyed.collect {
+    val analyzed = df.queryExecution.analyzed
+    val pds = analyzed.collect {
       case e: ScanTableCommand =>
         e
       case e: PushDownQueryCommand =>
@@ -67,30 +80,34 @@ trait SharedSparkSession extends org.apache.spark.sql.test.SharedSparkSession { 
     assert(pds.size == num)
   }
 
+  /**
+   * Check whether the [[LogicalPlan]] of [[DataFrame]] is wholly PushDown operation for fast.
+   */
   def assertPushDown(df: DataFrame): Unit = {
-    val analyed = df.queryExecution.analyzed
-    assert(analyed.isInstanceOf[ScanTableCommand] || analyed.isInstanceOf[PushDownQueryCommand])
+    val analyzed = df.queryExecution.analyzed
+    assert(analyzed.isInstanceOf[ScanTableCommand] || analyzed.isInstanceOf[PushDownQueryCommand])
   }
 
+  /**
+   * Check whether the result of [[DataFrame]] is non-empty for fast.
+   */
   def assertResultNonEmpty(df: DataFrame): Unit = {
     df.show()
     assert(df.count() > 0)
   }
 
+  /**
+   * Check whether the result of [[DataFrame]] is empty for fast.
+   */
   def assertResultEmpty(df: DataFrame): Unit = {
     df.show()
     assert(df.count() == 0)
   }
 
-  def assertInstanceOfScanTableCommand(plan: LogicalPlan): Unit = {
-    assert(
-      plan.isInstanceOf[ScanTableCommand] ||
-        (plan.isInstanceOf[SubqueryAlias] && plan
-          .asInstanceOf[SubqueryAlias]
-          .child
-          .isInstanceOf[ScanTableCommand]))
-  }
-
+  /**
+   * Start a local[2] SparkSession with XSQL support, and load configuration from `xsql.conf`
+   * found in classpath.
+   */
   override protected def createSparkSession: TestSparkSession = {
     val properties = new Properties()
     val path = Utils.getPropertiesFile(file = "xsql.conf")
