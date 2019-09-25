@@ -108,7 +108,8 @@ object SparkXSQLShell extends Logging {
       sqlContext = spark.sqlContext
       conf = spark.sparkContext.getConf
       sc = spark.sparkContext
-      processInitFile(conf)
+      // we shouldn't load .hiverc twice
+      // processInitFile(conf)
     }
 
     def initialize(sqlContent: String, conf: SparkConf) = {
