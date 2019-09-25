@@ -108,7 +108,9 @@ object SparkXSQLShell extends Logging {
       sqlContext = spark.sqlContext
       conf = spark.sparkContext.getConf
       sc = spark.sparkContext
-      processInitFile(conf)
+      // Don't call processInitFile again to avoid load .hiverc twice.
+      // For more details, please see https://github.com/Qihoo360/XSQL/pull/45
+      // processInitFile(conf)
     }
 
     def initialize(sqlContent: String, conf: SparkConf) = {
