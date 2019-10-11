@@ -360,24 +360,38 @@
 </tr>
 <tr>
 <td>2.3.1.xsql-0.3.2</td>
-<td></td>
+<td>2019.05.25</td>
 <td>1. bin/spark-xsql支持${}字符串变量<br />2. datasource关键字与列名冲突<br />3. processSingleTable assert失败<br />4. !开头的命令cast报错<br />5. OutOfDriectMemoryError</td>
 <td></td>
 <td>1. 支持Hive的remove datasource if exists<br />2. 支持Hive的insert overwrite directory using xxx<br />3. 增加Yarn优先级控制参数spark-sql --priority</td>
 </tr>
 <tr>
 <td>2.3.1.xsql-0.4.0</td>
-<td></td>
+<td>2019.07.01</td>
 <td>1. load data partition<br/>2. StackOverflow caused by window functions<br/> 3. select using script</td>
 <td>1. set 不再触发job <br/>2. local模式不再产生日志文件</td>
 <td>1.支持Hive的distribute by<br/> 2.接入Kafka数据源</td>
 </tr>
 <tr>
 <td>2.4.3.xsql-0.5.0</td>
-<td></td>
+<td>2019.08.01</td>
 <td>1.修复任务结束时报错java.io.IOException: Filesystem closed<br />2.解决HDFS0.2版本与Spark流式SQL所使用HDFS高版本的兼容性问题<br/>3.修复MongoManager、ElasticSearchManager在Local模式下，使用SparkSession.getActiveSession的bug<br/>4.解决XSQL升级Spark2.4.3后，流式SQL无法支持下推的问题</td>
 <td>升级至Spark2.4.3核心</td>
 <td>支持流式SQL计算Kafka数据</td>
+</tr>
+<tr>
+<td>2.4.3.xsql-0.6.0</td>
+<td>2019.08.30</td>
+<td>1.修改SparkXSQLShell中错误的打印SparkHiveShell信息</td>
+<td>1.通过ServiceLoader加载DatasourceManager实现<br/>2.增加工作数据源，减少在数据字典读写过程中，反复获取数据源<br/>3.DataSourceManager继承ExternalCatalog，减少相同的方法签名<br/>4.修改mkdocs文档风格<br/>5.增加xsql.conf.template<br/>6.添加监控模块</td>
+<td>1.支持插件化<br/>2.增加中英文README<br/>3.增加LOGO<br/></td>
+</tr>
+<tr>
+<td>2.4.3.xsql-0.6.1</td>
+<td>2019.08.11</td>
+<td>1.<a href="https://github.com/Qihoo360/XSQL/pull/1">Rename the prefix of jars from spark to xsql.</a><br/>2.<a href="https://github.com/Qihoo360/XSQL/pull/21">Fix the bug that can't find default database when default database's name is not default</a><br/>3.<a href="https://github.com/Qihoo360/XSQL/pull/22">Solve sql select query that select is followed by \n can't run when we use -e sql</a><br/>4.<a href="https://github.com/Qihoo360/XSQL/pull/35">Fix cannot find spark-xsql-shell.</a><br/>5.<a href="https://github.com/Qihoo360/XSQL/pull/45">.hiverc is loaded twice making create function throw exception</a><br/>6.<a href="https://github.com/Qihoo360/XSQL/pull/50">Correct the content of license file for XSQL.</a></td>
+<td>1.<a href="https://github.com/Qihoo360/XSQL/pull/24">Fix com.fasterxml.jackson.core:jackson-databind vulnerabilities.</a><br/>2.<a href="https://github.com/Qihoo360/XSQL/pull/25">Fix org.jpmml:pmml-model vulnerabilities.</a><br/>3.<a href="https://github.com/Qihoo360/XSQL/pull/27">Fix zookeeper vulnerabilities</a><br/>4.<a href="https://github.com/Qihoo360/XSQL/pull/29">build-plugin.sh should use build/mvn to find mvn or install mvn</a><br/>5.<a href="https://github.com/Qihoo360/XSQL/pull/33">Fix puppycrawl vulnerabilities</a>6.<a href="https://github.com/Qihoo360/XSQL/pull/42">Fix libthrift vulnerabilities.</a><br/>6.<a href="https://github.com/Qihoo360/XSQL/pull/43">Migrate some XSQL test classes to github</a><br/>7.<a href="https://github.com/Qihoo360/XSQL/pull/44">Upgrade jackson-databind to 2.9.10 and fix vulnerabilities.</a><br/>8.<a href="https://github.com/Qihoo360/XSQL/pull/46">Add Github pull request template</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -563,5 +577,5 @@
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-10-10 11:01:37
+Build Date UTC : 2019-10-11 01:50:09
 -->
