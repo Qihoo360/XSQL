@@ -104,6 +104,25 @@ private[xsql] class MysqlManager(conf: SparkConf) extends DataSourceManager with
     }
   }
 
+  /**
+   * Cache special properties for mysql dataSource
+   */
+  private def cacheSpecialProperties(
+      dsName: String,
+      dbName: String,
+      tbName: String): Unit = {
+    val tablePartitionsMap = partitionsMap.get(dbName)
+    var partitionsParameters = new HashMap[String, String]
+    if (tablePartitionsMap != None) {
+      if (tablePartitionsMap.get.get(tbName) != None) {
+        partitionsParameters = tablePartitionsMap.get.get(tbName).get
+      }
+    }
+    if (partitionsParameters.nonEmpty) {
+      specialProperties += ((s"${dsName}.${dbName}.${tbName}", partitionsParameters))
+    }
+  }
+
   @throws[SQLException]
   implicit private def typeConvertor(rs: ResultSet) = {
     val list = new ArrayBuffer[HashMap[String, Object]]()
@@ -206,7 +225,8 @@ private[xsql] class MysqlManager(conf: SparkConf) extends DataSourceManager with
               }
             }
             if (partitionsParameters.nonEmpty) {
-              specialProperties += ((s"${dbName}.${tbName}", partitionsParameters))
+              specialProperties +=
+                ((s"${dataSourceName}.${dbName}.${tbName}", partitionsParameters))
             }
             // The storage contains the following info
             // jdbcOptions:
@@ -226,7 +246,8 @@ private[xsql] class MysqlManager(conf: SparkConf) extends DataSourceManager with
               tableType = CatalogTableType.JDBC,
               storage = CatalogStorageFormat.empty.copy(
                 properties = jdbcOptions.asProperties.asScala.toMap ++
-                  specialProperties.getOrElse(s"${dbName}.${tbName}", Map.empty[String, String])),
+                  specialProperties.
+                    getOrElse(s"${dataSourceName}.${dbName}.${tbName}", Map.empty[String, String])),
               schema = schema,
               provider = Some(FULL_PROVIDER))
             xtables += ((tbName, tb))
@@ -574,13 +595,15 @@ private[xsql] class MysqlManager(conf: SparkConf) extends DataSourceManager with
     val conn = getConnect()
     val jdbcOptions = setJdbcOptions(dbName, table)
     val schema = resolveTableConnnectOnce(conn, jdbcOptions)
+    cacheSpecialProperties(dsName, dbName, table)
     Option(
       CatalogTable(
         identifier = TableIdentifier(table, Option(dbName), Option(dsName)),
         tableType = CatalogTableType.JDBC,
         storage = CatalogStorageFormat.empty.copy(
           properties = jdbcOptions.asProperties.asScala.toMap ++
-            specialProperties.getOrElse(s"${dbName}.${table}", Map.empty[String, String])),
+            specialProperties
+              .getOrElse(s"${dsName}.${dbName}.${table}", Map.empty[String, String])),
         schema = schema,
         provider = Some(FULL_PROVIDER)))
   }
