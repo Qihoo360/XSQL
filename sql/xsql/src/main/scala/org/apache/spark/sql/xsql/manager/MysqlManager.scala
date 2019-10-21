@@ -112,14 +112,10 @@ private[xsql] class MysqlManager(conf: SparkConf) extends DataSourceManager with
       dbName: String,
       tbName: String): Unit = {
     val tablePartitionsMap = partitionsMap.get(dbName)
-    var partitionsParameters = new HashMap[String, String]
     if (tablePartitionsMap != None) {
-      if (tablePartitionsMap.get.get(tbName) != None) {
-        partitionsParameters = tablePartitionsMap.get.get(tbName).get
+      tablePartitionsMap.get.get(tbName).foreach { m =>
+        specialProperties += ((s"${dsName}.${dbName}.${tbName}", m))
       }
-    }
-    if (partitionsParameters.nonEmpty) {
-      specialProperties += ((s"${dsName}.${dbName}.${tbName}", partitionsParameters))
     }
   }
 
