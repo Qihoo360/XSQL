@@ -487,18 +487,16 @@ class TransmitOriginalQuery(session: SparkSession) extends Rule[LogicalPlan] {
             } else {
               a.child
             }
-            if (!pushdownFunctions.contains(func.prettyName)) {
-              true
-            } else {
+            if (pushdownFunctions.contains(func.prettyName)) {
               false
+            } else {
+              true
             }
           }
         case _ => false
       }
     }
-    plan.find {
-      functionNotPushdown
-    }.isEmpty
+    plan.find(functionNotPushdown).isEmpty
   }
 
   /**
