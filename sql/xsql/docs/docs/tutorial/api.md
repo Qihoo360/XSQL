@@ -247,17 +247,6 @@ XSQL在360内部实际上还对Livy的结果缓存机制进行了优化，优化
 
 **推荐的使用方式：**建议总是保持一个或多个长驻的Sesssion，当并发数不足时，利用livy.rsc.server.session.timeout创建可自动销毁的Session，从而最大程度的实现即时查询同时节省队列资源。
 
-我们在 [http://client01v.qss.zzzc.qihoo.net:11224/#/](http://client01v.qss.zzzc.qihoo.net:11224/#/) 为您提供了Zeppelin页面，用公司域账号登录后，创建Livy类型的note，就可以试用XSQL的各种功能了。该页面由XSQL团队提供给XSQL用户学习以及测试使用，内置的xsql试用部署包含四种数据源：hive、es、mysql、redis，均为测试数据库（只读权限）。
-
-如果您想要访问自己的数据源，可以加入一个云图项目，由项目负责人向weiwenda@360.cn申请XSQL Restful服务，申请成功后在note页面将出现 `your_project项目部署` 的可选下拉。
-
-具体的操作流程如视频所示：
-
-<video width="100%" controls poster="../../images/zeppelin使用介绍.png">
-  <source src="../../images/zeppelin使用介绍.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
 ## JDBC
 
 ​	Hive和Spark都提供了对JDBC的支持，XSQL也不例外。这里给出Java语言使用JDBC连接XSQL的例子。
