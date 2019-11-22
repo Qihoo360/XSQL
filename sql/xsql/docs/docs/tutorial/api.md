@@ -1,4 +1,4 @@
-​	XSQL作为统一的查询平台，必然需要提供丰富的接口形式。XSQL目前支持CLI、Scala、Java、Thrift、HTTP REST、JDBC等六种类型的API，本文将逐一进行介绍。
+	XSQL作为统一的查询平台，必然需要提供丰富的接口形式。XSQL目前支持CLI、Scala、Java、Thrift、HTTP REST、JDBC等六种类型的API，本文将逐一进行介绍。
 
 ## CLI
 
@@ -217,12 +217,16 @@ public class Test {
 }
 ```
 ## HTTP REST [未开源]
-    
-​	XSQL使用 [Apache Livy](http://livy.incubator.apache.org/) 实现Restful服务，这里内置了 [Livy REST API](./rest-api.md)，这里是帮助您快速开始的 [Livy接口使用Demo(JAVA、PHP)](https://www.notion.so/Livy-Demo-5c50bbbec1414e23acad4b2c7856192a) 。XSQL对Livy的结果缓存机制进行了优化，优化后的Livy查询状态图如下：
+
+XSQL由于本身对Spark的良好兼容性，所以Spark生态中的很多开源产品和工具都可以拿来使用。 [Apache Livy](http://livy.incubator.apache.org/) 为Spark定制了一套基于REST API的服务，XSQL当然也可以使用它。有关 [Apache Livy](http://livy.incubator.apache.org/) 内置的REST API的使用请参考 [Livy REST API](./rest-api.md)，一些帮助用户快速开始的文档请参考 [Livy接口使用Demo(JAVA、PHP)](https://www.notion.so/Livy-Demo-5c50bbbec1414e23acad4b2c7856192a) 。
+
+由于 [Apache Livy](http://livy.incubator.apache.org/) 是为Spark定制开发的，因此XSQL想要接入还必须有一些小的改动。这些改动都很容易，涉及两次不同的commit。分别是[适配修改](https://github.com/WeiWenda/incubator-livy/commit/6e04080801263ab349a2b6e6b5825ee88415d1ed)和[文档修改](https://github.com/WeiWenda/incubator-livy/commit/0a6f4c3af64175867790cd46b3c9f9668e78720f)，这些必要的修改来自于XSQL团队成员weiwenda从 [Apache Livy](http://livy.incubator.apache.org/)所fork出来的仓库[Livy Forked and used to XSQL](https://github.com/WeiWenda/incubator-livy/tree/XSQL)。
+
+以下内容仅适用于内部用户。
+
+XSQL在360内部实际上还对Livy的结果缓存机制进行了优化，优化后的Livy查询状态图如下：
 
 ![](../images/livy-statement.png)
-
- XSQL目前只开源了将Livy适配到XSQL的必要修改，详情见[GitHub链接](https://github.com/WeiWenda/incubator-livy/tree/XSQL)，以下内容仅适用于内部用户。
 
 这里列举了使用XSQL Restful服务之前，务必知晓的配置项：
 
@@ -242,17 +246,6 @@ public class Test {
 - exhaust: 当已提交的查询数等于livy.rsc.retained-statements时，SessionState为exhaust，此时提交的查询将被拒绝服务，查询状态表现为Rejected。用户可以选择外部程序轮询等待，也可以选择申请创建新的Sesssion。 
 
 **推荐的使用方式：**建议总是保持一个或多个长驻的Sesssion，当并发数不足时，利用livy.rsc.server.session.timeout创建可自动销毁的Session，从而最大程度的实现即时查询同时节省队列资源。
-
-我们在 [http://client01v.qss.zzzc.qihoo.net:11224/#/](http://client01v.qss.zzzc.qihoo.net:11224/#/) 为您提供了Zeppelin页面，用公司域账号登录后，创建Livy类型的note，就可以试用XSQL的各种功能了。该页面由XSQL团队提供给XSQL用户学习以及测试使用，内置的xsql试用部署包含四种数据源：hive、es、mysql、redis，均为测试数据库（只读权限）。
-
-如果您想要访问自己的数据源，可以加入一个云图项目，由项目负责人向weiwenda@360.cn申请XSQL Restful服务，申请成功后在note页面将出现 `your_project项目部署` 的可选下拉。
-
-具体的操作流程如视频所示：
-
-<video width="100%" controls poster="../../images/zeppelin使用介绍.png">
-  <source src="../../images/zeppelin使用介绍.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
 
 ## JDBC
 
