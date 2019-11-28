@@ -487,11 +487,7 @@ class TransmitOriginalQuery(session: SparkSession) extends Rule[LogicalPlan] {
             } else {
               a.child
             }
-            if (pushdownFunctions.contains(func.prettyName)) {
-              false
-            } else {
-              true
-            }
+            !pushdownFunctions.exists(_.equals(func.prettyName))
           }
         case _ => false
       }
