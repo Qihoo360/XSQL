@@ -211,11 +211,9 @@ private[xsql] class XSQLSessionCatalog(
   }
 
   def setCurrentDatabase(dsName: String, dbName: String): Unit = {
-    synchronized {
-      setWorkingDataSource(Option(dsName)) {
-        super.setCurrentDatabase(dbName)
-        externalCatalog.setCurrentDatabase(dbName)
-      }
+    setWorkingDataSource(Option(dsName)) {
+      super.setCurrentDatabase(dbName)
+      externalCatalog.setCurrentDatabase(dbName)
     }
   }
 
@@ -407,18 +405,17 @@ private[xsql] class XSQLSessionCatalog(
   // | Methods that interact with temporary and metastore tables |
   // -------------------------------------------------------------
 
-  override def renameTable(oldName: TableIdentifier, newName: TableIdentifier): Unit =
-    synchronized {
-      val oldDs = getDataSourceName(oldName)
-      val newDs = getDataSourceName(newName)
-      if (oldDs != newDs) {
-        throw new AnalysisException(
-          s"RENAME TABLE source and destination datasources do not match: '$oldDs' != '$newDs'")
-      }
-      setWorkingDataSource(oldName.dataSource) {
-        super.renameTable(oldName, newName)
-      }
+  override def renameTable(oldName: TableIdentifier, newName: TableIdentifier): Unit = {
+    val oldDs = getDataSourceName(oldName)
+    val newDs = getDataSourceName(newName)
+    if (oldDs != newDs) {
+      throw new AnalysisException(
+        s"RENAME TABLE source and destination datasources do not match: '$oldDs' != '$newDs'")
     }
+    setWorkingDataSource(oldName.dataSource) {
+      super.renameTable(oldName, newName)
+    }
+  }
 
   def truncateTable(
       name: TableIdentifier,
@@ -433,17 +430,15 @@ private[xsql] class XSQLSessionCatalog(
   override def dropTable(
       name: TableIdentifier,
       ignoreIfNotExists: Boolean,
-      purge: Boolean): Unit = synchronized {
+      purge: Boolean): Unit = {
     setWorkingDataSource(name.dataSource) {
       super.dropTable(name, ignoreIfNotExists, purge)
     }
   }
 
   override def lookupRelation(name: TableIdentifier): LogicalPlan = {
-    synchronized {
-      setWorkingDataSource(name.dataSource) {
-        super.lookupRelation(name)
-      }
+    setWorkingDataSource(name.dataSource) {
+      super.lookupRelation(name)
     }
   }
 
@@ -459,7 +454,7 @@ private[xsql] class XSQLSessionCatalog(
     }
   }
 
-  override def refreshTable(name: TableIdentifier): Unit = synchronized {
+  override def refreshTable(name: TableIdentifier): Unit = {
     setWorkingDataSource(name.dataSource) {
       super.refreshTable(name)
     }
@@ -795,7 +790,7 @@ private[xsql] class XSQLSessionCatalog(
   /**
    * Look up the [[ExpressionInfo]] associated with the specified function, assuming it exists.
    */
-  override def lookupFunctionInfo(name: FunctionIdentifier): ExpressionInfo = synchronized {
+  override def lookupFunctionInfo(name: FunctionIdentifier): ExpressionInfo = {
     setWorkingDataSource(Option(getDataSourceName(name))) {
       super.lookupFunctionInfo(name)
     }
