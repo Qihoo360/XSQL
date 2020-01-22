@@ -594,7 +594,7 @@ private[xsql] class XSQLExternalCatalog(conf: SparkConf, hadoopConf: Configurati
 
   override def setCurrentDatabase(dbName: String): Unit = {
     withWorkingDSDB(dbName) { (_, db, _, _) =>
-      currentDataBase = Option(db)
+      synchronized {currentDataBase = Option(db) }
     }
   }
 
