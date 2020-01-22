@@ -186,7 +186,7 @@ trait DataSourceManager extends ExternalCatalog with Logging {
     dsName = dataSourceName
     defaultCluster = infos.get(CLUSTER)
     enablePushDown = java.lang.Boolean.valueOf(infos.getOrElse(PUSHDOWN, TRUE))
-    discoverSchema = java.lang.Boolean.valueOf(infos.getOrElse(DISCOVER, FALSE))
+    discoverSchema = java.lang.Boolean.valueOf(infos.getOrElse(SCHEMAS_DISCOVER, FALSE))
     enableStream = java.lang.Boolean.valueOf(infos.getOrElse(STREAM, FALSE))
     val whitelistFile = infos.get(WHITELIST)
     if (whitelistFile.isDefined) {
@@ -200,7 +200,7 @@ trait DataSourceManager extends ExternalCatalog with Logging {
     } else if (cachedProperties.contains("schemas.str")) {
       schemaReader(cachedProperties("schemas.str"), schemasMap)
     }
-    val discoverFile = cachedProperties.get(DISCOVER_CONFIG)
+    val discoverFile = cachedProperties.get(SCHEMAS_DISCOVER_CONFIG)
     if (discoverFile.isDefined) {
       parseDiscoverFile(dataSourceName, discoverFile.get)
     }
@@ -996,11 +996,11 @@ object DataSourceManager {
   val VERSION = "version"
   val WHITELIST = "whitelist"
   val PUSHDOWN = "pushdown"
-  val DISCOVER = "discover"
   val STREAM = "stream"
   val SCHEMAS = "schemas"
+  val SCHEMAS_DISCOVER = "schemas.discover"
   val CACHE_LEVEL = "cache.level"
-  val DISCOVER_CONFIG = "discover.config"
+  val SCHEMAS_DISCOVER_CONFIG = "schemas.discover.config"
   val TEMP_FLAG = "temp_flag"
 
   val CLUSTER = "cluster"
