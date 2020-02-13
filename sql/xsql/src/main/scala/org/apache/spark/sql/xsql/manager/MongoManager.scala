@@ -206,7 +206,7 @@ private[xsql] class MongoManager(conf: SparkConf) extends DataSourceManager with
     mongoClient.getDatabase(db).drop()
   }
 
-  override def listTables(dsName: String, dbName: String): Seq[String] = {
+  override def listTables(dbName: String): Seq[String] = {
     val mongoDB = mongoClient.getDatabase(dbName)
     mongoDB.listCollectionNames().asScala.toSeq
   }
