@@ -201,7 +201,7 @@ private[xsql] class ElasticSearchManager(conf: SparkConf) extends DataSourceMana
       while (itr.hasNext()) {
         val typeName = itr.next().asInstanceOf[String]
         if (isSelectedTable(whiteTables, blackTables, typeName)) {
-          val tableOpt = if (isDiscover(originDBName, typeName)) {
+          val tableOpt = if (isDiscover) {
             discoverRawTable(dbName, originDBName, typeName)
           } else {
             getTableOption(dataSourceName, dbName, originDBName, typeName, mappingsObj)
@@ -342,49 +342,7 @@ private[xsql] class ElasticSearchManager(conf: SparkConf) extends DataSourceMana
     }
   }
 
-  override protected def doGetRawTable(
-      db: String,
-      originDB: String,
-      table: String): Option[CatalogTable] = {
-    if (isDiscover(originDB, table)) {
-      discoverRawTable(db, originDB, table)
-    } else {
-      logDebug(s"Looking up $dsName.$db.$table, $dsName.$originDB.$table in fact.")
-      val response = restClient.performRequest(
-        HttpGet.METHOD_NAME,
-        s"/$originDB/$table/_mapping",
-        Collections.singletonMap("pretty", "true"))
-      val rootObj = JSONObject.fromObject(EntityUtils.toString(response.getEntity()).trim)
-      val dbObj = rootObj.get(originDB).asInstanceOf[JSONObject]
-      val mappingsObj = dbObj.get(MAPPINGS).asInstanceOf[JSONObject]
-      val itr = mappingsObj.keys()
-      if (itr.hasNext()) {
-        val typeName = itr.next().asInstanceOf[String]
-        getTableOption(dsName, db, originDB, typeName, mappingsObj)
-      } else {
-        None
-      }
-    }
-  }
-
-  /**
-   * Check if the specified table contains fields need to discover.
-   */
-  private def isDiscover(originDB: String, table: String): Boolean = {
-    var flag = false
-    if (discoverFields.contains(originDB)) {
-      val tableDiscoverFields = discoverFields.get(originDB)
-      if (tableDiscoverFields.isDefined && tableDiscoverFields.get.contains(table)) {
-        flag = true
-      }
-    }
-    flag
-  }
-
-  /**
-   * Discover the schema of the specified table.
-   */
-  private def discoverRawTable(
+  override protected def discoverRawTable(
       db: String,
       originDB: String,
       table: String): Option[CatalogTable] = {
@@ -395,6 +353,27 @@ private[xsql] class ElasticSearchManager(conf: SparkConf) extends DataSourceMana
     val cfg = new SparkSettingsManager().load(sc.getConf).merge(parameters.asJava)
     val lazySchema = { ElasticsearchSchemaUtils.discoverMapping(cfg) }
     getTableOption(dsName, db, originDB, table, lazySchema.struct, Some(parameters))
+  }
+
+  override protected def fastGetRawTable(
+      db: String,
+      originDB: String,
+      table: String): Option[CatalogTable] = {
+    logDebug(s"Looking up $dsName.$db.$table, $dsName.$originDB.$table in fact.")
+    val response = restClient.performRequest(
+      HttpGet.METHOD_NAME,
+      s"/$originDB/$table/_mapping",
+      Collections.singletonMap("pretty", "true"))
+    val rootObj = JSONObject.fromObject(EntityUtils.toString(response.getEntity()).trim)
+    val dbObj = rootObj.get(originDB).asInstanceOf[JSONObject]
+    val mappingsObj = dbObj.get(MAPPINGS).asInstanceOf[JSONObject]
+    val itr = mappingsObj.keys()
+    if (itr.hasNext()) {
+      val typeName = itr.next().asInstanceOf[String]
+      getTableOption(dsName, db, originDB, typeName, mappingsObj)
+    } else {
+      None
+    }
   }
 
   private def getTableOption(

@@ -26,6 +26,7 @@ import scala.util.matching.Regex
 import net.sf.json.JSONArray
 
 import org.apache.spark.SparkException
+import org.apache.spark.internal.Logging
 import org.apache.spark.sql.catalyst.CatalystTypeConverters.convertToScala
 import org.apache.spark.sql.catalyst.TableIdentifier
 import org.apache.spark.sql.catalyst.analysis.{NoSuchTableException, UnresolvedAttribute}
@@ -46,7 +47,7 @@ import org.apache.spark.util.Utils
  * [[ExternalCatalog]]'s abstract methods with default implementation which means specific kind of
  * operation on this datasource is not supported for now.
  */
-trait DataSourceManager extends ExternalCatalog {
+trait DataSourceManager extends ExternalCatalog with Logging {
   import DataSourceManager._
 
   def shortName(): String
@@ -62,6 +63,11 @@ trait DataSourceManager extends ExternalCatalog {
    * If true, XSQL will allow queries using the API of the underlying data source.
    */
   private var enablePushDown: Boolean = true
+
+  /**
+   * If true, XSQL will discover the schema of tables in the data source.
+   */
+  private var discoverSchema: Boolean = false
 
   /**
    * If true, XSQL will allow queries by structured stream API.
@@ -180,6 +186,7 @@ trait DataSourceManager extends ExternalCatalog {
     dsName = dataSourceName
     defaultCluster = infos.get(CLUSTER)
     enablePushDown = java.lang.Boolean.valueOf(infos.getOrElse(PUSHDOWN, TRUE))
+    discoverSchema = java.lang.Boolean.valueOf(infos.getOrElse(SCHEMAS_DISCOVER, FALSE))
     enableStream = java.lang.Boolean.valueOf(infos.getOrElse(STREAM, FALSE))
     val whitelistFile = infos.get(WHITELIST)
     if (whitelistFile.isDefined) {
@@ -193,7 +200,7 @@ trait DataSourceManager extends ExternalCatalog {
     } else if (cachedProperties.contains("schemas.str")) {
       schemaReader(cachedProperties("schemas.str"), schemasMap)
     }
-    val discoverFile = cachedProperties.get(DISCOVER_SCHEMA)
+    val discoverFile = cachedProperties.get(SCHEMAS_DISCOVER_CONFIG)
     if (discoverFile.isDefined) {
       parseDiscoverFile(dataSourceName, discoverFile.get)
     }
@@ -278,6 +285,11 @@ trait DataSourceManager extends ExternalCatalog {
    */
   def isPushDown(runtimeConf: SQLConf, dataSourceName: String, plan: LogicalPlan): Boolean =
     enablePushDown
+
+  /**
+   * Check if the specified table contains fields need to discover.
+   */
+  def isDiscover: Boolean = discoverSchema
 
   /**
    * Structured streaming enabled or not.
@@ -493,7 +505,32 @@ trait DataSourceManager extends ExternalCatalog {
       db: String,
       originDB: String,
       table: String): Option[CatalogTable] = {
-    throw new UnsupportedOperationException(s"Get ${shortName()} raw table not supported!")
+    if (isDiscover) {
+      logDebug(s"Discovering $dsName.$db.$table, $dsName.$originDB.$table in fact.")
+      discoverRawTable(db, originDB, table)
+    } else {
+      fastGetRawTable(db, originDB, table)
+    }
+  }
+
+  /**
+   * Discover the schema of the specified table.
+   */
+  protected def discoverRawTable(
+      db: String,
+      originDB: String,
+      table: String): Option[CatalogTable] = {
+    throw new UnsupportedOperationException(s"Discover ${shortName()} raw table not supported!")
+  }
+
+  /**
+   * Get the schema of the specified table in fast way.
+   */
+  protected def fastGetRawTable(
+      db: String,
+      originDB: String,
+      table: String): Option[CatalogTable] = {
+    throw new UnsupportedOperationException(s"Get ${shortName()} raw table fast not supported!")
   }
 
   /**
@@ -961,8 +998,9 @@ object DataSourceManager {
   val PUSHDOWN = "pushdown"
   val STREAM = "stream"
   val SCHEMAS = "schemas"
+  val SCHEMAS_DISCOVER = "schemas.discover"
   val CACHE_LEVEL = "cache.level"
-  val DISCOVER_SCHEMA = "discover"
+  val SCHEMAS_DISCOVER_CONFIG = "schemas.discover.config"
   val TEMP_FLAG = "temp_flag"
 
   val CLUSTER = "cluster"

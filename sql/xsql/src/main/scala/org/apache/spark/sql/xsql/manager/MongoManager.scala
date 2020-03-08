@@ -72,6 +72,8 @@ private[xsql] class MongoManager(conf: SparkConf) extends DataSourceManager with
 
   private var mongoClient: MongoClient = _
 
+  override def isDiscover: Boolean = true
+
   override protected def cacheDatabase(
       isDefault: Boolean,
       dataSourceName: String,
@@ -249,6 +251,37 @@ private[xsql] class MongoManager(conf: SparkConf) extends DataSourceManager with
   override def tableExists(dbName: String, table: String): Boolean = {
     val list = mongoClient.getDatabase(dbName).listCollectionNames().asScala.toList
     list.contains(table)
+  }
+
+  override protected def discoverRawTable(
+      db: String,
+      originDB: String,
+      table: String): Option[CatalogTable] = {
+    val sc = SparkContext.getActive.get
+    val url = cachedProperties(URL)
+    val options = new HashMap[String, String]
+    options += ((MONGODB_INPUT_URI, url))
+    options += ((MONGODB_INPUT_DATABASE, originDB))
+    options += ((MONGODB_INPUT_COLLECTION, table))
+    val mongoRDD: MongoRDD[org.bson.BsonDocument] =
+      sc.loadFromMongoDB(ReadConfig(options.toMap))
+    val schema = MongoInferSchema(mongoRDD)
+    val catalogTable = CatalogTable(
+      identifier = TableIdentifier(table, Option(db), Option(dsName)),
+      tableType = CatalogTableType.COLLECTION,
+      storage = CatalogStorageFormat(
+        locationUri = None,
+        inputFormat = None,
+        outputFormat = None,
+        serde = None,
+        compressed = false,
+        properties = Map(
+          MONGODB_INPUT_URI -> url,
+          MONGODB_INPUT_DATABASE -> originDB,
+          MONGODB_INPUT_COLLECTION -> table)),
+      schema = schema,
+      provider = Some(FULL_PROVIDER))
+    Option(catalogTable)
   }
 
   override def createTable(tableDefinition: CatalogTable, ignoreIfExists: Boolean): Unit = {
