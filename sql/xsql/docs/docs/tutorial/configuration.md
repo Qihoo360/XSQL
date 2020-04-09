@@ -14,6 +14,7 @@
 | spark.xsql.datasource.$dataSource.whitelist | None    | 用于指定数据源的Database及Table白名单。由于一些数据源中有大量的Database及Table，所以会导致启动XSQL时花费大量的时间。另一方面，每个用户只对其中的少数Database及Table感兴趣，因此可以提供白名单加速XSQL的启动。 |
 | spark.xsql.datasource.$dataSource.pushdown  | true    | 用于控制指定数据源的查询是否优先采用下推方式。此配置将建议XSQL对此数据源的查询使用下推方式，但是并不能保证。很多情况下，XSQL并不会下推，例如：数据源查询还包含有其他数据源的子查询，或者引用了外部查询的别名。 |
 | spark.xsql.datasource.$dataSource.schemas   | None    | 用于定义数据源中表的Schema信息。只适用于无严格Schema的数据源，例如：Redis、HBASE、MongoDB |
+| spark.xsql.datasource.$dataSource.schemas.discover | false | 对于无严格Schema的数据源，使用spark.xsql.datasource.$dataSource.schemas指定Schema配置文件，对于用户不太友好，而且一些复杂数据类型的定义（例如：ElasticSearch的nested类型）也十分繁琐。XSQL提供了对schema信息进行探索的能力，用户可以打开此开关，启用schema探索。注意：目前，此配置只对ElasticSearch和MongoDB有效。 |
 | spark.xsql.datasource.$dataSource.cache.level | 1     | 用于指定数据源的元数据缓存级别，1表示Level One，2表示Level Two。 |
 | spark.xsql.datasource.$dataSource.cluster   | None    | 用于定义数据源优先采用的Yarn集群。如果用户首次提交非下推的任务，那么此任务将会被提交到对应的Yarn集群。如果未指定此配置，对于Hive将选择Hive元数据服务所在的集群，其他数据源则仍然选择$XSQL_HOME/hadoopconf/yarn-site.xml文件所配置的Yarn集群。 |
 | spark.xsql.yarn.$clusterName                | None    | 用于指定用户使用的Yarn集群的名称及相关配置文件。             |
