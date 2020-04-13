@@ -333,9 +333,9 @@
 <td>是否将空field作为null。目前仅在关闭下推时有效。请参阅https://www.elastic.co/guide/en/elasticsearch/hadoop/5.2/configuration.html中对es.field.read.empty.as.null的详细介绍。</td>
 </tr>
 <tr>
-<td>spark.xsql.datasource.$dataSource.discover</td>
+<td>spark.xsql.datasource.$dataSource.schemas.discover.config</td>
 <td>None</td>
-<td>是否启用并配置数据源的类型推断。实际会影响Elasticsearch的es.read.field.as.array.include配置。Elasticsearch中的字段（也可称为属性）默认都是可以存储Array的。XSQL没有办法准确获得一个字段是它的定义类型，还是数组类型。此配置用于告诉XSQL，哪些字段需要进行类型推断。有关详细信息，请参阅https://www.elastic.co/guide/en/elasticsearch/hadoop/5.2/configuration.html中对es.read.field.as.array.include的详细介绍。</td>
+<td>是否启用并配置数据源的类型探索。实际会影响Elasticsearch的es.read.field.as.array.include配置。Elasticsearch中的字段（也可称为属性）默认都是可以存储Array的。XSQL没有办法准确获得一个字段是它的定义类型，还是数组类型。此配置用于告诉XSQL，哪些字段需要进行类型推断。有关详细信息，请参阅https://www.elastic.co/guide/en/elasticsearch/hadoop/5.2/configuration.html中对es.read.field.as.array.include的详细介绍。注意：此配置必须在spark.xsql.datasource.$dataSource.schemas.discover开启时，才会生效。</td>
 </tr>
 </tbody>
 </table>

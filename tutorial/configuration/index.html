@@ -377,6 +377,11 @@
 <td>用于定义数据源中表的Schema信息。只适用于无严格Schema的数据源，例如：Redis、HBASE、MongoDB</td>
 </tr>
 <tr>
+<td>spark.xsql.datasource.$dataSource.schemas.discover</td>
+<td>false</td>
+<td>对于无严格Schema的数据源，使用spark.xsql.datasource.$dataSource.schemas指定Schema配置文件，对于用户不太友好，而且一些复杂数据类型的定义（例如：ElasticSearch的nested类型）也十分繁琐。XSQL提供了对schema信息进行探索的能力，用户可以打开此开关，启用schema探索。注意：目前，此配置只对ElasticSearch和MongoDB有效。</td>
+</tr>
+<tr>
 <td>spark.xsql.datasource.$dataSource.cache.level</td>
 <td>1</td>
 <td>用于指定数据源的元数据缓存级别，1表示Level One，2表示Level Two。</td>
