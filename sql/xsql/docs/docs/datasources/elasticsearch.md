@@ -43,7 +43,7 @@ spark.xsql.datasource.default.whitelist  es-whitelist.conf
 
 ## Schema Discover
 
-​	Elasticsearch中的字段（也可称为属性）默认都是可以存储Array的，这使得XSQL没有办法准确获得一个字段是它的定义类型，还是数组类型。用户可以通过提供Json格式的配置文件，并通过spark.xsql.datasource.$dataSource.discover属性来指定路径。这里给出Discover文件的格式定义示例：
+​	Elasticsearch中的字段（也可称为属性）默认都是可以存储Array的，这使得XSQL没有办法准确获得一个字段是它的定义类型，还是数组类型。用户可以通过提供Json格式的配置文件，并通过spark.xsql.datasource.$dataSource.schemas.discover.config属性来指定文件的位置。这里给出Discover文件的格式定义示例：
 
 ```json
 {
