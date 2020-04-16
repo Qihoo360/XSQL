@@ -15,3 +15,4 @@ TGZ_NAME=xsql-assembly_2.11-$VERSION-dist.tgz
 FINAL_NAME=xsql-$VERSION-plugin-spark-$SPARK_VERSION.tgz
 cd assembly/target
 mv $TGZ_NAME ../../$FINAL_NAME
+
