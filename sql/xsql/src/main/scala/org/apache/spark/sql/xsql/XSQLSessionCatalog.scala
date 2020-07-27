@@ -838,33 +838,37 @@ private[xsql] class XSQLSessionCatalog(
    *  and set the current database to "default".
    * This is mainly used for tests.
    */
-  override def reset(): Unit = synchronized {
+  override def reset(): Unit = {
     val defaultDataSource = conf.getConf(XSQL_DEFAULT_DATASOURCE)
     val defaultDatabase = conf.getConf(XSQL_DEFAULT_DATABASE)
-    setCurrentDatabase(defaultDataSource, defaultDatabase)
-    listDatabasesForXSQL(defaultDataSource).filter(_ != defaultDatabase).foreach { db =>
-      dropDatabase(Some(defaultDataSource), db, ignoreIfNotExists = false, cascade = true)
-    }
-    listTablesForXSQL(defaultDataSource, defaultDatabase).foreach { table =>
-      dropTable(table, ignoreIfNotExists = false, purge = false)
-    }
-    listFunctions(defaultDataSource, defaultDatabase).map(_._1).foreach { func =>
-      if (func.database.isDefined) {
-        dropFunction(func, ignoreIfNotExists = false)
-      } else {
-        dropTempFunction(func.funcName, ignoreIfNotExists = false)
+    setWorkingDataSource(Option(defaultDataSource)) {
+      synchronized {
+        setCurrentDatabase(defaultDataSource, defaultDatabase)
+        listDatabasesForXSQL(defaultDataSource).filter(_ != defaultDatabase).foreach { db =>
+          dropDatabase(Some(defaultDataSource), db, ignoreIfNotExists = false, cascade = true)
+        }
+        listTablesForXSQL(defaultDataSource, defaultDatabase).foreach { table =>
+          dropTable(table, ignoreIfNotExists = false, purge = false)
+        }
+        listFunctions(defaultDataSource, defaultDatabase).map(_._1).foreach { func =>
+          if (func.database.isDefined) {
+            dropFunction(func, ignoreIfNotExists = false)
+          } else {
+            dropTempFunction(func.funcName, ignoreIfNotExists = false)
+          }
+        }
+        clearTempTables()
+        globalTempViewManager.clear()
+        functionRegistry.clear()
+        // restore built-in functions
+        FunctionRegistry.builtin.listFunction().foreach { f =>
+          val expressionInfo = FunctionRegistry.builtin.lookupFunction(f)
+          val functionBuilder = FunctionRegistry.builtin.lookupFunctionBuilder(f)
+          require(expressionInfo.isDefined, s"built-in function '$f' is missing expression info")
+          require(functionBuilder.isDefined, s"built-in function '$f' is missing function builder")
+          functionRegistry.registerFunction(f, expressionInfo.get, functionBuilder.get)
+        }
       }
-    }
-    clearTempTables()
-    globalTempViewManager.clear()
-    functionRegistry.clear()
-    // restore built-in functions
-    FunctionRegistry.builtin.listFunction().foreach { f =>
-      val expressionInfo = FunctionRegistry.builtin.lookupFunction(f)
-      val functionBuilder = FunctionRegistry.builtin.lookupFunctionBuilder(f)
-      require(expressionInfo.isDefined, s"built-in function '$f' is missing expression info")
-      require(functionBuilder.isDefined, s"built-in function '$f' is missing function builder")
-      functionRegistry.registerFunction(f, expressionInfo.get, functionBuilder.get)
     }
   }
 
