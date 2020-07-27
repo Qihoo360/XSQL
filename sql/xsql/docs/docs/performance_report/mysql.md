@@ -8,8 +8,6 @@ MySQL性能测试报告是基于业务数据的性能测试报告。
 
 **虚拟机版本**：  Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 
-**测试机器**：     client01v.qss.zzzc.qihoo.net
-
 **xsql配置**：
 
 - Driver Memory： 5G

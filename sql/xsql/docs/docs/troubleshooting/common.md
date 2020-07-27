@@ -21,12 +21,12 @@
 	 queue: root.test
 	 start time: 1544780544655
 	 final status: UNDEFINED
-	 tracking URL: http://test.qihoo.net:8888/proxy/application_1543893582405_838478/
+	 tracking URL: http://testhostname:8888/proxy/application_1543893582405_838478/
 	 user: test
 18/12/14 17:42:32 INFO Client: Application report for application_1543893582405_838478 (state: ACCEPTED)
 ```
 
-其中的tracking URL为http://test.qihoo.net:8888/proxy/application_1543893582405_838478/，从浏览器打开页面将看到类似信息：
+其中的tracking URL为http://testhostname:8888/proxy/application_1543893582405_838478/，从浏览器打开页面将看到类似信息：
 
 ```properties
 User: test
@@ -46,7 +46,7 @@ Diagnostics:
 
 可以看到状态也是ACCEPTED。并且队列是root.test。
 
-打开http://test.qihoo.net:8888/cluster/scheduler?openQueues=root.test，找到root.test队列的资源，将看到如下信息：
+打开http://testhostname:8888/cluster/scheduler?openQueues=root.test，找到root.test队列的资源，将看到如下信息：
 
 ```properties
 Used Resources: <memory:799232, vCores:224, gCores:0>
@@ -168,7 +168,7 @@ ERROR executor.CoarseGrainedExecutorBackend: RECEIVED SIGNAL 15: SIGTERM
 
 ```
 Job aborted due to stage failure: Task 2 in stage 3.0 failed 4 times, most recent failure: 
-Lost task 2.3 in stage 3.0 (TID 28, hpc152.sys.lycc.qihoo.net, executor 11): 
+Lost task 2.3 in stage 3.0 (TID 28, hpchostnam, executor 11): 
 org.apache.spark.SparkException: Kryo serialization failed: Buffer overflow. Available: 2, required: 8
 ```
 合理设置spark.kryoserializer.buffer.max,spark.kryoserializer.buffer

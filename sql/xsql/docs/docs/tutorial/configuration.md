@@ -174,7 +174,7 @@ yarn-cluster0.conf文件中的配置信息可能为：
 ```properties
 spark.yarn.stagingDir    hdfs://namenode.dfs.cluster0.yahoo.com:9000/home/spark/cache
 spark.hadoop.yarn.resourcemanager.cluster-id  cluster0-yarn
-spark.hadoop.yarn.resourcemanager.zk-state-store.address  m2.dfs.cluster0.qihoo.net:2181,m3.dfs.cluster0.yahoo.com:2181,m4.dfs.cluster0.yahoo.com:2181,m5.dfs.cluster0.yahoo.com:2181,m6.dfs.cluster0.yahoo.com:2181
+spark.hadoop.yarn.resourcemanager.zk-state-store.address  m3.dfs.cluster0.yahoo.com:2181,m4.dfs.cluster0.yahoo.com:2181,m5.dfs.cluster0.yahoo.com:2181,m6.dfs.cluster0.yahoo.com:2181
 spark.hadoop.yarn.resourcemanager.zk-address  m2.dfs.cluster0.yahoo.com:2181,m3.dfs.cluster0.yahoo.com:2181,m4.dfs.cluster0.yahoo.com:2181,m5.dfs.cluster0.yahoo.com:2181,m6.dfs.cluster0.yahoo.com:2181
 spark.hadoop.yarn.resourcemanager.zk-state-store.parent-path  /cluster0/yarn/rmstore
 spark.hadoop.yarn.resourcemanager.hostname.rm1  m7.dfs.cluster0.yahoo.com
