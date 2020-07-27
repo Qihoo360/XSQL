@@ -14,8 +14,8 @@ Druid接入XSQL的配置继承了[Configurations](../configurations/common.md)�
 ```
 xsql.conf文件:
 spark.xsql.datasource.mydruid.type   DRUID
-spark.xsql.datasource.mydruid.uri    http://r883.dfs.shbt.qihoo.net:8082
-spark.xsql.datasource.mydruid.coordinator.uri    r883.dfs.shbt.qihoo.net:8081
+spark.xsql.datasource.mydruid.uri    http://druidhostname:8082
+spark.xsql.datasource.mydruid.coordinator.uri    druidhostname:8081
 spark.xsql.datasource.mydruid.user   xxxx
 spark.xsql.datasource.mydruid.password   xxxx
 spark.xsql.datasource.mydruid.version   0.10.1

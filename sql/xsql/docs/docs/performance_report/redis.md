@@ -8,7 +8,6 @@ Redis的性能测试报告主要是基于TPCDS的性能测试报告。
 ​	
 **虚拟机版本**： Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
 ​	
-**测试机器**：	client01v.qss.zzzc.qihoo.net、clientadmin.dfs.shbt.qihoo.net
 
 **XSQL配置**：	
 
