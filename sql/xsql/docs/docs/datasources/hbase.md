@@ -16,7 +16,7 @@ HBase是一个分布式的、面向列的开源数据库，旨在为非结构化
 spark.xsql.datasources          hbase_ds_name
 spark.xsql.default.datasource   hbase_ds_name
 spark.xsql.datasource.hbase_ds_name.type  hbase
-spark.xsql.datasource.hbase_ds_name.host jlxx.sys.lyct.qihoo.net,jlxx.sys.lyct.qihoo.net,jlxx.sys.lyct.qihoo.net
+spark.xsql.datasource.hbase_ds_name.host hostname1,hostname2,hostname3
 spark.xsql.datasource.hbase_ds_name.port  2181
 # 配置元数据存储文件名称，需要放置在SPARK_CONF_DIR中
 spark.xsql.datasource.hbase_ds_name.schemas  hbase.schemas
