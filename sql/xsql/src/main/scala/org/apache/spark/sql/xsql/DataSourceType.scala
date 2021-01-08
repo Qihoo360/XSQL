@@ -24,7 +24,7 @@ package org.apache.spark.sql.xsql
 object DataSourceType extends Enumeration {
 
   type DataSourceType = Value
-  val HIVE, ELASTICSEARCH, MONGO, REDIS, MYSQL, KAFKA, HBASE, DRUID, ORACLE, EXTERNAL = Value
+  val HIVE, ELASTICSEARCH, MONGO, REDIS, JDBC, MYSQL, KAFKA, HBASE, DRUID, EXTERNAL = Value
 
   def checkExists(dsType: String): Boolean =
     this.values.exists(_.toString.equalsIgnoreCase(dsType))

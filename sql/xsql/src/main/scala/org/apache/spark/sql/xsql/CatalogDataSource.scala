@@ -64,6 +64,20 @@ class ElasticSearchDataSource(
   def getPwd: String = passwd
 }
 
+class JDBCDataSource(
+    private val name: String,
+    private val dsType: DataSourceType,
+    override val dsManager: DataSourceManager,
+    private val url: String,
+    private val username: String,
+    private val passwd: String,
+    private val version: String)
+  extends CatalogDataSource(name, dsType, version, dsManager) {
+  def getUrl: String = url
+  def getUser: String = username
+  def getPwd: String = passwd
+}
+
 class MysqlDataSource(
     private val name: String,
     private val dsType: DataSourceType,

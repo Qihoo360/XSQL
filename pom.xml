@@ -80,6 +80,7 @@
     <module>sql/xsql-hbase</module>
     <module>sql/xsql-shell</module>
     <module>sql/xsql-monitor</module>
+    <module>sql/xsql-jdbc</module>
     <module>assembly</module>
     <!-- See additional modules enabled by profiles below -->
   </modules>

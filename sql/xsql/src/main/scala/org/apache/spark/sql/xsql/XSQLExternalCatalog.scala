@@ -675,7 +675,7 @@ private[xsql] class XSQLExternalCatalog(conf: SparkConf, hadoopConf: Configurati
         case ELASTICSEARCH => CatalogTableType.TYPE
         case MONGO => CatalogTableType.COLLECTION
         case HBASE => CatalogTableType.HBASE
-        case MYSQL | ORACLE => CatalogTableType.JDBC
+        case MYSQL | JDBC => CatalogTableType.JDBC
         case DRUID => CatalogTableType.JDBC
         case _ => tableDefinition.tableType
       }
